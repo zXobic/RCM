@@ -1,0 +1,88 @@
+{
+  "name": "rcm",
+  "version": "1.0.0",
+  "description": "Remote Connection Manager",
+  "main": "main.js",
+  "author": "",
+  "license": "ISC",
+  "scripts": {
+    "start": "electron .",
+    "rebuild": "electron-rebuild",
+    "build": "node setup-icon.js && electron-builder build --win",
+    "build:portable": "node setup-icon.js && electron-builder build --win portable",
+    "setup": "node setup-icon.js"
+  },
+  "keywords": [],
+  "devDependencies": {
+    "@electron/rebuild": "^4.0.4",
+    "electron": "^40.6.1",
+    "electron-builder": "^25.1.8"
+  },
+  "dependencies": {
+    "serialport": "^13.0.0",
+    "ssh2": "^1.17.0",
+    "xterm": "^5.3.0",
+    "xterm-addon-fit": "^0.8.0"
+  },
+  "build": {
+    "appId": "com.firma.rcm",
+    "productName": "Remote Connection Manager",
+    "copyright": "© 2025",
+    "directories": {
+      "output": "dist"
+    },
+    "asar": true,
+    "asarUnpack": [
+      "node_modules/serialport/**",
+      "node_modules/@serialport/**",
+      "node_modules/bindings/**",
+      "node_modules/node-addon-api/**",
+      "**/*.node"
+    ],
+    "files": [
+      "main.js",
+      "preload.js",
+      "renderer.js",
+      "locales/**/*",
+      "index.html",
+      "style.css",
+      "node_modules/**/*",
+      "!node_modules/.cache",
+      "!node_modules/electron/dist/**"
+    ],
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        },
+        {
+          "target": "portable",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "icon": "assets/icon.ico"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "Remote Connection Manager"
+    },
+    "npmRebuild": false,
+    "electronDownload": {
+      "mirror": "https://npmmirror.com/mirrors/electron/",
+      "strictSSL": false
+    }
+  },
+  "allowScripts": {
+    "@serialport/bindings-cpp": true,
+    "electron": true,
+    "ssh2": true
+  }
+}

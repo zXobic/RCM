@@ -1,0 +1,32 @@
+# --- Abhängigkeiten und Build-Ergebnisse (lassen sich jederzeit neu erzeugen) ---
+node_modules/
+dist/
+out/
+*.blockmap
+
+# --- Logs und Diagnose ---
+*.log
+npm-debug.log*
+update-debug.log
+
+# --- Echte Daten und Zugangsdaten NIEMALS ins Repository ---
+# (liegen normalerweise in %APPDATA%\rcm, hier nur als Sicherheitsnetz,
+#  falls mal eine Kopie im Projektordner landet)
+connections.json
+connections.cache.json
+credentials.json
+settings.json
+vault.json
+*.pem
+*.key
+*.ppk
+id_rsa*
+id_ed25519*
+
+# --- Editor / Betriebssystem ---
+.vscode/*
+!.vscode/launch.json
+.idea/
+Thumbs.db
+desktop.ini
+.DS_Store

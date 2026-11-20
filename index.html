@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Remote Connection Manager</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="node_modules/xterm/css/xterm.css">
+<script src="node_modules/xterm/lib/xterm.js"></script>
+<script src="node_modules/xterm-addon-fit/lib/xterm-addon-fit.js"></script>
+</head>
+<body>
+
+<div class="titlebar">
+  <div class="titlebar-left drag-region">Remote Connection Manager</div>
+  <div class="titlebar-controls">
+    <button id="min-btn"   class="title-btn" title="Minimieren"><span>–</span></button>
+    <button id="max-btn"   class="title-btn" title="Maximieren"><span id="max-icon">□</span></button>
+    <button id="close-btn" class="title-btn close" title="Schließen"><span>×</span></button>
+  </div>
+</div>
+
+<div class="app-container">
+  <aside class="sidebar">
+
+    <!-- Topbar: Suche + Zahnrad (ersetzt "Connections"-Header) -->
+    <div class="sidebar-topbar">
+      <input type="text" id="search-input"
+             class="sidebar-topbar-search"
+             placeholder="🔍 Suchen..."
+             autocomplete="off" spellcheck="false" />
+      <button id="settings-btn" class="sidebar-settings-btn" title="Einstellungen">⚙</button>
+    </div>
+    <div id="sidebar-offline-notice" class="sidebar-offline-notice" style="display:none"></div>
+
+    <div id="sidebar-tree" class="sidebar-tree"></div>
+  </aside>
+
+  <div id="sidebar-resizer"></div>
+
+  <main class="content">
+    <div id="tab-bar"></div>
+    <div id="tab-content-area"></div>
+  </main>
+</div>
+
+<script src="renderer.js"></script>
+</body>
+</html>

@@ -1,0 +1,7 @@
+# Zeilenenden einheitlich halten (verhindert "ganze Datei geändert" nur
+# wegen Windows-CRLF vs. Unix-LF)
+* text=auto
+
+# Binärdateien nie verändern
+*.ico binary
+*.png binary
