@@ -21,7 +21,42 @@ const api = Object.freeze({
     _unsubs.push(off); return off;
   },
 
+  onQuickSearchOpen: (cb) => {
+    if (typeof cb !== "function") return () => {};
+    const fn = () => { try { cb(); } catch {} };
+    ipcRenderer.on("quicksearch:open", fn);
+    const off = () => ipcRenderer.removeListener("quicksearch:open", fn);
+    _unsubs.push(off); return off;
+  },
+
+  /* --- App-Info --- */
+  getVersion: () => ipcRenderer.invoke("app:getVersion"),
+  isDev:      () => ipcRenderer.invoke("app:isDev"),
+
+  /* --- Auto-Update --- */
+  // Lauscht auf alle Update-Phasen und meldet sie mit Typ-Label.
+  onUpdateEvent: (cb) => {
+    if (typeof cb !== "function") return () => {};
+    const channels = ["update:checking","update:available","update:none","update:progress","update:downloaded","update:error"];
+    const handlers = channels.map(ch => {
+      const fn = (_e, payload) => { try { cb(ch, payload || {}); } catch {} };
+      ipcRenderer.on(ch, fn);
+      return () => ipcRenderer.removeListener(ch, fn);
+    });
+    const off = () => handlers.forEach(h => h());
+    _unsubs.push(off); return off;
+  },
+  update: Object.freeze({
+    download: () => ipcRenderer.invoke("update:download"),
+    install:  () => ipcRenderer.invoke("update:install"),
+    check:    () => ipcRenderer.invoke("update:check"),
+    smbInstall: () => ipcRenderer.invoke("smbupdate:install"),
+  }),
+
   /* --- Settings --- */
+  tray: Object.freeze({
+    apply: () => ipcRenderer.invoke("tray:apply"),
+  }),
   settings: Object.freeze({
     load: ()    => ipcRenderer.invoke("settings:load"),
     save: (s)   => ipcRenderer.invoke("settings:save", s),
@@ -37,6 +72,12 @@ const api = Object.freeze({
   dialog: Object.freeze({
     openFile: (filters)              => ipcRenderer.invoke("dialog:openFile", { filters }),
     saveFile: ({ defaultName, content }) => ipcRenderer.invoke("dialog:saveFile", { defaultName, content }),
+  }),
+  datasource: Object.freeze({
+    pickExisting:  ()             => ipcRenderer.invoke("datasource:pickExisting"),
+    pickNewFolder: ()             => ipcRenderer.invoke("datasource:pickNewFolder"),
+    checkPath:  ({ filePath }) => ipcRenderer.invoke("datasource:checkPath", { filePath }),
+    createFile: ({ filePath }) => ipcRenderer.invoke("datasource:createFile", { filePath }),
   }),
 
   /* --- RDP --- */
@@ -58,6 +99,8 @@ const api = Object.freeze({
     open:   ({ tabId, url, bounds }) => ipcRenderer.invoke("web:open",   { tabId, url, bounds }),
     show:   ({ tabId, bounds })      => ipcRenderer.invoke("web:show",   { tabId, bounds }),
     hide:   ({ tabId })              => ipcRenderer.invoke("web:hide",   { tabId }),
+    hideAll: ()                      => ipcRenderer.invoke("web:hideAll"),
+    snapshot: ({ tabId })            => ipcRenderer.invoke("web:snapshot", { tabId }),
     resize: ({ tabId, bounds })      => ipcRenderer.invoke("web:resize", { tabId, bounds }),
     close:  ({ tabId })              => ipcRenderer.invoke("web:close",  { tabId }),
     reload: ({ tabId, hard })        => ipcRenderer.invoke("web:reload", { tabId, hard: !!hard }),
@@ -65,8 +108,9 @@ const api = Object.freeze({
 
   /* --- SSH --- */
   ssh: Object.freeze({
-    connect: ({ sessionId, host, port, username, password }) =>
-      ipcRenderer.invoke("ssh:connect", { sessionId, host, port, username, password }),
+    connect: ({ sessionId, host, port, username, password, authType, keyPath, passphrase, jump }) =>
+      ipcRenderer.invoke("ssh:connect", { sessionId, host, port, username, password, authType, keyPath, passphrase, jump }),
+    pickKeyPath: () => ipcRenderer.invoke("ssh:pickKeyPath"),
     send:    ({ sessionId, data })       => ipcRenderer.invoke("ssh:send",   { sessionId, data }),
     resize:  ({ sessionId, cols, rows }) => ipcRenderer.invoke("ssh:resize", { sessionId, cols, rows }),
     close:   ({ sessionId })             => ipcRenderer.invoke("ssh:close",  { sessionId }),
@@ -117,14 +161,25 @@ const api = Object.freeze({
       if (port != null && port !== "") { if (!isValidPort(port)) throw new Error("Port ist ungültig."); safePort = Number(port); }
       return ipcRenderer.invoke("store:createConnection", { folderId, type: "rdp", name, host, port: safePort, profile: (profile && typeof profile === "object") ? profile : undefined });
     },
-    createSshConnection: ({ folderId, name, host, port, username }) => {
+    createSshConnection: ({ folderId, name, host, port, username, authType, keyPath, jumpHost, jumpPort, jumpUsername, jumpKeyPath }) => {
       if (!folderId) throw new Error("folderId fehlt.");
       host = (host ?? "").toString().trim(); username = (username ?? "").toString().trim();
       if (!host) throw new Error("Host ist erforderlich."); if (!username) throw new Error("Benutzername ist erforderlich.");
       name = (name ?? host).toString().trim();
       const safePort = (port != null && port !== "") ? Number(port) : 22;
       if (!isValidPort(safePort)) throw new Error("Port ist ungültig.");
-      return ipcRenderer.invoke("store:createConnection", { folderId, type: "ssh", name, host, port: safePort, username });
+      const payload = { folderId, type: "ssh", name, host, port: safePort, username };
+      if (authType === "key" && typeof keyPath === "string" && keyPath.trim()) {
+        payload.authType = "key";
+        payload.keyPath  = keyPath.trim();
+      }
+      if (typeof jumpHost === "string" && jumpHost.trim()) {
+        payload.jumpHost     = jumpHost.trim();
+        payload.jumpPort     = jumpPort;
+        payload.jumpUsername = jumpUsername;
+        payload.jumpKeyPath  = jumpKeyPath;
+      }
+      return ipcRenderer.invoke("store:createConnection", payload);
     },
     createWebConnection: ({ folderId, name, url }) => {
       if (!folderId) throw new Error("folderId fehlt.");
@@ -132,7 +187,7 @@ const api = Object.freeze({
       name = (name ?? url).toString().trim();
       return ipcRenderer.invoke("store:createConnection", { folderId, type: "web", name, url });
     },
-    updateConnection: ({ folderId, connectionId, name, host, port, profile, url, username, comPort, baudRate, dataBits, parity, stopBits }) => {
+    updateConnection: ({ folderId, connectionId, name, host, port, profile, url, username, comPort, baudRate, dataBits, parity, stopBits, notes, authType, keyPath, jumpHost, jumpPort, jumpUsername, jumpKeyPath, sharedPassword }) => {
       if (!folderId || !connectionId) throw new Error("Parameter fehlt.");
       const payload = { folderId, connectionId };
       if (typeof name     === "string") payload.name     = name;
@@ -146,23 +201,35 @@ const api = Object.freeze({
       if (dataBits) payload.dataBits = dataBits;
       if (parity)   payload.parity   = parity;
       if (stopBits) payload.stopBits = stopBits;
+      if (typeof notes === "string") payload.notes = notes;
+      if (authType === "key" || authType === "password") payload.authType = authType;
+      if (typeof keyPath === "string") payload.keyPath = keyPath;
+      if (typeof sharedPassword === "string") payload.sharedPassword = sharedPassword;
+      // Jumphost: immer durchreichen wenn definiert (auch leerer String → Entfernen)
+      if (jumpHost !== undefined) {
+        payload.jumpHost     = jumpHost;
+        payload.jumpPort     = jumpPort;
+        payload.jumpUsername = jumpUsername;
+        payload.jumpKeyPath  = jumpKeyPath;
+      }
       return ipcRenderer.invoke("store:updateConnection", payload);
     },
-    updateWebConnection: ({ folderId, connectionId, name, url }) => {
+    updateWebConnection: ({ folderId, connectionId, name, url, notes }) => {
       if (!folderId || !connectionId) throw new Error("Parameter fehlt.");
       const payload = { folderId, connectionId };
       if (typeof name === "string") payload.name = name;
       if (typeof url  === "string") payload.url  = url;
+      if (typeof notes === "string") payload.notes = notes;
       return ipcRenderer.invoke("store:updateConnection", payload);
     },
     deleteConnection: ({ folderId, connectionId }) => {
       if (!folderId || !connectionId) throw new Error("Parameter fehlt.");
       return ipcRenderer.invoke("store:deleteConnection", { folderId, connectionId });
     },
-    moveConnection: ({ sourceFolderId, connectionId, targetFolderId }) =>
-      ipcRenderer.invoke("store:moveConnection", { sourceFolderId, connectionId, targetFolderId }),
-    moveFolder: ({ folderId, targetFolderId }) =>
-      ipcRenderer.invoke("store:moveFolder", { folderId, targetFolderId }),
+    moveConnection: ({ sourceFolderId, connectionId, targetFolderId, targetIndex }) =>
+      ipcRenderer.invoke("store:moveConnection", { sourceFolderId, connectionId, targetFolderId, targetIndex }),
+    moveFolder: ({ folderId, targetFolderId, targetIndex }) =>
+      ipcRenderer.invoke("store:moveFolder", { folderId, targetFolderId, targetIndex }),
     createSerialConnection: ({ folderId, name, comPort, baudRate = 9600, dataBits = 8, parity = "none", stopBits = 1 }) => {
       if (!folderId) throw new Error("folderId fehlt.");
       if (!comPort)  throw new Error("COM-Port ist erforderlich.");
@@ -188,6 +255,25 @@ const api = Object.freeze({
     deletePersonal:()                        => ipcRenderer.invoke("cred:deletePersonal"),
     getMode:       ({ id })                  => ipcRenderer.invoke("cred:getMode",       { id }),
     setMode:       ({ id, mode })            => ipcRenderer.invoke("cred:setMode",       { id, mode }),
+  }),
+
+  /* --- Geteilter Passwort-Tresor --- */
+  vault: Object.freeze({
+    status:  ()               => ipcRenderer.invoke("vault:status"),
+    setup:   ({ password })   => ipcRenderer.invoke("vault:setup",   { password }),
+    unlock:  ({ password })   => ipcRenderer.invoke("vault:unlock",  { password }),
+    lock:    ()               => ipcRenderer.invoke("vault:lock"),
+    encrypt: ({ plaintext })  => ipcRenderer.invoke("vault:encrypt", { plaintext }),
+    decrypt: ({ ciphertext }) => ipcRenderer.invoke("vault:decrypt", { ciphertext }),
+    reset:   ()               => ipcRenderer.invoke("vault:reset"),
+    remember:({ password })   => ipcRenderer.invoke("vault:remember", { password }),
+    forget:  ()               => ipcRenderer.invoke("vault:forget"),
+    tryAutoUnlock: ()         => ipcRenderer.invoke("vault:tryAutoUnlock"),
+  }),
+
+  /* --- Tastenkombinationen --- */
+  shortcut: Object.freeze({
+    reregister: () => ipcRenderer.invoke("shortcut:reregister"),
   }),
 
   /* --- Serial --- */

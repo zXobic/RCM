@@ -1,10 +1,12 @@
 {
   "name": "rcm",
-  "version": "1.0.0",
+  "version": "1.0.7",
   "description": "Remote Connection Manager",
+  "_updateHinweis": "Auto-Update laeuft ueber SMB (checkSmbUpdate in main.js), NICHT electron-updater. electron-updater ist stillgelegt, weil es nur http/https kann, kein file://SMB. Fuer spaeteren Webserver: build.publish.url auf http://server/pfad aendern, in main.js setupAutoUpdater() reaktivieren und checkSmbUpdate() deaktivieren.",
   "main": "main.js",
-  "author": "",
-  "license": "ISC",
+  "author": "Tobias Haase",
+  "license": "UNLICENSED",
+  "private": true,
   "scripts": {
     "start": "electron .",
     "rebuild": "electron-rebuild",
@@ -19,6 +21,7 @@
     "electron-builder": "^25.1.8"
   },
   "dependencies": {
+    "electron-updater": "^6.3.9",
     "serialport": "^13.0.0",
     "ssh2": "^1.17.0",
     "xterm": "^5.3.0",
@@ -28,6 +31,13 @@
     "appId": "com.firma.rcm",
     "productName": "Remote Connection Manager",
     "copyright": "© 2025",
+    "publish": [
+      {
+        "provider": "generic",
+        "url": "file://De0924LTH/RCM_AUP",
+        "channel": "latest"
+      }
+    ],
     "directories": {
       "output": "dist"
     },
@@ -43,6 +53,8 @@
       "main.js",
       "preload.js",
       "renderer.js",
+      "vault-crypto.js",
+      "assets/icon.ico",
       "locales/**/*",
       "index.html",
       "style.css",
@@ -57,12 +69,6 @@
           "arch": [
             "x64"
           ]
-        },
-        {
-          "target": "portable",
-          "arch": [
-            "x64"
-          ]
         }
       ],
       "icon": "assets/icon.ico"
@@ -72,7 +78,9 @@
       "allowToChangeInstallationDirectory": true,
       "createDesktopShortcut": true,
       "createStartMenuShortcut": true,
-      "shortcutName": "Remote Connection Manager"
+      "shortcutName": "Remote Connection Manager",
+      "deleteAppDataOnUninstall": true,
+      "runAfterFinish": true
     },
     "npmRebuild": false,
     "electronDownload": {

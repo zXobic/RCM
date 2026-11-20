@@ -1,7 +1,7 @@
 // main.js
 "use strict";
 
-const { app, BrowserWindow, WebContentsView, ipcMain, shell, session, clipboard, dialog } = require("electron");
+const { app, BrowserWindow, WebContentsView, ipcMain, shell, session, clipboard, dialog, globalShortcut, Tray, Menu } = require("electron");
 const path     = require("path");
 const { spawn, execSync, spawnSync } = require("child_process");
 const net = require("net");
@@ -9,6 +9,8 @@ const fs       = require("fs");
 const os       = require("os");
 const { randomUUID } = require("crypto");
 const { Client: SshClient } = require("ssh2");
+const vault = require("./vault-crypto.js");
+const { autoUpdater } = require("electron-updater");
 
 // serialport – für Konsolenkabel (USB-to-Serial).
 // Benötigt: npm install serialport && npx @electron/rebuild
@@ -22,6 +24,9 @@ try {
 }
 
 let win;
+// Entwicklungsmodus = per "npm start" aus dem Projektordner gestartet
+// (nicht die installierte App). Steuert DEV-Kennzeichnung und Test-Hilfen.
+const IS_DEV = !app.isPackaged;
 let isCleaningUp   = false;
 
 /* ----------------------------------------
@@ -167,6 +172,365 @@ ipcMain.handle("cred:setMode", async (_e, { id, mode }) => {
   } catch (err) { return { ok: false, error: err.message }; }
 });
 
+/* =========================================================
+   Geteilter Passwort-Tresor (Vault)
+   ---------------------------------------------------------
+   - Der Tresor-Header (Salt + Verifier) liegt in vault.json.
+     Er enthält KEIN Passwort, kann also gefahrlos geteilt werden
+     (liegt neben connections.json, ggf. auf dem SMB-Share).
+   - Der entsperrte Schlüssel lebt NUR hier im RAM (vaultKey),
+     niemals auf der Platte.
+   - Geteilte Verbindungspasswörter werden mit diesem Schlüssel
+     ver-/entschlüsselt und liegen dann in connections.json.
+========================================================= */
+let vaultKey = null; // Buffer wenn entsperrt, sonst null
+
+function vaultFilePath() {
+  // Liegt neben der connections.json der aktiven Datenquelle
+  const cfg = { mode: "local", smbPath: "" };
+  try {
+    const s = JSON.parse(fs.readFileSync(settingsPath, "utf-8"));
+    if (s.dataSource === "smb" && typeof s.smbPath === "string" && s.smbPath.trim()) {
+      return path.join(path.dirname(s.smbPath.trim()), "vault.json");
+    }
+  } catch {}
+  return path.join(userDataDir, "vault.json");
+}
+
+async function readVaultHeader() {
+  try { return JSON.parse(await fs.promises.readFile(vaultFilePath(), "utf-8")); }
+  catch { return null; }
+}
+async function writeVaultHeader(header) {
+  await fs.promises.writeFile(vaultFilePath(), JSON.stringify(header, null, 2), "utf-8");
+}
+
+// Status: gibt es einen Tresor? Ist er gerade entsperrt?
+ipcMain.handle("vault:status", async () => {
+  const header = await readVaultHeader();
+  let remembered = false;
+  try {
+    const cred = await readCredentials();
+    remembered = !!cred.__vaultpw__;
+  } catch {}
+  return { exists: !!header, unlocked: vaultKey !== null, remembered };
+});
+
+// Ersteinrichtung: Freischalt-Passwort festlegen
+ipcMain.handle("vault:setup", async (_e, { password }) => {
+  try {
+    if (!password) return { ok: false, error: "Kein Passwort angegeben." };
+    const existing = await readVaultHeader();
+    if (existing) return { ok: false, error: "Es existiert bereits ein Tresor." };
+    const header = vault.createVaultHeader(password);
+    await writeVaultHeader(header);
+    vaultKey = vault.unlockVault(password, header); // direkt entsperrt lassen
+    return { ok: true };
+  } catch (err) { return { ok: false, error: err.message }; }
+});
+
+// Entsperren beim Start
+ipcMain.handle("vault:unlock", async (_e, { password }) => {
+  try {
+    const header = await readVaultHeader();
+    if (!header) return { ok: false, error: "Kein Tresor vorhanden." };
+    const key = vault.unlockVault(password, header);
+    if (!key) return { ok: false, error: "Falsches Passwort." };
+    vaultKey = key;
+    return { ok: true };
+  } catch (err) { return { ok: false, error: err.message }; }
+});
+
+// Sperren (Schlüssel aus dem RAM entfernen)
+ipcMain.handle("vault:lock", async () => {
+  vaultKey = null;
+  return { ok: true };
+});
+
+// Geteiltes Geheimnis verschlüsseln (nur wenn entsperrt)
+ipcMain.handle("vault:encrypt", async (_e, { plaintext }) => {
+  if (!vaultKey) return { ok: false, error: "Tresor ist gesperrt." };
+  try { return { ok: true, ciphertext: vault.encryptWithKey(vaultKey, plaintext || "") }; }
+  catch (err) { return { ok: false, error: err.message }; }
+});
+
+// Geteiltes Geheimnis entschlüsseln (nur wenn entsperrt)
+ipcMain.handle("vault:decrypt", async (_e, { ciphertext }) => {
+  if (!vaultKey) return { ok: false, error: "Tresor ist gesperrt." };
+  try { return { ok: true, plaintext: vault.decryptWithKey(vaultKey, ciphertext) }; }
+  catch (err) { return { ok: false, error: err.message }; }
+});
+
+// Notausgang: Tresor + alle geteilten Passwörter löschen
+ipcMain.handle("vault:reset", async () => {
+  try {
+    // Header löschen
+    try { await fs.promises.unlink(vaultFilePath()); } catch {}
+    vaultKey = null;
+    // Auch gemerktes Passwort auf diesem Rechner entfernen
+    try {
+      const data = await readCredentials();
+      delete data.__vaultpw__;
+      await writeCredentials(data);
+    } catch {}
+    // Geteilte Passwörter aus connections.json entfernen
+    const data = await readStore();
+    let removed = 0;
+    (function walk(folders) {
+      for (const f of folders || []) {
+        for (const c of f.items || []) {
+          if (c.sharedPassword) { delete c.sharedPassword; removed++; }
+        }
+        walk(f.folders);
+      }
+    })(data.folders);
+    if (removed > 0) await writeStore(data, data.rev);
+    return { ok: true, removed };
+  } catch (err) { return { ok: false, error: err.message }; }
+});
+
+// Freischalt-Passwort per DPAPI auf DIESEM Rechner merken (rechnergebunden)
+ipcMain.handle("vault:remember", async (_e, { password }) => {
+  try {
+    const enc  = dpapiEncrypt(password);
+    const data = await readCredentials();
+    data.__vaultpw__ = enc; // liegt in der lokalen credentials.json, nie synchronisiert
+    await writeCredentials(data);
+    return { ok: true };
+  } catch (err) { return { ok: false, error: err.message }; }
+});
+
+// Gemerktes Passwort vergessen
+ipcMain.handle("vault:forget", async () => {
+  try {
+    const data = await readCredentials();
+    delete data.__vaultpw__;
+    await writeCredentials(data);
+    return { ok: true };
+  } catch (err) { return { ok: false, error: err.message }; }
+});
+
+// ── Auto-Update über SMB-Freigabe (eigener Mechanismus) ────────────────
+// Liest version.json von der Freigabe, vergleicht mit eigener Version,
+// meldet dem Banner ein verfügbares Update. Nutzt normale Datei-Zugriffe
+// (kein http), daher SMB-tauglich – anders als electron-updater.
+
+// UNC-Pfad zur Update-Freigabe (normaler Windows-Pfad, KEIN file://).
+const SMB_UPDATE_DIR = "\\\\De0924LTH\\RCM_AUP$";
+const SMB_VERSION_FILE = "version.json";
+const SMB_INSTALLER_NAME = "RCM-Setup.exe";
+
+// Vergleicht zwei Versionsstrings "1.0.2" vs "1.0.10" korrekt (nummerisch).
+// Gibt true, wenn "remote" NEUER ist als "local".
+function isNewerVersion(remote, local) {
+  const r = String(remote).split(".").map(n => parseInt(n, 10) || 0);
+  const l = String(local).split(".").map(n => parseInt(n, 10) || 0);
+  for (let i = 0; i < Math.max(r.length, l.length); i++) {
+    const a = r[i] || 0, b = l[i] || 0;
+    if (a > b) return true;
+    if (a < b) return false;
+  }
+  return false; // gleich
+}
+
+// Debug-Logging für Auto-Update. Auf true setzen, um in update-debug.log
+// zu schreiben (nur zur Fehlersuche). Im Normalbetrieb: false.
+const UPDATE_DEBUG_LOG = false;
+
+function smbUpdLog(msg) {
+  if (!UPDATE_DEBUG_LOG) return; // Logging aus – nichts schreiben
+  try {
+    fs.appendFileSync(path.join(userDataDir, "update-debug.log"),
+      `[${new Date().toISOString()}] [SMB] ${msg}\n`);
+  } catch {}
+}
+
+async function checkSmbUpdate() {
+  if (!app.isPackaged) { smbUpdLog("Dev-Modus – übersprungen"); return; }
+
+  const send = (channel, payload) => {
+    const wnd = win && !win.isDestroyed() ? win : BrowserWindow.getAllWindows()[0];
+    if (wnd) wnd.webContents.send(channel, payload);
+  };
+
+  try {
+    send("update:checking");
+    const versionPath = path.join(SMB_UPDATE_DIR, SMB_VERSION_FILE);
+    smbUpdLog("Lese: " + versionPath);
+
+    // version.json von der Freigabe lesen
+    const raw = await fs.promises.readFile(versionPath, "utf-8");
+    const info = JSON.parse(raw);
+    const remoteVersion = info.version;
+    const localVersion = app.getVersion();
+    smbUpdLog(`remote=${remoteVersion}  local=${localVersion}`);
+
+    if (remoteVersion && isNewerVersion(remoteVersion, localVersion)) {
+      smbUpdLog("Neuere Version verfügbar!");
+      send("update:available", { version: remoteVersion });
+    } else {
+      smbUpdLog("Kein Update (aktuell)");
+      send("update:none");
+    }
+  } catch (e) {
+    smbUpdLog("FEHLER: " + String(e?.message || e));
+    send("update:error", { message: String(e?.message || e) });
+  }
+}
+
+// Handler: Installer von der Freigabe STILL starten (/S = silent).
+// Der Installer läuft ohne Fenster durch und startet die App danach
+// automatisch neu (dank "runAfterFinish" in der nsis-Konfiguration).
+ipcMain.handle("smbupdate:install", async () => {
+  try {
+    const installerPath = path.join(SMB_UPDATE_DIR, SMB_INSTALLER_NAME);
+    smbUpdLog("Starte Installer STILL + Neustart: " + installerPath);
+    // /S         = still (ohne Fenster)
+    // --force-run = nach der Installation die App automatisch wieder starten
+    // detached + unref: der Installer läuft eigenständig weiter,
+    // auch wenn sich diese App gleich beendet.
+    const child = spawn(installerPath, ["/S", "--force-run"], { detached: true, stdio: "ignore" });
+    child.unref();
+    // Etwas mehr Zeit lassen, damit der Installer sicher gestartet ist,
+    // bevor sich die App beendet (sonst kann er die Dateien nicht ersetzen).
+    setTimeout(() => app.quit(), 2000);
+    return { ok: true };
+  } catch (e) {
+    smbUpdLog("Install-FEHLER: " + String(e?.message || e));
+    return { ok: false, error: String(e?.message || e) };
+  }
+});
+
+// ── Auto-Update (electron-updater) ─────────────────────────────────────
+// Halb-Automatik: beim Start nach Updates suchen, dem Nutzer melden,
+// er entscheidet über Download und Installation.
+function setupAutoUpdater() {
+  // Im Entwicklungsmodus (electron .) gibt es keine installierte Version
+  // zum Aktualisieren – dann überspringen wir alles.
+  if (!app.isPackaged) {
+    console.log("[Update] Dev-Modus – Update-Suche übersprungen.");
+    return;
+  }
+
+  // Wir wollen NICHT automatisch herunterladen (Halb-Automatik):
+  // Erst fragen, dann auf Knopfdruck laden.
+  autoUpdater.autoDownload = false;
+  autoUpdater.autoInstallOnAppQuit = true;
+
+  const send = (channel, payload) => {
+    const wnd = win && !win.isDestroyed() ? win : BrowserWindow.getAllWindows()[0];
+    if (wnd) wnd.webContents.send(channel, payload);
+  };
+
+  // Ereignis: Suche beginnt
+  autoUpdater.on("checking-for-update", () => { updLog("checking-for-update"); send("update:checking"); });
+  // Ereignis: eine neuere Version ist verfügbar
+  autoUpdater.on("update-available", (info) => { updLog("update-available: " + info.version); send("update:available", { version: info.version }); });
+  // Ereignis: keine neuere Version
+  autoUpdater.on("update-not-available", (info) => { updLog("update-not-available (installiert ist aktuell). Info: " + JSON.stringify(info)); send("update:none"); });
+  // Ereignis: Download-Fortschritt (für die Anzeige)
+  autoUpdater.on("download-progress", (p) => send("update:progress", { percent: Math.round(p.percent) }));
+  // Ereignis: Download fertig – bereit zum Installieren
+  autoUpdater.on("update-downloaded", (info) => { updLog("update-downloaded: " + info.version); send("update:downloaded", { version: info.version }); });
+  // Ereignis: Fehler (z. B. Freigabe nicht erreichbar)
+  autoUpdater.on("error", (err) => { updLog("ERROR: " + String(err?.message || err)); send("update:error", { message: String(err?.message || err) }); });
+
+  // DIAGNOSE: einfacher Datei-Logger (nur wenn UPDATE_DEBUG_LOG = true)
+  const updLog = (msg) => {
+    if (!UPDATE_DEBUG_LOG) return; // Logging aus
+    try {
+      const logPath = path.join(userDataDir, "update-debug.log");
+      const line = `[${new Date().toISOString()}] ${msg}\n`;
+      fs.appendFileSync(logPath, line);
+    } catch {}
+  };
+  autoUpdater.logger = { info: updLog, warn: updLog, error: updLog, debug: updLog };
+  updLog("=== Update-Suche gestartet ===");
+  updLog("feedURL: " + JSON.stringify(autoUpdater.getFeedURL?.() || "unbekannt"));
+
+  // Suche starten
+  autoUpdater.checkForUpdates().catch((e) => {
+    updLog("checkForUpdates FEHLER: " + String(e?.message || e));
+    send("update:error", { message: String(e?.message || e) });
+  });
+}
+
+// Handler: Download starten (nach Nutzer-Klick "Installieren")
+ipcMain.handle("update:download", async () => {
+  try { await autoUpdater.downloadUpdate(); return { ok: true }; }
+  catch (e) { return { ok: false, error: String(e?.message || e) }; }
+});
+
+// Handler: App neu starten und Update installieren
+ipcMain.handle("update:install", async () => {
+  autoUpdater.quitAndInstall();
+  return { ok: true };
+});
+
+// Handler: manuelle Suche (für später, z. B. ein "Nach Updates suchen"-Knopf)
+ipcMain.handle("update:check", async () => {
+  if (!app.isPackaged) return { ok: false, error: "dev" };
+  try { await autoUpdater.checkForUpdates(); return { ok: true }; }
+  catch (e) { return { ok: false, error: String(e?.message || e) }; }
+});
+
+// Standard-Tastenkombination für die Schnellsuche (an einer Stelle definiert).
+const DEFAULT_QS_SHORTCUT = "CommandOrControl+Shift+Space";
+
+// Registriert das globale Schnellsuche-Kürzel neu.
+// Liest die Kombination aus den Einstellungen (oder Default).
+// Gibt true zurück bei Erfolg, false wenn die Kombination nicht
+// registriert werden konnte (z. B. schon von anderem Programm belegt).
+function registerQuickSearchShortcut() {
+  let accelerator = DEFAULT_QS_SHORTCUT;
+  try {
+    const s = JSON.parse(fs.readFileSync(settingsPath, "utf-8"));
+    if (s && typeof s.quickSearchShortcut === "string" && s.quickSearchShortcut.trim()) {
+      accelerator = s.quickSearchShortcut.trim();
+    }
+  } catch {}
+  try {
+    globalShortcut.unregisterAll(); // altes Kürzel abmelden (wichtig beim Ändern)
+    const ok = globalShortcut.register(accelerator, () => {
+      const wnd = win && !win.isDestroyed() ? win : BrowserWindow.getAllWindows()[0];
+      if (!wnd) return;
+      if (wnd.isMinimized()) wnd.restore();
+      wnd.show();
+      wnd.focus();
+      wnd.webContents.send("quicksearch:open");
+    });
+    if (!ok) console.warn("[RDM] Globales Kürzel konnte nicht registriert werden (evtl. belegt):", accelerator);
+    return ok;
+  } catch (e) {
+    console.warn("[RDM] globalShortcut-Fehler:", e.message);
+    return false;
+  }
+}
+
+// Schnellsuche-Kürzel neu registrieren (nach Änderung in den Einstellungen).
+// Gibt { ok } zurück – ok=false, wenn die Kombination belegt/ungültig ist.
+ipcMain.handle("shortcut:reregister", async () => {
+  const ok = registerQuickSearchShortcut();
+  return { ok };
+});
+
+// Beim Start: versuchen, mit dem gemerkten Passwort automatisch zu entsperren
+ipcMain.handle("vault:tryAutoUnlock", async () => {
+  try {
+    const header = await readVaultHeader();
+    if (!header) return { ok: false, reason: "no-vault" };
+    const data = await readCredentials();
+    if (!data.__vaultpw__) return { ok: false, reason: "not-remembered" };
+    const pw  = dpapiDecrypt(data.__vaultpw__);
+    const key = vault.unlockVault(pw, header);
+    if (!key) return { ok: false, reason: "stale" }; // Passwort geändert? gemerktes ungültig
+    vaultKey = key;
+    return { ok: true };
+  } catch (err) { return { ok: false, reason: "error", error: err.message }; }
+});
+
+
+
 // Safety net: serialport wirft bei Port-Close "BindingsError: Operation aborted"
 // als unhandled Promise rejection (Race Condition zwischen close() und read()).
 // Das würde den Electron-Prozess crashen – hier abfangen.
@@ -220,27 +584,6 @@ const MAX_DEPTH    = 4;
 // Pfad beim Start loggen – hilft beim Debuggen wenn Daten "weg" sind
 console.log("[RDM] userData:", userDataDir);
 console.log("[RDM] connections.json:", storePath);
-
-// Migration: Falls die Datei noch im alten "Electron"-Default-Pfad liegt,
-// automatisch in den korrekten Pfad kopieren.
-(function migrateIfNeeded() {
-  try {
-    if (fs.existsSync(storePath)) return; // schon am richtigen Ort
-    const candidates = [
-      path.join(path.dirname(userDataDir), "Electron", "connections.json"),
-      path.join(path.dirname(userDataDir), "electron", "connections.json"),
-      path.join(path.dirname(userDataDir), "rdm",      "connections.json"),
-    ];
-    for (const src of candidates) {
-      if (fs.existsSync(src)) {
-        fs.mkdirSync(userDataDir, { recursive: true });
-        fs.copyFileSync(src, storePath);
-        console.log("[RDM] connections.json migriert von:", src);
-        break;
-      }
-    }
-  } catch (e) { console.warn("[RDM] Migration fehlgeschlagen:", e.message); }
-})();
 
 function ensureStore() {
   if (!fs.existsSync(storePath))
@@ -385,8 +728,11 @@ function extractFolder(rootFolders, folderId) {
    BrowserWindow
 ---------------------------------------- */
 function createWindow() {
+  // Beim Windows-Autostart (--hidden) direkt unsichtbar ins Tray starten
+  const startHidden = process.argv.includes("--hidden") && trayEnabled();
   win = new BrowserWindow({
     width: 1200, height: 800, minWidth: 900, minHeight: 600,
+    show: !startHidden,
     frame: false, autoHideMenuBar: true, backgroundColor: "#1e1e1e",
     webPreferences: {
       preload: path.join(__dirname, "preload.js"),
@@ -400,23 +746,57 @@ function createWindow() {
   win.on("restore",    sendWindowState);
   win.on("focus",      sendWindowState);
   win.on("blur",       sendWindowState);
+  // Alt+F4 / Schließen: im Tray-Modus nur verstecken, nicht beenden
+  win.on("close", (e) => {
+    if (!isQuitting && trayEnabled()) { e.preventDefault(); hideToTray(); }
+  });
 }
 
-app.setAppUserModelId("com.tobias.remote-connection-manager");
+// Muss mit build.appId in package.json übereinstimmen, sonst zeigt Windows
+// in Benachrichtigungen die rohe Kennung statt "Remote Connection Manager".
+app.setAppUserModelId("com.firma.rcm");
 
 const gotLock = app.requestSingleInstanceLock();
 if (!gotLock) {
   app.quit();
 } else {
   app.on("second-instance", () => {
-    if (win) { if (win.isMinimized()) win.restore(); win.focus(); }
+    showMainWindow(); // holt das Fenster auch aus dem Tray zurück
   });
+
   app.whenReady().then(() => {
     session.defaultSession.setCertificateVerifyProc((req, cb) => {
       cb(isIPv4In10Net(req.hostname) ? 0 : -3);
     });
     createWindow();
+
+    // Tray-Icon + Autostart gemäß Einstellungen
+    applyTraySettings();
+
+    // Globales Kürzel für die Schnellsuche (Command-Palette).
+    // Kombination kommt aus den Einstellungen; Standard: Strg+Umschalt+Leertaste.
+    registerQuickSearchShortcut();
+
+    // Auto-Update über electron-updater: STILLGELEGT, weil es nur http/https
+    // unterstützt, nicht file:// (SMB). Bleibt für späteren Webserver erhalten.
+    // Zum Reaktivieren (wenn Webserver da ist): nächste Zeile einkommentieren
+    // und den SMB-Mechanismus darunter deaktivieren.
+    // setupAutoUpdater();
+
+    // Auto-Update über SMB-Freigabe (aktiver Weg):
+    // WICHTIG: erst starten, wenn das Fenster fertig geladen hat, sonst
+    // verpufft die "update:available"-Nachricht, bevor das Banner lauscht.
+    if (win && win.webContents) {
+      win.webContents.once("did-finish-load", () => {
+        // kleiner Puffer, damit das Banner (initUpdateBanner) sicher registriert ist
+        setTimeout(() => checkSmbUpdate(), 800);
+      });
+    }
   });
+  // Jedes echte Beenden (Tray-Menü, Auto-Update, Windows-Abmeldung) markieren,
+  // damit der close-Handler das Fenster nicht nur ins Tray schickt.
+  app.on("before-quit", () => { isQuitting = true; });
+  app.on("will-quit", () => { try { globalShortcut.unregisterAll(); } catch {} });
   app.on("window-all-closed", () => { if (process.platform !== "darwin") app.quit(); });
   app.on("activate", () => { if (!BrowserWindow.getAllWindows().length) createWindow(); });
 }
@@ -432,26 +812,9 @@ ipcMain.on("window-maximize", () => {
 });
 ipcMain.on("window-close", () => {
   if (!win || isCleaningUp) return;
-  isCleaningUp = true;
-  win.hide();
-  for (const [, view] of webViews) {
-    try { win.contentView.removeChildView(view); view.webContents.destroy(); } catch {}
-  }
-  webViews.clear();
-  for (const [, { client }] of sshSessions) { try { client.end(); } catch {} }
-  sshSessions.clear();
-  for (const [, sess] of serialSessions) {
-    try {
-      sess.closing = true;
-      sess.port.removeAllListeners();
-      sess.port.on("error", () => {});
-      sess.port.destroy();
-    } catch {}
-  }
-  serialSessions.clear();
-  rdpProcesses.clear();
-  if (!win.isDestroyed()) win.destroy();
-  app.quit();
+  // Tray-Modus: Fenster nur verstecken, RCM läuft weiter (Kürzel bleibt aktiv)
+  if (trayEnabled()) { hideToTray(); return; }
+  shutdownAndQuit();
 });
 
 /* ----------------------------------------
@@ -471,6 +834,123 @@ ipcMain.handle("settings:save", async (_e, settings) => {
   await fs.promises.writeFile(settingsPath, JSON.stringify(settings, null, 2), "utf-8");
   return { ok: true };
 });
+
+/* ----------------------------------------
+   Tray / Hintergrundbetrieb
+   - X versteckt das Fenster ins Tray (abschaltbar: settings.trayMode=false)
+   - Schnellsuche-Kürzel funktioniert weiter, solange RCM im Tray läuft
+   - optional Autostart mit Windows (settings.autostart, startet versteckt)
+---------------------------------------- */
+let tray = null;
+let isQuitting = false;   // true = wirklich beenden (nicht nur ins Tray)
+
+function readSettingsSync() {
+  try { return JSON.parse(fs.readFileSync(settingsPath, "utf-8")) || {}; } catch { return {}; }
+}
+function trayEnabled() { return readSettingsSync().trayMode !== false; } // Standard: an
+
+function trayText() {
+  const en = readSettingsSync().language === "en";
+  return en
+    ? { open: "Open", search: "Quick search", quit: "Quit",
+        hintTitle: "Remote Connection Manager", hintText: "RCM keeps running in the tray. Quit via right-click on the icon." }
+    : { open: "Öffnen", search: "Schnellsuche", quit: "Beenden",
+        hintTitle: "Remote Connection Manager", hintText: "RCM läuft im Hintergrund weiter. Beenden per Rechtsklick auf das Symbol." };
+}
+
+function showMainWindow({ quickSearch = false } = {}) {
+  if (!win || win.isDestroyed()) return;
+  if (win.isMinimized()) win.restore();
+  win.show();
+  win.focus();
+  if (quickSearch) win.webContents.send("quicksearch:open");
+}
+
+function hideToTray() {
+  if (!win || win.isDestroyed()) return;
+  win.hide();
+  // Beim allerersten Mal kurz erklären, dass RCM weiterläuft
+  // Im Entwicklungsmodus jedes Mal zeigen (zum Testen), sonst nur einmal.
+  const s = readSettingsSync();
+  if ((IS_DEV || !s.trayHintShown) && tray) {
+    try {
+      const tx = trayText();
+      tray.displayBalloon({ title: tx.hintTitle, content: tx.hintText, iconType: "info" });
+      if (!IS_DEV) {
+        s.trayHintShown = true;
+        fs.writeFileSync(settingsPath, JSON.stringify(s, null, 2), "utf-8");
+      }
+    } catch {}
+  }
+}
+
+function buildTrayMenu() {
+  const tx = trayText();
+  return Menu.buildFromTemplate([
+    ...(IS_DEV ? [{ label: "⚙ Entwicklungsmodus (npm start)", enabled: false }, { type: "separator" }] : []),
+    { label: tx.open,   click: () => showMainWindow() },
+    { label: tx.search, click: () => showMainWindow({ quickSearch: true }) },
+    { type: "separator" },
+    { label: tx.quit,   click: () => shutdownAndQuit() },
+  ]);
+}
+
+function applyTraySettings() {
+  const s = readSettingsSync();
+  // Tray-Icon erstellen oder entfernen
+  if (s.trayMode !== false) {
+    if (!tray) {
+      try {
+        tray = new Tray(path.join(__dirname, "assets", "icon.ico"));
+        tray.setToolTip("Remote Connection Manager" + (IS_DEV ? " [DEV]" : ""));
+        tray.on("click", () => showMainWindow());
+        tray.on("double-click", () => showMainWindow());
+      } catch (e) { console.warn("[Tray] konnte nicht erstellt werden:", e.message); tray = null; }
+    }
+    if (tray) tray.setContextMenu(buildTrayMenu()); // auch nach Sprachwechsel aktuell
+  } else if (tray) {
+    tray.destroy();
+    tray = null;
+  }
+  // Autostart mit Windows – nur in der gebauten App (sonst würde sich
+  // bei "npm start" die Entwickler-Version in den Autostart eintragen)
+  if (app.isPackaged) {
+    try { app.setLoginItemSettings({ openAtLogin: !!s.autostart, args: ["--hidden"] }); } catch {}
+  }
+  return { ok: true };
+}
+
+// Wirklich beenden: Sitzungen sauber schließen, dann App beenden
+function shutdownAndQuit() {
+  if (isCleaningUp) return;
+  isCleaningUp = true;
+  isQuitting = true;
+  if (win && !win.isDestroyed()) {
+    win.hide();
+    for (const [, view] of webViews) {
+      try { win.contentView.removeChildView(view); view.webContents.destroy(); } catch {}
+    }
+  }
+  webViews.clear();
+  for (const [, { client, jumpClient }] of sshSessions) { try { client.end(); } catch {} try { jumpClient?.end(); } catch {} }
+  sshSessions.clear();
+  for (const [, sess] of serialSessions) {
+    try {
+      sess.closing = true;
+      sess.port.removeAllListeners();
+      sess.port.on("error", () => {});
+      sess.port.destroy();
+    } catch {}
+  }
+  serialSessions.clear();
+  rdpProcesses.clear();
+  if (tray) { try { tray.destroy(); } catch {} tray = null; }
+  if (win && !win.isDestroyed()) win.destroy();
+  app.quit();
+}
+
+// Einstellungen aus der Oberfläche übernehmen (Tray an/aus, Autostart)
+ipcMain.handle("tray:apply", async () => applyTraySettings());
 
 /* ----------------------------------------
    IPC: Dialog
@@ -498,10 +978,72 @@ ipcMain.handle("dialog:saveFile", async (_e, { defaultName, content } = {}) => {
 });
 
 /* ----------------------------------------
+   IPC: Datenquelle (Pfadauswahl für SMB)
+---------------------------------------- */
+// Vorhandene connections.json auswählen – Öffnen-Dialog (nie Überschreiben-Warnung)
+ipcMain.handle("datasource:pickExisting", async () => {
+  const wnd = BrowserWindow.getFocusedWindow() || BrowserWindow.getAllWindows()[0];
+  const result = await dialog.showOpenDialog(wnd, {
+    title: "Vorhandene connections.json auswählen",
+    filters: [{ name: "JSON", extensions: ["json"] }],
+    properties: ["openFile", "dontAddToRecent"],
+  });
+  if (result.canceled || !result.filePaths?.[0]) return null;
+  return { filePath: result.filePaths[0] };
+});
+
+// Ordner für eine NEUE connections.json wählen – Ordner-Dialog (keine Überschreiben-Warnung).
+// Legt die Datei NICHT an; das übernimmt datasource:createFile nach Rückfrage.
+ipcMain.handle("datasource:pickNewFolder", async () => {
+  const wnd = BrowserWindow.getFocusedWindow() || BrowserWindow.getAllWindows()[0];
+  const result = await dialog.showOpenDialog(wnd, {
+    title: "Ordner für neue connections.json wählen",
+    properties: ["openDirectory", "createDirectory", "dontAddToRecent"],
+  });
+  if (result.canceled || !result.filePaths?.[0]) return null;
+  return { filePath: path.join(result.filePaths[0], "connections.json") };
+});
+
+// Prüfen ob unter dem Pfad eine gültige connections.json liegt
+ipcMain.handle("datasource:checkPath", async (_e, { filePath } = {}) => {
+  if (!filePath) return { exists: false, valid: false };
+  try {
+    const raw = await fs.promises.readFile(filePath, "utf-8");
+    JSON.parse(raw); // muss parsebar sein
+    return { exists: true, valid: true };
+  } catch (err) {
+    // Datei existiert nicht ODER ist kein gültiges JSON
+    const exists = fs.existsSync(filePath);
+    return { exists, valid: false };
+  }
+});
+
+// Leere Store-Struktur an einem Pfad anlegen
+ipcMain.handle("datasource:createFile", async (_e, { filePath } = {}) => {
+  if (!filePath) throw new Error("Kein Pfad angegeben.");
+  const dir = path.dirname(filePath);
+  await fs.promises.mkdir(dir, { recursive: true });
+  await fs.promises.writeFile(filePath, JSON.stringify({ rev: 0, folders: [] }, null, 2), "utf-8");
+  return { ok: true };
+});
+
+/* ----------------------------------------
    IPC: Store
 ---------------------------------------- */
+// Gibt die aktuelle App-Version zurück (für den Über-Bereich).
+// Teilt der Oberfläche mit, ob der Entwicklungsmodus aktiv ist (für DEV-Abzeichen)
+ipcMain.handle("app:isDev", async () => IS_DEV);
+
+ipcMain.handle("app:getVersion", async () => {
+  return app.getVersion();
+});
+
 ipcMain.handle("store:openFolder", async () => {
-  await shell.openPath(path.dirname(storePath));
+  // Öffnet den Ordner der AKTIVEN Datenquelle (SMB-Share oder lokal),
+  // nicht mehr fest den lokalen Pfad.
+  const cfg = await getDataSourceConfig();
+  const activePath = effectivePath(cfg);
+  await shell.openPath(path.dirname(activePath));
   return { ok: true };
 });
 ipcMain.handle("store:load", async () => readStore());
@@ -546,7 +1088,7 @@ ipcMain.handle("store:setFolderOpen", async (_e, { folderId, open }) => {
   return { ok: true, data };
 });
 
-ipcMain.handle("store:createConnection", async (_e, { folderId, type, name, host, port, url, profile, username, comPort, baudRate, dataBits, parity, stopBits }) => {
+ipcMain.handle("store:createConnection", async (_e, { folderId, type, name, host, port, url, profile, username, comPort, baudRate, dataBits, parity, stopBits, authType, keyPath, jumpHost, jumpPort, jumpUsername, jumpKeyPath }) => {
   const data = await readStore();
   const info = findFolderById(data.folders, folderId);
   if (!info) throw new Error("Zielordner nicht gefunden.");
@@ -559,6 +1101,19 @@ ipcMain.handle("store:createConnection", async (_e, { folderId, type, name, host
     if (!host?.trim())     throw new Error("Host ist erforderlich.");
     if (!username?.trim()) throw new Error("Benutzername ist erforderlich.");
     conn = { id, type: "ssh", name: (name || host).trim(), host: host.trim(), port: port ? Number(port) : 22, username: username.trim() };
+    if (authType === "key" && typeof keyPath === "string" && keyPath.trim()) {
+      conn.authType = "key";
+      conn.keyPath  = keyPath.trim();
+    }
+    // Jumphost (optional) – immer per Key
+    if (typeof jumpHost === "string" && jumpHost.trim()) {
+      conn.jump = {
+        host: jumpHost.trim(),
+        port: jumpPort ? Number(jumpPort) : 22,
+        username: (jumpUsername || "").trim(),
+        keyPath: (jumpKeyPath || "").trim(),
+      };
+    }
   } else if (type === "serial") {
     if (!comPort) throw new Error("COM-Port ist erforderlich.");
     conn = { id, type: "serial", name: (name || comPort).trim(), comPort,
@@ -574,7 +1129,7 @@ ipcMain.handle("store:createConnection", async (_e, { folderId, type, name, host
   return { ok: true, connId: id, data };
 });
 
-ipcMain.handle("store:updateConnection", async (_e, { folderId, connectionId, name, host, port, profile, url, username, comPort, baudRate, dataBits, parity, stopBits, notes }) => {
+ipcMain.handle("store:updateConnection", async (_e, { folderId, connectionId, name, host, port, profile, url, username, comPort, baudRate, dataBits, parity, stopBits, notes, authType, keyPath, jumpHost, jumpPort, jumpUsername, jumpKeyPath, sharedPassword }) => {
   const data = await readStore();
   const info = findFolderById(data.folders, folderId);
   if (!info) throw new Error("Ordner nicht gefunden.");
@@ -589,6 +1144,21 @@ ipcMain.handle("store:updateConnection", async (_e, { folderId, connectionId, na
     if (port != null && port !== "") {
       const p = Number(port); if (!Number.isFinite(p) || p <= 0 || p > 65535) throw new Error("Port ungültig.");
       conn.port = p;
+    }
+    if (authType === "key" || authType === "password") conn.authType = authType;
+    if (typeof keyPath === "string") conn.keyPath = keyPath.trim();
+    // Jumphost aktualisieren: gesetzt → speichern, leer → entfernen
+    if (jumpHost !== undefined) {
+      if (typeof jumpHost === "string" && jumpHost.trim()) {
+        conn.jump = {
+          host: jumpHost.trim(),
+          port: jumpPort ? Number(jumpPort) : 22,
+          username: (jumpUsername || "").trim(),
+          keyPath: (jumpKeyPath || "").trim(),
+        };
+      } else {
+        delete conn.jump;
+      }
     }
   } else if (conn.type === "serial") {
     if (comPort)  conn.comPort  = comPort;
@@ -605,6 +1175,11 @@ ipcMain.handle("store:updateConnection", async (_e, { folderId, connectionId, na
     if (profile && typeof profile === "object") conn.profile = Object.assign({}, conn.profile || {}, profile);
   }
   if (typeof notes === "string") conn.notes = notes.trim();
+  // Geteiltes (Vault-verschlüsseltes) Passwort: leerer String → entfernen
+  if (typeof sharedPassword === "string") {
+    if (sharedPassword) conn.sharedPassword = sharedPassword;
+    else delete conn.sharedPassword;
+  }
   await writeStore(data, data.rev);
   return { ok: true, data };
 });
@@ -620,7 +1195,7 @@ ipcMain.handle("store:deleteConnection", async (_e, { folderId, connectionId }) 
   return { ok: true, data };
 });
 
-ipcMain.handle("store:moveConnection", async (_e, { sourceFolderId, connectionId, targetFolderId }) => {
+ipcMain.handle("store:moveConnection", async (_e, { sourceFolderId, connectionId, targetFolderId, targetIndex }) => {
   const data = await readStore();
   const src  = findFolderById(data.folders, sourceFolderId);
   const dst  = findFolderById(data.folders, targetFolderId);
@@ -628,12 +1203,18 @@ ipcMain.handle("store:moveConnection", async (_e, { sourceFolderId, connectionId
   const idx = (src.folder.items || []).findIndex(c => c.id === connectionId);
   if (idx === -1) throw new Error("Verbindung nicht gefunden.");
   const [conn] = src.folder.items.splice(idx, 1);
-  dst.folder.items.push(conn);
+  if (!dst.folder.items) dst.folder.items = [];
+  // Wenn eine Zielposition angegeben ist: dort einfügen, sonst ans Ende.
+  if (typeof targetIndex === "number" && targetIndex >= 0 && targetIndex <= dst.folder.items.length) {
+    dst.folder.items.splice(targetIndex, 0, conn);
+  } else {
+    dst.folder.items.push(conn);
+  }
   await writeStore(data, data.rev);
   return { ok: true, data };
 });
 
-ipcMain.handle("store:moveFolder", async (_e, { folderId, targetFolderId }) => {
+ipcMain.handle("store:moveFolder", async (_e, { folderId, targetFolderId, targetIndex }) => {
   const data    = await readStore();
   const srcInfo = findFolderById(data.folders, folderId);
   if (!srcInfo) throw new Error("Quellordner nicht gefunden.");
@@ -648,8 +1229,14 @@ ipcMain.handle("store:moveFolder", async (_e, { folderId, targetFolderId }) => {
   }
   const moved = extractFolder(data.folders, folderId);
   if (!moved) throw new Error("Ordner konnte nicht entfernt werden.");
-  if (!targetFolderId) data.folders.push(moved);
-  else                 dstInfo.folder.folders.push(moved);
+  // Ziel-Liste: entweder oberste Ebene oder die Kinder des Zielordners
+  const targetList = targetFolderId ? dstInfo.folder.folders : data.folders;
+  if (!Array.isArray(targetList)) throw new Error("Ziel-Liste ungültig.");
+  if (typeof targetIndex === "number" && targetIndex >= 0 && targetIndex <= targetList.length) {
+    targetList.splice(targetIndex, 0, moved);
+  } else {
+    targetList.push(moved);
+  }
   await writeStore(data, data.rev);
   return { ok: true, data };
 });
@@ -930,38 +1517,114 @@ ipcMain.handle("serial:close", (_e, { sessionId }) => {
 /* ----------------------------------------
    IPC: SSH
 ---------------------------------------- */
-ipcMain.handle("ssh:connect", (_e, { sessionId, host, port, username, password }) => {
+// Private Schlüsseldatei auswählen – gibt nur den Pfad zurück, liest die Datei nicht
+ipcMain.handle("ssh:pickKeyPath", async () => {
+  const wnd = BrowserWindow.getFocusedWindow() || BrowserWindow.getAllWindows()[0];
+  const result = await dialog.showOpenDialog(wnd, {
+    title: "Private Schlüsseldatei auswählen",
+    properties: ["openFile", "dontAddToRecent"],
+    filters: [{ name: "Alle Dateien", extensions: ["*"] }], // Keys haben oft keine Endung (id_rsa, id_ed25519)
+  });
+  if (result.canceled || !result.filePaths?.[0]) return null;
+  return { filePath: result.filePaths[0] };
+});
+
+ipcMain.handle("ssh:connect", (_e, { sessionId, host, port, username, password, authType, keyPath, passphrase, jump }) => {
   return new Promise((resolve) => {
     const old = sshSessions.get(sessionId);
-    if (old) { try { old.client.end(); } catch {} sshSessions.delete(sessionId); }
-    const client = new SshClient();
-    let settled  = false;
-    const fail = (err) => {
+    if (old) {
+      try { old.client.end(); } catch {}
+      try { old.jumpClient?.end(); } catch {}
+      sshSessions.delete(sessionId);
+    }
+
+    let settled   = false;
+    let jumpClient = null; // nur gesetzt, wenn über Jumphost verbunden wird
+
+    const fail = (err, stage) => {
       if (settled) return; settled = true;
-      try { client.end(); } catch {}
-      resolve({ ok: false, error: err?.message || String(err) });
+      try { jumpClient?.end(); } catch {}
+      // Fehlerort benennen, damit der Nutzer weiß wo es klemmte
+      const prefix = stage === "jump" ? "Jumphost: " : stage === "target" ? "Ziel: " : "";
+      resolve({ ok: false, error: prefix + (err?.message || String(err)) });
     };
-    client.on("ready", () => {
-      client.shell({ term: "xterm-256color" }, (err, stream) => {
-        if (err) { fail(err); return; }
-        if (settled) { try { client.end(); } catch {} return; }
-        settled = true;
-        sshSessions.set(sessionId, { client, stream });
-        const send = (data) => {
-          if (win && !win.isDestroyed())
-            win.webContents.send("ssh:data", { sessionId, data: Buffer.from(data).toString("base64") });
-        };
-        stream.on("data", send); stream.stderr.on("data", send);
-        stream.on("close", () => {
-          sshSessions.delete(sessionId);
-          if (win && !win.isDestroyed()) win.webContents.send("ssh:closed", { sessionId });
+
+    // Schlüsseldatei lesen (für Jumphost und/oder Ziel im Key-Modus)
+    function readKey(path) {
+      return fs.readFileSync(path); // wirft bei Fehler → vom Aufrufer gefangen
+    }
+
+    // Baut die eigentliche Zielverbindung auf. `sock` ist gesetzt, wenn über
+    // einen Jumphost getunnelt wird, sonst verbindet target direkt.
+    function connectTarget(sock) {
+      const client = new SshClient();
+      client.on("ready", () => {
+        client.shell({ term: "xterm-256color" }, (err, stream) => {
+          if (err) { fail(err, "target"); return; }
+          if (settled) { try { client.end(); } catch {} try { jumpClient?.end(); } catch {} return; }
+          settled = true;
+          sshSessions.set(sessionId, { client, stream, jumpClient });
+          const send = (data) => {
+            if (win && !win.isDestroyed())
+              win.webContents.send("ssh:data", { sessionId, data: Buffer.from(data).toString("base64") });
+          };
+          stream.on("data", send); stream.stderr.on("data", send);
+          stream.on("close", () => {
+            sshSessions.delete(sessionId);
+            try { jumpClient?.end(); } catch {}
+            if (win && !win.isDestroyed()) win.webContents.send("ssh:closed", { sessionId });
+          });
+          resolve({ ok: true });
         });
-        resolve({ ok: true });
       });
-    });
-    client.on("error", fail);
-    client.on("keyboard-interactive", (_n, _i, _l, _p, finish) => { if (!settled) finish([password]); });
-    client.connect({ host, port: port || 22, username, password, tryKeyboard: true, readyTimeout: 10_000 });
+      client.on("error", (e) => fail(e, "target"));
+
+      const opts = { host, port: port || 22, username, readyTimeout: 15_000 };
+      if (sock) opts.sock = sock; // durch den Jumphost-Tunnel statt direkt
+      if (authType === "key") {
+        let keyData;
+        try { keyData = readKey(keyPath); }
+        catch (e) { fail({ message: `Schlüsseldatei konnte nicht gelesen werden: ${e.message}` }, "target"); return; }
+        opts.privateKey = keyData;
+        if (passphrase) opts.passphrase = passphrase;
+      } else {
+        opts.password = password;
+        opts.tryKeyboard = true;
+        client.on("keyboard-interactive", (_n, _i, _l, _p, finish) => { if (!settled) finish([password]); });
+      }
+      try { client.connect(opts); } catch (err) { fail(err, "target"); }
+    }
+
+    // ── Mit Jumphost: erst zum Jumphost (per Key), dann forwardOut zum Ziel ──
+    if (jump && jump.host) {
+      jumpClient = new SshClient();
+      jumpClient.on("ready", () => {
+        // Tunnel vom Jumphost zum eigentlichen Ziel öffnen
+        jumpClient.forwardOut("127.0.0.1", 0, host, port || 22, (err, stream) => {
+          if (err) { fail(err, "jump"); return; }
+          connectTarget(stream); // Zielverbindung läuft durch diesen Tunnel
+        });
+      });
+      jumpClient.on("error", (e) => fail(e, "jump"));
+
+      const jOpts = {
+        host: jump.host,
+        port: jump.port || 22,
+        username: jump.username,
+        readyTimeout: 15_000,
+      };
+      // Jumphost immer per Key
+      let jKey;
+      try { jKey = readKey(jump.keyPath); }
+      catch (e) { fail({ message: `Jumphost-Schlüsseldatei konnte nicht gelesen werden: ${e.message}` }, "jump"); return; }
+      jOpts.privateKey = jKey;
+      if (jump.passphrase) jOpts.passphrase = jump.passphrase;
+
+      try { jumpClient.connect(jOpts); } catch (err) { fail(err, "jump"); }
+    } else {
+      // ── Ohne Jumphost: direkt zum Ziel (wie bisher) ──
+      connectTarget(null);
+    }
   });
 });
 
@@ -969,7 +1632,11 @@ ipcMain.handle("ssh:send",   (_e, { sessionId, data }) => { sshSessions.get(sess
 ipcMain.handle("ssh:resize", (_e, { sessionId, cols, rows }) => { sshSessions.get(sessionId)?.stream.setWindow(rows, cols, 0, 0); return { ok: true }; });
 ipcMain.handle("ssh:close",  (_e, { sessionId }) => {
   const s = sshSessions.get(sessionId);
-  if (s) { try { s.stream.end(); s.client.end(); } catch {} sshSessions.delete(sessionId); }
+  if (s) {
+    try { s.stream.end(); s.client.end(); } catch {}
+    try { s.jumpClient?.end(); } catch {}
+    sshSessions.delete(sessionId);
+  }
   return { ok: true };
 });
 
@@ -989,18 +1656,38 @@ ipcMain.handle("web:open", async (_e, { tabId, url, bounds }) => {
     action: "allow",
     overrideBrowserWindowOptions: { width: 1280, height: 800, frame: true, autoHideMenuBar: true, webPreferences: { nodeIntegration: false, contextIsolation: true, sandbox: false } }
   }));
+  // F5 = neu laden, Strg+F5 / Umschalt+F5 = ohne Cache. Der Tastendruck landet
+  // im Web-View selbst (nicht im RCM-Fenster), deshalb hier abfangen.
+  view.webContents.on("before-input-event", (e, input) => {
+    if (input.type === "keyDown" && input.key === "F5") {
+      e.preventDefault();
+      if (input.control || input.shift) view.webContents.reloadIgnoringCache();
+      else view.webContents.reload();
+    }
+  });
   view.webContents.on("did-create-window", (childWin) => {
     childWin.webContents.setUserAgent(childWin.webContents.userAgent.replace(/\s?Electron\/[\d.]+/, ""));
   });
   wnd.contentView.addChildView(view);
   view.setBounds(bounds);
+  // WICHTIG: View SOFORT registrieren – noch vor dem Laden. Sonst kann es
+  // während eines hängenden Ladevorgangs (Timeout) nicht versteckt werden
+  // und überdeckt Dialoge.
+  webViews.set(tabId, view);
+  // Diagnose + robustes Fehlerhandling beim Laden
+  view.webContents.on("did-fail-load", (_e, errorCode, errorDesc, validatedURL) => {
+    console.warn(`[web:open] Ladefehler ${errorCode} (${errorDesc}) bei ${validatedURL}`);
+  });
   try {
     await view.webContents.loadURL(url);
   } catch (err) {
+    // Laden fehlgeschlagen (z. B. Zertifikat, nicht erreichbar):
+    // View NICHT als weiße Fläche liegen lassen, sondern entfernen.
+    console.warn(`[web:open] loadURL fehlgeschlagen: ${err?.message || err}`);
     try { wnd.contentView.removeChildView(view); view.webContents.destroy(); } catch {}
-    throw err;
+    webViews.delete(tabId);
+    return { ok: false, error: String(err?.message || err) };
   }
-  webViews.set(tabId, view);
   return { ok: true };
 });
 
@@ -1008,8 +1695,7 @@ ipcMain.handle("web:show", async (_e, { tabId, bounds }) => {
   const view = webViews.get(tabId); const wnd = getWnd();
   if (!view || !wnd) return { ok: false };
   try { wnd.contentView.removeChildView(view); } catch {}
-  wnd.contentView.addChildView(view);
-  view.setBounds(bounds);
+  try { wnd.contentView.addChildView(view); if (bounds) view.setBounds(bounds); } catch {}
   return { ok: true };
 });
 
@@ -1019,6 +1705,32 @@ ipcMain.handle("web:hide", async (_e, { tabId }) => {
   try { wnd.contentView.removeChildView(view); } catch {}
   return { ok: true };
 });
+
+// Versteckt ALLE Web-Views (z. B. wenn ein Dialog erscheint, damit er
+// nicht von einem darüberliegenden Web-View verdeckt wird).
+ipcMain.handle("web:hideAll", async () => {
+  const wnd = getWnd();
+  if (!wnd) return { ok: false };
+  for (const view of webViews.values()) {
+    try { wnd.contentView.removeChildView(view); } catch {}
+  }
+  return { ok: true };
+});
+
+// Nimmt ein Standbild des aktiven Web-Views auf (als Bild-URL), damit es
+// hinter Dialogen/Schnellsuche sichtbar bleiben kann, während der echte
+// View ausgeblendet ist.
+ipcMain.handle("web:snapshot", async (_e, { tabId }) => {
+  const view = webViews.get(tabId);
+  if (!view) return { ok: false };
+  try {
+    const img = await view.webContents.capturePage();
+    return { ok: true, dataUrl: img.toDataURL() };
+  } catch (e) {
+    return { ok: false, error: String(e?.message || e) };
+  }
+});
+
 
 ipcMain.handle("web:resize", async (_e, { tabId, bounds }) => {
   const view = webViews.get(tabId); if (!view) return { ok: false };

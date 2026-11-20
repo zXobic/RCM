@@ -1,0 +1,3706 @@
+{
+  "folders": [
+    {
+      "id": "f-30170092-274a-46e6-8e65-63c69fec2b9a",
+      "name": "TESTING",
+      "open": true,
+      "items": [
+        {
+          "id": "c-5b811e6e-df1a-4cee-891f-bbf788095a85",
+          "type": "ssh",
+          "name": "DE0924N07",
+          "host": "10.5.2.46",
+          "port": 22,
+          "username": "root",
+          "notes": "",
+          "authType": "password",
+          "keyPath": "",
+          "sharedPassword": "xw1fVVuz+Z8UYz6I:SjY09s6WnhfAC1VDSnuPnQ==:RbUuMIwGhYqZYw1b8iYF"
+        },
+        {
+          "id": "c-4e9a977f-7be7-4084-b31a-28c1fb93ca4d",
+          "type": "rdp",
+          "name": "DE0924S01",
+          "host": "DE0924S01",
+          "port": 3389,
+          "profile": {
+            "fullscreen": true,
+            "multimon": false,
+            "admin": false,
+            "clipboard": true,
+            "printers": false,
+            "colorDepth": 32,
+            "drives": "",
+            "username": "admin-haaseto@remondis-de.local",
+            "gateway": {
+              "usage": 2
+            },
+            "notes": ""
+          },
+          "notes": ""
+        },
+        {
+          "id": "c-c709443f-6b73-454f-8b75-0b931d31f390",
+          "type": "web",
+          "name": "DE0924S05",
+          "url": "https://10.5.2.229"
+        },
+        {
+          "id": "c-eaa4ceb5-9f9c-407b-b1aa-a1d8b5a55554",
+          "type": "serial",
+          "name": "EX 2200",
+          "comPort": "COM3",
+          "baudRate": 9600,
+          "dataBits": 8,
+          "parity": "none",
+          "stopBits": 1
+        },
+        {
+          "id": "c-4d086330-509d-4b76-b078-a52eef41bd1b",
+          "type": "ssh",
+          "name": "DE0924SX3 KEY",
+          "host": "10.5.2.22",
+          "port": 22,
+          "username": "ansible-0924",
+          "authType": "key",
+          "keyPath": "C:\\Users\\haaseto\\Documents\\VisualStudio\\RCM\\key.priv",
+          "notes": ""
+        }
+      ],
+      "folders": []
+    },
+    {
+      "id": "f-6d382393-3676-404a-99f6-f557f8c0d4a6",
+      "name": ".remondis-de.local",
+      "open": false,
+      "items": [],
+      "folders": [
+        {
+          "id": "f-43e159c0-3900-471f-bbe1-c0e102ec2d0b",
+          "name": "DE0924 - RV Ost Prützke",
+          "open": false,
+          "items": [
+            {
+              "id": "c-d1a6e3be-9a0f-4f3d-b980-0e4b86d66f04",
+              "type": "web",
+              "name": "10.5.2.229 - iDRAC",
+              "url": "http://10.5.2.229"
+            },
+            {
+              "id": "c-a81c5775-0741-4187-af25-3699d1fe72b4",
+              "type": "rdp",
+              "name": "de0924ps1 - Druckserver",
+              "host": "de0924ps1.remondis-de.local",
+              "port": 3389
+            },
+            {
+              "id": "c-78e66349-f26b-4e30-8118-e519326248fc",
+              "type": "rdp",
+              "name": "DE0924PS2 -",
+              "host": "DE0924PS2",
+              "port": 3389
+            },
+            {
+              "id": "c-771b71fc-1a5c-4bbc-ac8b-5d03874fe5b8",
+              "type": "rdp",
+              "name": "DE0924PS3 - Niederlassungs PVM",
+              "host": "DE0924PS3",
+              "port": 3389
+            },
+            {
+              "id": "c-ae1086b4-a449-4cd2-adc5-4e12fe852a88",
+              "type": "rdp",
+              "name": "DE0924PS4 -",
+              "host": "DE0924PS4",
+              "port": 3389
+            },
+            {
+              "id": "c-95d31a15-407c-4838-8171-bc6214fa066f",
+              "type": "rdp",
+              "name": "de0924s01 - Fileserver",
+              "host": "de0924s01.remondis-de.local",
+              "port": 3389
+            },
+            {
+              "id": "c-7e93b7a1-6ec0-4c45-b963-fc409d471196",
+              "type": "rdp",
+              "name": "DE0924S03 - DB Server",
+              "host": "DE0924S03",
+              "port": 3389
+            },
+            {
+              "id": "c-8bc31067-fb95-476a-8b52-d5e314a3a5e3",
+              "type": "rdp",
+              "name": "DE0924S04 - 10.5.2.208 -  Applikation LEXWARE",
+              "host": "DE0924S04",
+              "port": 3389
+            },
+            {
+              "id": "c-11267bc4-f7a7-49a5-865f-c83a66ccf33c",
+              "type": "rdp",
+              "name": "de0924s05 - 10.5.2.205 - DASI - D5W1253/LTO9 extern 45/18TB SAS",
+              "host": "de0924s05",
+              "port": 3389
+            },
+            {
+              "id": "c-18566c90-9c38-41d3-8976-0f06c38a64e2",
+              "type": "rdp",
+              "name": "DE0924S06 - RUMS Spielserver (VM Lünen)",
+              "host": "DE0924S06",
+              "port": 3389
+            },
+            {
+              "id": "c-da965db4-42ec-4858-b662-4bc33642ef1c",
+              "type": "rdp",
+              "name": "DE0924S08 - Ivanti + DELL SGC",
+              "host": "de0924s08",
+              "port": 3389
+            },
+            {
+              "id": "c-38ee041f-9636-4cf5-bac4-d7d0f5d6cfc1",
+              "type": "rdp",
+              "name": "de0924s10 - OCS DHCP Juniper",
+              "host": "10.5.2.210",
+              "port": 3389
+            },
+            {
+              "id": "c-6d91ef18-91a6-43c7-95ad-9237dd9ad328",
+              "type": "rdp",
+              "name": "DE0924S11 - Candis (VM Lünen)",
+              "host": "DE0924S11",
+              "port": 3389
+            },
+            {
+              "id": "c-3ce06249-2961-4d84-b771-a70937c0a62a",
+              "type": "rdp",
+              "name": "DE0924S43 - SAMwin KI Warteschlange",
+              "host": "DE0924S43",
+              "port": 3389
+            },
+            {
+              "id": "c-95344435-0c05-4a98-920c-6471a7fdf8ef",
+              "type": "rdp",
+              "name": "DE0924S81 - Zentraler DHCP (Lünen)",
+              "host": "10.2.28.70",
+              "port": 3389
+            },
+            {
+              "id": "c-6f183286-36c9-4243-9636-651ae23c890e",
+              "type": "rdp",
+              "name": "DE0924S82 - Failover DHCP",
+              "host": "DE0924S82",
+              "port": 3389
+            },
+            {
+              "id": "c-902105c7-9beb-4ad9-b013-04509235c96a",
+              "type": "rdp",
+              "name": "DE0924SAA - MOBA-WEB",
+              "host": "185.100.161.202",
+              "port": 3389
+            },
+            {
+              "id": "c-9ae4c4ab-b74b-47ec-b141-23755542594a",
+              "type": "rdp",
+              "name": "DE0924SC1 - Candis Archiv",
+              "host": "DE0924SC1",
+              "port": 3389
+            },
+            {
+              "id": "c-0f39b9fb-4fb1-4360-a0c4-c3ff79f3bfc7",
+              "type": "rdp",
+              "name": "DE0924SE1 - FleetGO",
+              "host": "10.5.2.207",
+              "port": 3389
+            },
+            {
+              "id": "c-bad2ba79-553a-48fc-84c2-580ade6cb0fe",
+              "type": "rdp",
+              "name": "DE0924SF1 - Zentraler Fileserver",
+              "host": "10.5.2.200",
+              "port": 3389
+            },
+            {
+              "id": "c-30152418-f3f7-4575-9c63-e8833b4dab06",
+              "type": "rdp",
+              "name": "DE0924SPL",
+              "host": "DE0924SPL",
+              "port": 3389
+            },
+            {
+              "id": "c-62ac10a1-5b22-4a1c-aaab-109707c0d680",
+              "type": "rdp",
+              "name": "DE0924T01 - Admin Server - DSCV4R2",
+              "host": "DE0924T01",
+              "port": 3389
+            },
+            {
+              "id": "c-b908ef89-ea0c-4e7c-a720-6abbd2ef2b7b",
+              "type": "rdp",
+              "name": "DE0924T03 - WME",
+              "host": "10.5.2.212",
+              "port": 3389
+            },
+            {
+              "id": "c-f4f1a1b0-896a-4dbb-a950-50b8c52d460c",
+              "type": "rdp",
+              "name": "DE0924TK1 - JServer",
+              "host": "10.5.2.203",
+              "port": 3389
+            },
+            {
+              "id": "c-a23e7630-475c-4c77-afb9-a326d59bf621",
+              "type": "rdp",
+              "name": "DE0924TK1old - TK alt GFI Faxmaker",
+              "host": "10.5.2.80",
+              "port": 3389
+            },
+            {
+              "id": "c-84d362cd-255b-4c4a-bae7-6121358e6128",
+              "type": "ssh",
+              "name": "DE0924TK3 - Linux IP-Office-Server",
+              "host": "10.5.2.100",
+              "port": 22,
+              "username": "root"
+            },
+            {
+              "id": "c-48cba076-1eb6-41f7-b074-6f1a6037f449",
+              "type": "rdp",
+              "name": "DE0924TK4 - alter JServer",
+              "host": "10.5.2.204",
+              "port": 3389
+            },
+            {
+              "id": "c-457e1e5b-0f86-4d11-b87f-96d1ef073f0e",
+              "type": "rdp",
+              "name": "DE0924TP1 - POE Kasse",
+              "host": "DE0924T02",
+              "port": 3389
+            },
+            {
+              "id": "c-16a613c1-def6-422f-a37f-6e01ce1c651b",
+              "type": "rdp",
+              "name": "de0924www",
+              "host": "de0924www",
+              "port": 3389
+            },
+            {
+              "id": "c-206b38d6-1564-46a9-846f-bd1ea0720296",
+              "type": "web",
+              "name": "DHCP Icons",
+              "url": "https://techdirectarchive.com/2020/06/01/dhcp-specific-reference-console-icons/"
+            },
+            {
+              "id": "c-4168dc07-4716-4845-acb8-9fca0abcd189",
+              "type": "web",
+              "name": "Drucker EG",
+              "url": "http://10.5.2.217/albody.cgi"
+            }
+          ],
+          "folders": [
+            {
+              "id": "f-f36b197f-0514-44b5-8045-6619cfaecc12",
+              "name": "PROXMOX",
+              "open": true,
+              "items": [
+                {
+                  "id": "c-5cf16ce3-b270-43aa-9db0-ab4a3e6c1028",
+                  "type": "web",
+                  "name": "DE0924SX1 - 10.5.2.185:8006",
+                  "url": "https://10.5.2.185:8006/"
+                },
+                {
+                  "id": "c-10c1aaf3-984f-4f8b-a276-0833ae9e72a4",
+                  "type": "ssh",
+                  "name": "DE0924SX1-SSH-10.5.2.185",
+                  "host": "10.5.2.185",
+                  "port": 22,
+                  "username": "root"
+                },
+                {
+                  "id": "c-5d1dbe40-d45b-4554-b43b-97cdac0a4b34",
+                  "type": "web",
+                  "name": "DE0924SX7 Ceph - 10.5.2.48:8006",
+                  "url": "https://10.5.2.48:8006"
+                }
+              ],
+              "folders": []
+            },
+            {
+              "id": "f-9f60a200-0c06-4559-9136-b78d2162b440",
+              "name": "Virtualisierung",
+              "open": true,
+              "items": [
+                {
+                  "id": "c-94a4846c-3342-4e5a-8643-39b19978aabc",
+                  "type": "web",
+                  "name": "DE0924 VCSA Appliance Management",
+                  "url": "https://de0924vcs.remondis-de.local:5480"
+                },
+                {
+                  "id": "c-7abdb29b-44e7-4cd3-babe-472ed5c692fa",
+                  "type": "web",
+                  "name": "DE0924SX1 - 10.5.2.195 - iDRAC",
+                  "url": "https://10.5.2.195"
+                },
+                {
+                  "id": "c-9b12fe49-26e1-43c1-9457-b699f8ce2246",
+                  "type": "web",
+                  "name": "DE0924SX2 - 10.5.2.196 - iDRAC",
+                  "url": "https://10.5.2.196"
+                },
+                {
+                  "id": "c-44ad747a-3a68-4fda-bc77-3869ab873ec6",
+                  "type": "web",
+                  "name": "DE0924VX01 - iDRAC 7SJSKJ3",
+                  "url": "https://10.5.2.238"
+                },
+                {
+                  "id": "c-9bcaaf12-1dd6-43bc-b0e9-2ce79f58cd26",
+                  "type": "web",
+                  "name": "DE0924VX02 - iDRAC 8SJSKJ3",
+                  "url": "https://10.5.2.239"
+                },
+                {
+                  "id": "c-51c4e9a1-8a14-45c9-bbfe-9fb4a052f709",
+                  "type": "web",
+                  "name": "DE9899SVC - RE OSTEN Cluter",
+                  "url": "https://de9899svc.remondis-de.local/"
+                }
+              ],
+              "folders": []
+            },
+            {
+              "id": "f-e844724c-696b-4479-9ab0-11831277e6e7",
+              "name": "Switche",
+              "open": true,
+              "items": [
+                {
+                  "id": "c-e7fbd462-d13c-45cc-bda6-0b2a5ba1e917",
+                  "type": "ssh",
+                  "name": "DE0924N01 - 10.5.2.40 - Haus B Netzschrank Mainswitch",
+                  "host": "10.5.2.40",
+                  "port": 22,
+                  "username": "root"
+                },
+                {
+                  "id": "c-dfc12f8f-4544-45f9-8b92-3d0c809b2810",
+                  "type": "ssh",
+                  "name": "DE0924N02 - 10.5.2.41 - Haus A Netzschrank Mainswitch",
+                  "host": "10.5.2.41",
+                  "port": 22,
+                  "username": "root"
+                },
+                {
+                  "id": "c-0a91d22c-0ff7-4aa9-afc0-fa73e7f5bc8a",
+                  "type": "ssh",
+                  "name": "DE0924N03 - 10.5.2.42 - Haus A Netzschrank",
+                  "host": "10.5.2.42",
+                  "port": 22,
+                  "username": "root"
+                },
+                {
+                  "id": "c-75d4a626-112e-4f42-883e-a2ed399f26ff",
+                  "type": "ssh",
+                  "name": "DE0924N04 - 10.5.2.43 - Haus A Netzschrank",
+                  "host": "10.5.2.43",
+                  "port": 22,
+                  "username": "root"
+                },
+                {
+                  "id": "c-c896f6b4-31d3-44f3-aecf-75af50069119",
+                  "type": "ssh",
+                  "name": "DE0924N05 - 10.5.2.44 - Haus A Netzschrank",
+                  "host": "10.5.2.44",
+                  "port": 22,
+                  "username": "root"
+                },
+                {
+                  "id": "c-a3cb0e36-d69e-4251-8a3d-9a7c7487826d",
+                  "type": "ssh",
+                  "name": "DE0924N06 - 10.5.2.45 - Haus A Netzschrank",
+                  "host": "10.5.2.45",
+                  "port": 22,
+                  "username": "root"
+                },
+                {
+                  "id": "c-fa8dd81d-4bf8-44ad-a81f-3331f6591e84",
+                  "type": "ssh",
+                  "name": "DE0924N07 - 10.5.2.46 - Haus A Netzschrank",
+                  "host": "10.5.2.46",
+                  "port": 22,
+                  "username": "root"
+                },
+                {
+                  "id": "c-137717a3-f061-455f-ac56-ab69946584d0",
+                  "type": "ssh",
+                  "name": "DE0924N08 - 10.5.2.47 - Haus A Netzschrank",
+                  "host": "10.5.2.47",
+                  "port": 22,
+                  "username": "root"
+                },
+                {
+                  "id": "c-9e6bb782-8b59-41e7-87b7-3dcabd90e54e",
+                  "type": "ssh",
+                  "name": "DE0924N11 - 10.5.2.57 - Haus B Netzschrank",
+                  "host": "10.5.2.57",
+                  "port": 22,
+                  "username": "root"
+                },
+                {
+                  "id": "c-265c2467-85e2-41fe-b0f2-c9214fb020ad",
+                  "type": "ssh",
+                  "name": "DE0924N12 - 10.5.2.56 - Haus B Netzschrank",
+                  "host": "10.5.2.56",
+                  "port": 22,
+                  "username": "root"
+                },
+                {
+                  "id": "c-515de3f4-2f83-4742-bdd7-273b919abe36",
+                  "type": "ssh",
+                  "name": "DE0924N13 - 10.5.2.55 - Haus B Netzschrank",
+                  "host": "10.5.2.55",
+                  "port": 22,
+                  "username": "root"
+                },
+                {
+                  "id": "c-03ea8d8e-115e-4c05-8e60-ec0803a1f1e9",
+                  "type": "ssh",
+                  "name": "DE0924N14 - 10.5.2.54 - Haus B Netzschrank",
+                  "host": "10.5.2.54",
+                  "port": 22,
+                  "username": "root"
+                },
+                {
+                  "id": "c-8f6c9e4a-42bf-4fe2-a493-da7097ee77b9",
+                  "type": "ssh",
+                  "name": "DE0924N15 - 10.5.2.53 - Haus B Netzschrank",
+                  "host": "10.5.2.53",
+                  "port": 22,
+                  "username": "root"
+                },
+                {
+                  "id": "c-07c6c394-c190-49f8-ac0b-bced8268ed0d",
+                  "type": "ssh",
+                  "name": "DE0924N16 - 10.5.2.52 - Haus C",
+                  "host": "10.5.2.52",
+                  "port": 22,
+                  "username": "root"
+                },
+                {
+                  "id": "c-0be34217-c7be-49e2-a775-55c218747dba",
+                  "type": "ssh",
+                  "name": "DE0924N17 - 10.5.2.51 - Haus B Netzschrank",
+                  "host": "10.5.2.51",
+                  "port": 22,
+                  "username": "root"
+                },
+                {
+                  "id": "c-cd27f960-454e-4de8-a4aa-56858ed53663",
+                  "type": "ssh",
+                  "name": "DE0924N18 - 10.5.2.50 - Waage",
+                  "host": "10.5.2.50",
+                  "port": 22,
+                  "username": "root"
+                },
+                {
+                  "id": "c-7539ff6b-871c-4829-9e6d-2857311f7fe2",
+                  "type": "ssh",
+                  "name": "DE0924N60 - 10.5.2.60 - Haus B Serverschrank Coreswitch",
+                  "host": "10.5.2.60",
+                  "port": 22,
+                  "username": "root"
+                },
+                {
+                  "id": "c-590e4e69-9521-4756-96f8-5563fe3bb2f4",
+                  "type": "ssh",
+                  "name": "DE0924N61 - 10.5.2.61 - Haus A Serverschrank Coreswitch",
+                  "host": "10.5.2.61",
+                  "port": 22,
+                  "username": "root"
+                },
+                {
+                  "id": "c-74f1e99d-4d1b-4974-9019-05146f05092d",
+                  "type": "ssh",
+                  "name": "DE0924N90 - 10.5.2.58 - Haus B Serverschrank",
+                  "host": "10.5.2.58",
+                  "port": 22,
+                  "username": "root"
+                },
+                {
+                  "id": "c-f00ecc70-83e1-4885-ad83-6c29e710e1e8",
+                  "type": "web",
+                  "name": "Monitoring LINK",
+                  "url": "http://10.5.4.253/device/10"
+                },
+                {
+                  "id": "c-661d893c-7e68-493e-96ea-c70e8debd093",
+                  "type": "web",
+                  "name": "Monitoring LINK",
+                  "url": "http://10.5.4.253/device/8"
+                },
+                {
+                  "id": "c-6a5284c2-a0ac-4078-9e82-1173606c295b",
+                  "type": "web",
+                  "name": "Monitoring LINK",
+                  "url": "http://10.5.4.253/device/4"
+                },
+                {
+                  "id": "c-0fe18820-d55e-4e10-9bb1-d64363b1f93f",
+                  "type": "web",
+                  "name": "Monitoring LINK",
+                  "url": "http://10.5.4.253/device/7"
+                },
+                {
+                  "id": "c-d213ca8c-a21a-4507-b148-6909391507a8",
+                  "type": "web",
+                  "name": "Monitoring LINK",
+                  "url": "http://10.5.4.253/device/66"
+                },
+                {
+                  "id": "c-1443d4ba-1f6f-428c-a92b-d78fec19008b",
+                  "type": "web",
+                  "name": "Monitoring LINK",
+                  "url": "http://10.5.4.253/device/67"
+                },
+                {
+                  "id": "c-00f92ed4-e9d0-475d-ba0a-ce504a01dedd",
+                  "type": "web",
+                  "name": "Monitoring Link",
+                  "url": "http://10.5.4.253/device/76"
+                },
+                {
+                  "id": "c-8494e5bb-be3a-46e3-a18c-1673789a6d82",
+                  "type": "web",
+                  "name": "Monitoring LINK",
+                  "url": "http://10.5.4.253/device/3"
+                },
+                {
+                  "id": "c-4282731b-ca35-40ec-8d79-d3cd052732ed",
+                  "type": "web",
+                  "name": "Monitoring LINK",
+                  "url": "http://10.5.4.253/device/9"
+                },
+                {
+                  "id": "c-b6b7838a-8a1d-4493-aaa3-b11b20ca279a",
+                  "type": "web",
+                  "name": "Monitoring LINK",
+                  "url": "http://10.5.4.253/device/15"
+                },
+                {
+                  "id": "c-f49ecb48-fccb-4a18-9b99-c12c8515cd75",
+                  "type": "web",
+                  "name": "Monitoring LINK",
+                  "url": "http://10.5.4.253/device/11"
+                },
+                {
+                  "id": "c-4afa45ea-dd6a-4ddb-a2bb-ef94676e54cf",
+                  "type": "web",
+                  "name": "Monitoring LINK",
+                  "url": "http://10.5.4.253/device/80"
+                },
+                {
+                  "id": "c-515822ea-6a95-4b1d-87dc-c12cf7289592",
+                  "type": "web",
+                  "name": "Monitoring LINK",
+                  "url": "http://10.5.4.253/device/14"
+                },
+                {
+                  "id": "c-d511e164-c821-494f-8823-04011eb327fd",
+                  "type": "web",
+                  "name": "Monitoring LINK",
+                  "url": "http://10.5.4.253/device/13"
+                },
+                {
+                  "id": "c-83a76617-068d-491d-8220-fabdff4bf7a8",
+                  "type": "web",
+                  "name": "Monitoring LINK",
+                  "url": "http://10.5.4.253/device/5"
+                },
+                {
+                  "id": "c-469fce6b-058e-4649-b3ee-1f83fc74c91c",
+                  "type": "web",
+                  "name": "Monitoring LINK",
+                  "url": "http://10.5.4.253/device/6"
+                },
+                {
+                  "id": "c-548e2320-2317-4f5e-9383-641d27267ffb",
+                  "type": "web",
+                  "name": "Monitoring LINK",
+                  "url": "http://10.5.4.254/device/7"
+                },
+                {
+                  "id": "c-7d1da25b-2861-4a59-9882-14b7af343b57",
+                  "type": "web",
+                  "name": "Monitoring LINK",
+                  "url": "http://10.5.4.253/device/12"
+                }
+              ],
+              "folders": []
+            },
+            {
+              "id": "f-565bef84-045a-4438-a8dd-27fb44e6e921",
+              "name": "VNC Tracemate",
+              "open": true,
+              "items": [],
+              "folders": []
+            }
+          ]
+        },
+        {
+          "id": "f-61d1db57-b4d4-41b0-a08b-5b344da64d44",
+          "name": "DE1396 - Taucha - DHCP Zentral",
+          "open": true,
+          "items": [
+            {
+              "id": "c-a3f27005-1b7f-4e66-ab48-00db862e9c7d",
+              "type": "web",
+              "name": "AVAYA TK IPO 500",
+              "url": "http://10.124.27.250"
+            },
+            {
+              "id": "c-635d642d-aeea-44a2-ad84-5c20d7516ece",
+              "type": "ssh",
+              "name": "DE1396N01 - 10.124.27.221",
+              "host": "10.124.27.221",
+              "port": 22,
+              "username": "root"
+            },
+            {
+              "id": "c-84bd6429-722d-4235-91e9-f83cd5e22a69",
+              "type": "rdp",
+              "name": "DE1396S01 - D5THWS2/T330/LTO5",
+              "host": "DE1396S01",
+              "port": 3389
+            },
+            {
+              "id": "c-3fd51554-4875-4f31-800a-d0c5ace29be6",
+              "type": "rdp",
+              "name": "DE1396SI1 - 10.124.27.205",
+              "host": "10.124.27.205",
+              "port": 3389
+            },
+            {
+              "id": "c-bb59b104-a51e-4db6-b783-ec05fba21b49",
+              "type": "web",
+              "name": "DE1396SX1 - 10.124.27.214",
+              "url": "https://10.124.27.214:8006"
+            },
+            {
+              "id": "c-cffb0051-2fa3-4bcd-88d5-01a1bf4ba100",
+              "type": "web",
+              "name": "iDRAC - 10.124.27.215",
+              "url": "http://10.124.27.215"
+            },
+            {
+              "id": "c-eb453289-378d-4284-944c-be4106fe322b",
+              "type": "web",
+              "name": "Monitor Link",
+              "url": "http://10.5.4.253/device/89"
+            },
+            {
+              "id": "c-d124ccdf-de87-4e65-8fe5-eccb424e2c2e",
+              "type": "web",
+              "name": "RUMS Portal",
+              "url": "http://de1396s01:8081/RUMS/"
+            }
+          ],
+          "folders": []
+        },
+        {
+          "id": "f-31deba92-195f-445c-9e8a-5edc352e7b40",
+          "name": "DE0015 - Genthin - DHCP Zentral",
+          "open": true,
+          "items": [
+            {
+              "id": "c-faa35658-5e01-41e1-a6d1-43742b63c2bb",
+              "type": "ssh",
+              "name": "DE0015N01 - 10.95.2.221",
+              "host": "10.95.2.221",
+              "port": 22,
+              "username": "root"
+            },
+            {
+              "id": "c-6024f966-4993-43c5-8397-94eca0303c44",
+              "type": "rdp",
+              "name": "DE0015S01 - MOBA 2WF5NX2/T340/LTO6",
+              "host": "de0015s01",
+              "port": 3389
+            },
+            {
+              "id": "c-0108bdf3-1555-4e9a-a021-88a19b4a9f26",
+              "type": "rdp",
+              "name": "DE0015S02 - 10.95.2.201",
+              "host": "de0015s02",
+              "port": 3389
+            },
+            {
+              "id": "c-ad1e9e2b-e9a0-471c-9564-b90ebbb0b74b",
+              "type": "rdp",
+              "name": "DE0015SI1 - IvantiShare",
+              "host": "DE0015SI1",
+              "port": 3389
+            },
+            {
+              "id": "c-b7f8dbfe-59c5-4079-868a-1e0b9b8c4c33",
+              "type": "web",
+              "name": "iDRAC - 10.95.2.215",
+              "url": "https://10.95.2.215"
+            },
+            {
+              "id": "c-2163b398-f61f-4962-89c3-effaf014de12",
+              "type": "web",
+              "name": "Monitoring LINK",
+              "url": "http://10.5.4.253/device/92"
+            }
+          ],
+          "folders": []
+        },
+        {
+          "id": "f-bbb33dc2-7e66-4dc6-af55-aa8ab50122fa",
+          "name": "DE0039 - Langewiesen - DHCP Zentral",
+          "open": true,
+          "items": [
+            {
+              "id": "c-9037bbc4-dd37-4191-bba4-e5e4b28bdfe8",
+              "type": "ssh",
+              "name": "DE0039N01 - 10.63.2.221 - Serverschrank",
+              "host": "10.63.2.221",
+              "port": 22,
+              "username": "root"
+            },
+            {
+              "id": "c-fec0db04-6d23-4a0f-ba73-b5493b456a2e",
+              "type": "rdp",
+              "name": "DE0039SI1 - 10.63.2.205",
+              "host": "DE0039SI1",
+              "port": 3389
+            },
+            {
+              "id": "c-3f751b72-cbc0-4f5a-a604-b43a67927570",
+              "type": "web",
+              "name": "DE0039SX1 - 10.63.2.214",
+              "url": "https://10.63.2.214:8006"
+            },
+            {
+              "id": "c-b12801a0-1b81-46e5-8739-b80f89f53d97",
+              "type": "rdp",
+              "name": "DE0039T01 - MAWIS",
+              "host": "DE0039T01",
+              "port": 3389
+            },
+            {
+              "id": "c-abf1e926-1ce6-4412-9fa1-7bea3901c5ea",
+              "type": "rdp",
+              "name": "DE0039T02 - Tankstelle",
+              "host": "10.63.2.202",
+              "port": 3389
+            },
+            {
+              "id": "c-9ddcb53a-e356-4d17-a177-53d0cce593c2",
+              "type": "web",
+              "name": "iDRAC - 10.63.2.215",
+              "url": "https://10.63.2.215"
+            }
+          ],
+          "folders": []
+        },
+        {
+          "id": "f-e26cd020-d8a7-4757-929d-6ffd91a364e8",
+          "name": "DE0043 - Werneuchen - DHCP Zentral",
+          "open": true,
+          "items": [
+            {
+              "id": "c-9ebb1da3-373e-484a-919d-b73cd3bfb7c2",
+              "type": "ssh",
+              "name": "DE0043N01 - 10.53.2.221",
+              "host": "10.53.2.221",
+              "port": 22,
+              "username": "root"
+            },
+            {
+              "id": "c-a72ddef0-c31d-47f7-abec-8fbea3fb1d48",
+              "type": "ssh",
+              "name": "DE0043N02 - 10.53.2.222",
+              "host": "10.53.2.222",
+              "port": 22,
+              "username": "root"
+            },
+            {
+              "id": "c-41d92b0a-db61-4934-9b29-85e2529c840e",
+              "type": "rdp",
+              "name": "DE0043S01 - HBB9Q53/T340/LTO6",
+              "host": "10.53.2.200",
+              "port": 3389
+            },
+            {
+              "id": "c-27275a9d-9246-4273-a5da-4a3f408b5d32",
+              "type": "rdp",
+              "name": "DE0043SI1",
+              "host": "10.53.2.205",
+              "port": 3389
+            },
+            {
+              "id": "c-6c03601c-2028-4580-ad0c-db544127c7fb",
+              "type": "web",
+              "name": "DE0043SX1 - Proxmox",
+              "url": "https://10.53.2.214:8006"
+            },
+            {
+              "id": "c-da81b8c2-1901-40bc-84a7-351cc2f5265e",
+              "type": "web",
+              "name": "iDRAC - 10.53.2.215",
+              "url": "https://10.53.2.215"
+            },
+            {
+              "id": "c-f597cf88-12e3-486d-a9a0-fcafab0e1386",
+              "type": "web",
+              "name": "Samsung CLX-3170",
+              "url": "http://10.53.2.242/"
+            }
+          ],
+          "folders": []
+        },
+        {
+          "id": "f-a674abcf-fb8c-45bd-990f-50063e682c96",
+          "name": "DE0044 - Ziepel - DHCP Zentral",
+          "open": true,
+          "items": [
+            {
+              "id": "c-6545e809-10b4-47b9-a3c5-6aa62d0f6abf",
+              "type": "rdp",
+              "name": "DE0044S01 - CWF5NX2/T340/LTO6",
+              "host": "de0044s01",
+              "port": 3389
+            },
+            {
+              "id": "c-aeaa5391-5fd6-4e19-8265-527f8895ac63",
+              "type": "rdp",
+              "name": "De0044SI1",
+              "host": "DE0044SI1",
+              "port": 3389
+            },
+            {
+              "id": "c-5006f290-62d9-4d22-b80d-bdb1811f223c",
+              "type": "rdp",
+              "name": "DE0044T01 - MAWIS DB Server",
+              "host": "DE0044T01",
+              "port": 3389
+            },
+            {
+              "id": "c-e2348735-ef3d-4f36-9b78-7175830ff5a3",
+              "type": "web",
+              "name": "iDRAC - 10.241.32.215",
+              "url": "https://10.241.32.215"
+            }
+          ],
+          "folders": []
+        },
+        {
+          "id": "f-5d247c73-0f09-47f5-90f9-b392be99606f",
+          "name": "DE0048 - Großräschen",
+          "open": true,
+          "items": [
+            {
+              "id": "c-c0667e42-6040-4de7-b063-a49dd285e1fc",
+              "type": "ssh",
+              "name": "DE0048N01 - 10.72.2.222 - Serverschrank",
+              "host": "10.72.2.222",
+              "port": 22,
+              "username": "root"
+            },
+            {
+              "id": "c-ea04714a-b489-45f8-8330-e15ecfb83403",
+              "type": "ssh",
+              "name": "DE0048N02 - 10.72.2.223 - Dispo Wandschrank",
+              "host": "10.72.2.223",
+              "port": 22,
+              "username": "root"
+            },
+            {
+              "id": "c-c3b8824c-f3c9-496b-bf93-8de3b6149a59",
+              "type": "ssh",
+              "name": "DE0048N03 - 10.72.2.225 - Werkstatt",
+              "host": "10.72.2.225",
+              "port": 22,
+              "username": "root"
+            },
+            {
+              "id": "c-f6682874-5051-4753-a4e9-ba0b5cbdca79",
+              "type": "ssh",
+              "name": "DE0048N04 - 10.72.2.226 - Waage",
+              "host": "10.72.2.226",
+              "port": 22,
+              "username": "root"
+            },
+            {
+              "id": "c-773a01f4-56e6-471d-b7b8-6611b9a13c59",
+              "type": "ssh",
+              "name": "DE0048N05 - 10.72.2.224 Container hinten",
+              "host": "10.72.2.224",
+              "port": 22,
+              "username": "root"
+            },
+            {
+              "id": "c-195e621f-7668-4ad2-ae4d-a6694bc14712",
+              "type": "rdp",
+              "name": "DE0048S01 - 4M6B833/T340/LTO7",
+              "host": "de0048s01",
+              "port": 3389
+            },
+            {
+              "id": "c-558077ca-a732-4bbd-9f7d-04277494a147",
+              "type": "rdp",
+              "name": "DE0048T01 - POSMAN/Tankanlage",
+              "host": "DE0048T01",
+              "port": 3389
+            },
+            {
+              "id": "c-6308830d-9e2b-48f3-89f6-bbffc39c3cac",
+              "type": "web",
+              "name": "iDRAC - 10.72.2.215",
+              "url": "https://10.72.2.215"
+            },
+            {
+              "id": "c-597339ab-c526-45e2-907d-39de03a5cec0",
+              "type": "web",
+              "name": "Monitoring LINK",
+              "url": "http://10.5.4.254/device/18"
+            },
+            {
+              "id": "c-ee48878f-1332-48a7-8040-8ff91e639e9e",
+              "type": "web",
+              "name": "Monitoring LINK",
+              "url": "http://10.5.4.254/device/20"
+            },
+            {
+              "id": "c-b1456a6a-348e-4b66-92d5-07ea46dae782",
+              "type": "web",
+              "name": "Monitoring LINK",
+              "url": "http://10.5.4.253/device/77"
+            },
+            {
+              "id": "c-93fa4e8f-4a1f-4cf1-a588-fe57d6e5f27b",
+              "type": "web",
+              "name": "Monitoring LINK",
+              "url": "http://10.5.4.254/device/19"
+            },
+            {
+              "id": "c-ffa4545c-82d7-408a-bae8-bddad414e2d1",
+              "type": "web",
+              "name": "Monitoring LINK",
+              "url": "http://10.5.4.254/device/21"
+            }
+          ],
+          "folders": []
+        },
+        {
+          "id": "f-3ed7d1c7-2b6b-480e-8431-f814a8e2841f",
+          "name": "DE0062 - Ringleben - DHCP Zentral",
+          "open": true,
+          "items": [
+            {
+              "id": "c-6ba16f8a-c935-47c8-ac7c-51c8b79213ba",
+              "type": "ssh",
+              "name": "DE0062N01 - 10.41.2.221",
+              "host": "10.41.2.221",
+              "port": 22,
+              "username": "root"
+            },
+            {
+              "id": "c-0164a7b1-73da-4fce-b603-39cd30fca2cb",
+              "type": "rdp",
+              "name": "DE0062S01 - 9D5BFV2/T340/LTO6",
+              "host": "de0062s01",
+              "port": 3389
+            },
+            {
+              "id": "c-18bf774c-c469-42e3-9fcb-86467eb4a292",
+              "type": "rdp",
+              "name": "DE0062SI1 - IvantiShare",
+              "host": "DE0062SI1",
+              "port": 3389
+            },
+            {
+              "id": "c-91b4fd76-f39e-4ce0-814b-85f0329d00f2",
+              "type": "rdp",
+              "name": "DE0062T01 - RUMS/POSMAN",
+              "host": "DE0062T01",
+              "port": 3389
+            },
+            {
+              "id": "c-7283d8ae-ed94-40b0-83c9-42b29ecdfff5",
+              "type": "web",
+              "name": "iDRAC - 10.41.2.215",
+              "url": "http://10.41.2.215"
+            },
+            {
+              "id": "c-aeb92b4d-6b59-4fed-832a-d60527adaef1",
+              "type": "web",
+              "name": "Monitoring LINK",
+              "url": "http://10.5.4.253/device/21"
+            }
+          ],
+          "folders": []
+        },
+        {
+          "id": "f-452c84fc-2a66-4037-a041-0cff6103c920",
+          "name": "DE0075 - Altenburg - DHCP Zentral",
+          "open": true,
+          "items": [
+            {
+              "id": "c-2ec15f3e-fee8-4ece-a9ef-e45f176fdf93",
+              "type": "ssh",
+              "name": "DE0075N01 - 10.241.73.252",
+              "host": "10.241.73.252",
+              "port": 22,
+              "username": "root"
+            },
+            {
+              "id": "c-af6a7785-6d01-4833-b42b-6c24730edddc",
+              "type": "rdp",
+              "name": "DE0075S01 - 8DFR2S2/T330/LTO5",
+              "host": "de0075s01",
+              "port": 3389
+            },
+            {
+              "id": "c-5c3f4f19-d403-4ddb-bb61-76df54dbd41e",
+              "type": "web",
+              "name": "DE0075S01 iDRAC - 10.241.73.215",
+              "url": "https://10.241.73.215"
+            },
+            {
+              "id": "c-45477bdc-a851-457f-be0b-2d225c99b673",
+              "type": "rdp",
+              "name": "DE0075SI1 - IvantiShare",
+              "host": "DE0075SI1",
+              "port": 3389
+            },
+            {
+              "id": "c-279a2483-2468-4d63-9fe0-77314dadf720",
+              "type": "rdp",
+              "name": "DE0075T01-Tankanlage",
+              "host": "DE0075T01",
+              "port": 3389
+            },
+            {
+              "id": "c-6a1261e7-036a-450d-89e8-7dcc7f524d39",
+              "type": "rdp",
+              "name": "DE0075T03 - MAWIS DB Server NEU",
+              "host": "DE0075T03",
+              "port": 3389
+            },
+            {
+              "id": "c-869a966a-0ecd-4b66-b757-cfd5e434ca51",
+              "type": "web",
+              "name": "Monitoring LINK",
+              "url": "http://10.5.4.253/device/22"
+            }
+          ],
+          "folders": []
+        },
+        {
+          "id": "f-cd0cb5bf-f853-4848-9136-982b2ef332bf",
+          "name": "DE0076 - Klieken - DHCP Zentral",
+          "open": true,
+          "items": [
+            {
+              "id": "c-651610ee-56f7-447b-a98a-fe0fa7f60560",
+              "type": "ssh",
+              "name": "DE0076N01 - 10.43.2.221",
+              "host": "10.43.2.221",
+              "port": 22,
+              "username": "root"
+            },
+            {
+              "id": "c-c2671f6f-cbfd-4892-84a7-1532f28721d4",
+              "type": "rdp",
+              "name": "DE0076S01- 9DFBFV2/T340/LTO6",
+              "host": "DE0076S01",
+              "port": 3389
+            },
+            {
+              "id": "c-aa37de41-5370-42cf-be6c-5da6621bb64f",
+              "type": "rdp",
+              "name": "DE0076T01 - RUMS/POSMAN",
+              "host": "DE0076T01",
+              "port": 3389
+            },
+            {
+              "id": "c-725894f6-89dd-4c2c-a809-9eede9b3d686",
+              "type": "rdp",
+              "name": "DE0076T03 - MOBA",
+              "host": "De0076T03",
+              "port": 3389
+            },
+            {
+              "id": "c-8fdc6f16-eae0-48e7-861f-4dca0b138d8e",
+              "type": "web",
+              "name": "iDRAC - 10.43.2.215",
+              "url": "https://10.43.2.215"
+            },
+            {
+              "id": "c-20488b9f-f266-43f5-bb1d-1953c27982ff",
+              "type": "web",
+              "name": "Monitoring LINK",
+              "url": "http://10.5.4.253/device/75"
+            }
+          ],
+          "folders": []
+        },
+        {
+          "id": "f-1052d98b-53dd-458e-a6fc-a4766c16bfd3",
+          "name": "DE0078 - Herzberg",
+          "open": true,
+          "items": [
+            {
+              "id": "c-4d418334-a981-4b5b-9c33-6d7bab107ebb",
+              "type": "ssh",
+              "name": "DE0078N01 - 10.58.2.221",
+              "host": "10.58.2.221",
+              "port": 22,
+              "username": "root"
+            },
+            {
+              "id": "c-cca96d06-9d8c-4a84-b06b-fb14f2ca2b40",
+              "type": "rdp",
+              "name": "DE0078S01- 14HQ2S2/T330/LTO5",
+              "host": "de0078s01",
+              "port": 3389
+            },
+            {
+              "id": "c-cb2394e4-6ebf-4148-890d-56021aaa7c33",
+              "type": "rdp",
+              "name": "DE0078T01 - Tankstelle",
+              "host": "DE0078T01",
+              "port": 3389
+            },
+            {
+              "id": "c-106620d2-1368-4217-b723-22848cee875b",
+              "type": "rdp",
+              "name": "DE0078T02 - Tankstelle neu",
+              "host": "DE0078T02",
+              "port": 3389
+            },
+            {
+              "id": "c-76074a46-610e-43e8-85d5-11d70a9a9c88",
+              "type": "web",
+              "name": "iDRAC - 10.58.2.215",
+              "url": "https://10.58.2.215"
+            },
+            {
+              "id": "c-58f69102-cb8f-4c65-8c0b-07acf23de21f",
+              "type": "web",
+              "name": "Monitoring LINK",
+              "url": "http://10.5.4.253/device/24"
+            }
+          ],
+          "folders": []
+        },
+        {
+          "id": "f-ba62a0a0-fd55-4a86-9bb6-5517d71775bd",
+          "name": "DE0080 - Arnstadt - DHCP Zentral",
+          "open": true,
+          "items": [
+            {
+              "id": "c-2b3c9b78-0074-43e8-988d-fb6b8aaa75dd",
+              "type": "ssh",
+              "name": "DE0080N01 - 10.66.2.221",
+              "host": "10.66.2.221",
+              "port": 22,
+              "username": "root"
+            },
+            {
+              "id": "c-1483c849-ff9e-40a8-8b05-289d8669a2e6",
+              "type": "rdp",
+              "name": "DE0080S01- 76DP3N2/T330/LTO4",
+              "host": "DE0080S01",
+              "port": 3389
+            },
+            {
+              "id": "c-476781fd-2ad7-4a74-bc76-9295a11ef614",
+              "type": "rdp",
+              "name": "DE0080T01 - Tankanlage",
+              "host": "10.66.2.201",
+              "port": 3389
+            },
+            {
+              "id": "c-d37def41-dca3-4990-a8d5-db601a279b84",
+              "type": "web",
+              "name": "iDRAC - 10.66.2.215",
+              "url": "https://10.66.2.215"
+            },
+            {
+              "id": "c-a55d838a-28ea-4268-8d95-56ff5f72f09d",
+              "type": "web",
+              "name": "Monitoring LINK",
+              "url": "http://10.5.4.253/device/25"
+            }
+          ],
+          "folders": []
+        },
+        {
+          "id": "f-f9e7d269-316f-4840-b3df-503161fcc7ba",
+          "name": "DE0085 - Wernigerode - DHCP Zentral",
+          "open": true,
+          "items": [
+            {
+              "id": "c-7c43f579-a2fd-4baf-bdf0-9a9312b11d76",
+              "type": "ssh",
+              "name": "DE0085N01 - 10.44.2.226",
+              "host": "10.44.2.226",
+              "port": 22,
+              "username": "root"
+            },
+            {
+              "id": "c-c288eb7a-f9d9-4203-a084-2257b435c6dc",
+              "type": "ssh",
+              "name": "DE0085N02 - 10.44.2.225",
+              "host": "10.44.2.225",
+              "port": 22,
+              "username": "root"
+            },
+            {
+              "id": "c-acfe4f0d-dafd-4ffd-b4f3-64add6cc74d3",
+              "type": "ssh",
+              "name": "DE0085N03 - 10.44.2.224 - Container",
+              "host": "10.44.2.224",
+              "port": 22,
+              "username": "root"
+            },
+            {
+              "id": "c-c30532dc-62ab-4321-87f6-443100f3f40f",
+              "type": "rdp",
+              "name": "DE0085S01 - DBTP2T2/T340/LTO6",
+              "host": "DE0085S01",
+              "port": 3389
+            },
+            {
+              "id": "c-f6b27cab-00f4-4b0e-b90f-28cff1464a3f",
+              "type": "rdp",
+              "name": "DE0085SI1 - 10.44.2.205",
+              "host": "DE0085SI1",
+              "port": 3389
+            },
+            {
+              "id": "c-e86dc6f5-3575-4c7b-a9c4-3f0384dca219",
+              "type": "web",
+              "name": "DE0085SX1 - 10.44.2.214",
+              "url": "https://10.44.2.214:8006"
+            },
+            {
+              "id": "c-c48c9867-97cc-420a-a6ad-b71d049e6db0",
+              "type": "rdp",
+              "name": "DE0085T01 - RUMS/POSMAN",
+              "host": "DE0085T01",
+              "port": 3389
+            },
+            {
+              "id": "c-09aad5c3-dfa4-4900-9377-882b0f493e82",
+              "type": "web",
+              "name": "iDRAC - 10.44.2.215",
+              "url": "https://10.44.2.215"
+            },
+            {
+              "id": "c-e232df78-572a-4983-9686-3f81e209e9b4",
+              "type": "web",
+              "name": "Monitoring Link",
+              "url": "http://10.5.4.253/device/86"
+            },
+            {
+              "id": "c-b98fb5b1-99c5-4ee0-a1cf-431bfed74287",
+              "type": "web",
+              "name": "Monitoring LINK",
+              "url": "http://10.5.4.253/device/26"
+            },
+            {
+              "id": "c-ac3f3f74-69ea-4d55-bba2-5ad9e1219892",
+              "type": "web",
+              "name": "Monitoring Link",
+              "url": "http://10.5.4.253/device/82/"
+            }
+          ],
+          "folders": []
+        },
+        {
+          "id": "f-567493bd-a696-4a53-bb96-6b43e9237eed",
+          "name": "DE0097 - Nentzelsrode - DHCP Zentral",
+          "open": true,
+          "items": [
+            {
+              "id": "c-3467a338-4f0a-4c23-941b-b12d8ca4ee75",
+              "type": "ssh",
+              "name": "DE0097N01 - 10.240.7.221",
+              "host": "10.240.7.221",
+              "port": 22,
+              "username": "root"
+            },
+            {
+              "id": "c-a306cb1d-34a7-451b-998c-c9df6f57c239",
+              "type": "ssh",
+              "name": "DE0097N02 - 10.240.7.222",
+              "host": "10.240.7.222",
+              "port": 22,
+              "username": "root"
+            },
+            {
+              "id": "c-22f22dd9-3e7d-4c3b-b997-a878ba93c99d",
+              "type": "rdp",
+              "name": "DE0097SI1 - 10.240.7.205",
+              "host": "DE0097SI1",
+              "port": 3389
+            },
+            {
+              "id": "c-0bedf915-6320-4934-a38b-b926cf633613",
+              "type": "web",
+              "name": "DE0097SX1 - 10.240.7.214",
+              "url": "https://10.240.7.214:8006"
+            },
+            {
+              "id": "c-e3629b01-3055-46e6-9b10-96fa0f405ad4",
+              "type": "web",
+              "name": "iDRAC - 10.240.7.215",
+              "url": "http://10.240.7.215"
+            },
+            {
+              "id": "c-1f599e84-fca0-4326-96b4-056ba6499d21",
+              "type": "web",
+              "name": "Monitoring LINK",
+              "url": "http://10.5.4.253/device/85"
+            },
+            {
+              "id": "c-868344d5-81ab-49dd-9184-c5fc104d5fc3",
+              "type": "web",
+              "name": "Monitoring LINK",
+              "url": "http://10.5.4.253/device/27"
+            }
+          ],
+          "folders": []
+        },
+        {
+          "id": "f-16ab89b2-6a99-4800-b2cb-602452ad5afb",
+          "name": "DE0110 - Berlin",
+          "open": true,
+          "items": [
+            {
+              "id": "c-0b82d08d-c3ef-4a11-ad99-e6e924f082f5",
+              "type": "ssh",
+              "name": "DE0110N01 - 10.124.23.245 - Serverraum",
+              "host": "10.124.23.245",
+              "port": 22,
+              "username": "root"
+            },
+            {
+              "id": "c-afafb4ed-db38-4d4c-bf97-f60352381e81",
+              "type": "ssh",
+              "name": "DE0110N02 - 10.124.23.246 - 3.OG KSC",
+              "host": "10.124.23.246",
+              "port": 22,
+              "username": "root"
+            },
+            {
+              "id": "c-6124c0a3-588e-4db5-a14b-b5425c9545a2",
+              "type": "ssh",
+              "name": "DE0110N03 -10.124.23.248 - 5.OG",
+              "host": "10.124.23.248",
+              "port": 22,
+              "username": "root"
+            },
+            {
+              "id": "c-beaa52b4-4b06-416f-baa1-684c5c590743",
+              "type": "ssh",
+              "name": "DE0110N04 - 10.124.23.253 - Medison",
+              "host": "10.124.23.253",
+              "port": 22,
+              "username": "root"
+            },
+            {
+              "id": "c-836cb3af-b59b-4ee1-962a-9f6260bc3179",
+              "type": "ssh",
+              "name": "DE0110N05 - 10.124.23.243 - 5.OG",
+              "host": "10.124.23.243",
+              "port": 22,
+              "username": "root"
+            },
+            {
+              "id": "c-67ad24e0-1e74-40f0-819c-8d76dee63686",
+              "type": "rdp",
+              "name": "DE0110S01 - BBB9Q53/T340/LTO6",
+              "host": "10.124.23.200",
+              "port": 3389
+            },
+            {
+              "id": "c-dc5fc283-d075-4e02-8ac7-5bbf32ba83c6",
+              "type": "rdp",
+              "name": "DE0110SI1 - IvantiShare",
+              "host": "10.124.23.205",
+              "port": 3389
+            },
+            {
+              "id": "c-9a358771-fa31-41e0-b828-be2f45a08315",
+              "type": "web",
+              "name": "DE0110SX1 - 10.124.23.214",
+              "url": "https://10.124.23.214:8006"
+            },
+            {
+              "id": "c-bad82041-f7ff-43d3-8be0-8fd0f1cae536",
+              "type": "rdp",
+              "name": "DE0110T02 - Tanktstelle",
+              "host": "DE0110T02",
+              "port": 3389
+            },
+            {
+              "id": "c-c937c6c9-7c66-4c9d-8265-79b0fcf5c785",
+              "type": "rdp",
+              "name": "DE0924W98 - VM auf dem DE0110S01",
+              "host": "DE0924W98",
+              "port": 3389
+            },
+            {
+              "id": "c-4a65da01-d451-461f-acb1-baab2414f8c8",
+              "type": "web",
+              "name": "iDRAC - 10.124.23.250",
+              "url": "http://10.124.23.250"
+            },
+            {
+              "id": "c-5e55f583-6fa0-4098-99e5-f9b1de265aca",
+              "type": "web",
+              "name": "Monitoring LINK",
+              "url": "http://10.5.4.253/device/28"
+            },
+            {
+              "id": "c-78c7b15d-2506-4353-be73-8fb96405ab0c",
+              "type": "web",
+              "name": "Monitoring LINK",
+              "url": "http://10.5.4.253/device/29"
+            },
+            {
+              "id": "c-7d738869-1ecf-44ae-9f90-20d10b365fcf",
+              "type": "web",
+              "name": "Monitoring Link",
+              "url": "http://10.5.4.253/device/31"
+            },
+            {
+              "id": "c-f7a61a44-61ac-400e-9822-20c6328762f6",
+              "type": "web",
+              "name": "Monitoring Link",
+              "url": "http://10.5.4.253/device/32"
+            },
+            {
+              "id": "c-9f7554c2-0634-4011-81f2-0f42c2b73bcf",
+              "type": "web",
+              "name": "Monitoring LINK",
+              "url": "http://10.5.4.253/device/30"
+            }
+          ],
+          "folders": []
+        },
+        {
+          "id": "f-7e69eb21-a2b7-4d62-b7b6-957b10afab11",
+          "name": "DE0130 - Recycling Park - DHCP Zentral",
+          "open": true,
+          "items": [
+            {
+              "id": "c-228398a7-53b4-4170-aaf2-c4888c8c6beb",
+              "type": "ssh",
+              "name": "DE0130N01 - 10.70.2.221 - Serverraum",
+              "host": "10.70.2.221",
+              "port": 22,
+              "username": "root"
+            },
+            {
+              "id": "c-7050f1b7-38f6-4e65-8df6-e4264ebbfeb4",
+              "type": "ssh",
+              "name": "DE0130N02 - 10.70.2.222 - PKW Waage",
+              "host": "10.70.2.222",
+              "port": 22,
+              "username": "root"
+            },
+            {
+              "id": "c-6a54842e-e05a-4f1c-94bc-b254e3e52958",
+              "type": "ssh",
+              "name": "DE0130N03 - 10.70.2.223 - Werkstatt",
+              "host": "10.70.2.223",
+              "port": 22,
+              "username": "root"
+            },
+            {
+              "id": "c-9a32a76e-3bfe-445b-9afb-3735e22144c9",
+              "type": "ssh",
+              "name": "DE0130N04 - 10.70.2.224 - BR-Container",
+              "host": "10.70.2.224",
+              "port": 22,
+              "username": "root"
+            },
+            {
+              "id": "c-8d8cdcf4-3776-4cff-a744-ad65ea3dff93",
+              "type": "rdp",
+              "name": "DE0130S01 - GF18Z03/T330/LTO6",
+              "host": "DE0130S01",
+              "port": 3389
+            },
+            {
+              "id": "c-b8a434bb-01ab-409d-a2a7-6bf36cb6a444",
+              "type": "rdp",
+              "name": "DE0130T01 - POS Kasse",
+              "host": "DE0130T01",
+              "port": 3389
+            },
+            {
+              "id": "c-5975fad9-ccdc-4d8f-b4f3-62803587a261",
+              "type": "rdp",
+              "name": "DE0130T02 - Tankstelle",
+              "host": "DE0130T02",
+              "port": 3389
+            },
+            {
+              "id": "c-78fb8972-3d06-48ec-bf87-f5971ca09585",
+              "type": "web",
+              "name": "iDRAC - 10.70.2.215",
+              "url": "http://10.70.2.215"
+            },
+            {
+              "id": "c-0471a37a-fc80-4731-92bb-4231f4d698c8",
+              "type": "web",
+              "name": "Monitoring Link",
+              "url": "http://10.5.4.253/device/35"
+            },
+            {
+              "id": "c-f6c86b17-8076-43e8-b0db-bfaaabcc3305",
+              "type": "web",
+              "name": "Monitoring LINK",
+              "url": "http://10.5.4.253/device/36"
+            },
+            {
+              "id": "c-7ae60b59-f756-4e55-98b2-ca36fcd91c7e",
+              "type": "web",
+              "name": "Monitoring LINK",
+              "url": "http://10.5.4.253/device/33"
+            },
+            {
+              "id": "c-0e40862d-6cc9-494c-85e3-895edf97ad5b",
+              "type": "web",
+              "name": "Monitoring LINK",
+              "url": "http://10.5.4.253/device/34"
+            }
+          ],
+          "folders": []
+        },
+        {
+          "id": "f-8ea2626a-ebe9-4cf9-9c4b-bdceacc1ae71",
+          "name": "DE0143 - Sprötau",
+          "open": true,
+          "items": [
+            {
+              "id": "c-9c3866d2-31c4-4825-975d-a571fdb43130",
+              "type": "ssh",
+              "name": "DE0143N01 - 10.73.2.221",
+              "host": "10.73.2.221",
+              "port": 22,
+              "username": "root"
+            },
+            {
+              "id": "c-1a1fd394-16ff-4885-a572-7fc0de304208",
+              "type": "rdp",
+              "name": "DE0143S01 - 1ZS25Z2/T340/LTO6",
+              "host": "de0143s01",
+              "port": 3389
+            },
+            {
+              "id": "c-984976ae-e593-4f40-9ced-cb43408f9c56",
+              "type": "web",
+              "name": "iDRAC- 10.73.2.215",
+              "url": "https://10.73.2.215"
+            },
+            {
+              "id": "c-723338d2-10bb-487b-b9d1-7ba8ca1e3ae0",
+              "type": "web",
+              "name": "Monitoring LINK",
+              "url": "http://10.5.4.253/device/37"
+            },
+            {
+              "id": "c-5aceb365-df99-450e-9589-cb3aa0372127",
+              "type": "web",
+              "name": "RUMS Portal",
+              "url": "http://de0143s01:8081/RUMS/"
+            }
+          ],
+          "folders": []
+        },
+        {
+          "id": "f-fa18ebaf-ae78-4bb2-83bd-514072a7de64",
+          "name": "DE0159 - Prützke",
+          "open": true,
+          "items": [
+            {
+              "id": "c-453f244c-bad3-4f34-903e-add3d9b64e8e",
+              "type": "rdp",
+              "name": "DE0159S01 - 2J5X953/T340/LTO6",
+              "host": "de0159s01",
+              "port": 3389
+            },
+            {
+              "id": "c-67d32705-10fb-4265-9fa6-08e0cd5d2921",
+              "type": "web",
+              "name": "iDRAC - 10.5.2.121",
+              "url": "https://10.5.2.121"
+            },
+            {
+              "id": "c-af0ed358-7b31-4b30-bc1c-517af1f6afee",
+              "type": "web",
+              "name": "RUMS Portal",
+              "url": "http://de0159s01:8081/rums"
+            }
+          ],
+          "folders": []
+        },
+        {
+          "id": "f-a224508d-d69b-4634-995b-d317b64c2de3",
+          "name": "DE0234 - Bufleben - DHCP Zentral",
+          "open": true,
+          "items": [
+            {
+              "id": "c-3f1a84f5-fdb9-4ef5-9f00-f078b2596240",
+              "type": "rdp",
+              "name": "DE0234S01 - 2CMGK03/T340/LTO6",
+              "host": "DE0234S01",
+              "port": 3389
+            },
+            {
+              "id": "c-bb06a687-fb16-4f99-bca6-30f7c5fcf93b",
+              "type": "rdp",
+              "name": "DE0234SI1",
+              "host": "DE0234SI1",
+              "port": 3389
+            },
+            {
+              "id": "c-60c9b07e-272f-4eea-a3d7-bbfe649272da",
+              "type": "web",
+              "name": "iDRAC - 10.109.2.215",
+              "url": "https://10.109.2.215"
+            }
+          ],
+          "folders": []
+        },
+        {
+          "id": "f-345210a3-6849-421d-b412-5b77a97cdff6",
+          "name": "DE0310 - Magdeburg",
+          "open": true,
+          "items": [
+            {
+              "id": "c-56abe700-a133-4b61-9ffd-afe8d8621176",
+              "type": "ssh",
+              "name": "DE0310N01 - 10.40.2.221",
+              "host": "10.40.2.221",
+              "port": 22,
+              "username": "root"
+            },
+            {
+              "id": "c-895119e7-03de-4858-9e2a-b4ddc9dbbd2f",
+              "type": "ssh",
+              "name": "DE0310N02 - 10.40.2.223",
+              "host": "10.40.2.223",
+              "port": 22,
+              "username": "root"
+            },
+            {
+              "id": "c-035d40e8-963e-4bca-b732-b3e71f0802c9",
+              "type": "rdp",
+              "name": "DE0310S01 - 1QMFGQ2/T330/LTO5",
+              "host": "DE0310S01",
+              "port": 3389
+            },
+            {
+              "id": "c-76578e2a-3363-46d8-b2e0-19f305e0acf7",
+              "type": "rdp",
+              "name": "DE0310SI1 - 10.40.2.205",
+              "host": "10.40.2.205",
+              "port": 3389
+            },
+            {
+              "id": "c-96cc7bc0-fdc4-47f1-af92-abaed7f630e9",
+              "type": "web",
+              "name": "DE0310SX1 - 10.40.2.214",
+              "url": "https://10.40.2.214:8006"
+            },
+            {
+              "id": "c-d7fbb385-5468-49a6-889b-2c5e0a4a4a02",
+              "type": "rdp",
+              "name": "DE0310T01 - Tankanlage",
+              "host": "10.40.2.201",
+              "port": 3389
+            },
+            {
+              "id": "c-1806c6b5-1bcc-4d22-b9dd-9e9a285a42a2",
+              "type": "web",
+              "name": "iDRAC - 10.40.2.215",
+              "url": "https://10.40.2.215"
+            },
+            {
+              "id": "c-3cede4cb-f1d6-4f7c-9127-e0d3f6d0e2b4",
+              "type": "web",
+              "name": "Monitoring LINK",
+              "url": "http://10.5.4.253/device/39"
+            },
+            {
+              "id": "c-d5645697-fa59-4526-9a57-1c78de23b584",
+              "type": "web",
+              "name": "Monitoring LINK",
+              "url": "http://10.5.4.253/device/38"
+            }
+          ],
+          "folders": []
+        },
+        {
+          "id": "f-9f9e690f-400a-4a2d-9aed-207a68f85461",
+          "name": "DE0425 - Quersa - DHCP Zentral",
+          "open": true,
+          "items": [
+            {
+              "id": "c-4d34232b-1258-4455-a861-cec84484976b",
+              "type": "ssh",
+              "name": "DE0425N01 - 10.240.3.222",
+              "host": "10.240.3.222",
+              "port": 22,
+              "username": "root"
+            },
+            {
+              "id": "c-8994bab4-359c-493b-97b6-c16fb75e5640",
+              "type": "rdp",
+              "name": "DE0425SI1 - 10.240.3.205",
+              "host": "10.240.3.205",
+              "port": 3389
+            },
+            {
+              "id": "c-37343cdf-a1dd-4d81-8d44-1affaa41cdb2",
+              "type": "web",
+              "name": "DE0425SX1 - 10.240.3.214",
+              "url": "https://10.240.3.214:8006"
+            },
+            {
+              "id": "c-2d7d5da0-b115-4eb2-abdc-d3650b21da8f",
+              "type": "rdp",
+              "name": "DE0425T02 - POSMAN 10.5.2.48",
+              "host": "10.5.2.48",
+              "port": 3389
+            }
+          ],
+          "folders": []
+        },
+        {
+          "id": "f-71c25152-9d78-4849-947c-8b3b3a772a1e",
+          "name": "DE0446 - Riesa - DHCP Zentral",
+          "open": true,
+          "items": [
+            {
+              "id": "c-cc8c8904-cba7-4e7d-a414-17765e01c685",
+              "type": "ssh",
+              "name": "DE0446N01 10.240.10.235",
+              "host": "10.240.10.235",
+              "port": 22,
+              "username": "root"
+            },
+            {
+              "id": "c-27bb1b98-bc70-4817-9dc4-d44b1963f281",
+              "type": "rdp",
+              "name": "DE0446S01 - F0C5NX2/T340/LTO6",
+              "host": "DE0446S01",
+              "port": 3389
+            },
+            {
+              "id": "c-80934518-12f5-478d-a115-3f8a8d7a7764",
+              "type": "rdp",
+              "name": "DE0446SI1 - 10.240.10.205",
+              "host": "10.240.10.205",
+              "port": 3389
+            },
+            {
+              "id": "c-42be4c13-a5bf-4829-9309-82e30d822aa5",
+              "type": "web",
+              "name": "DE0446SX1  - 10.240.10.214",
+              "url": "https://10.240.10.214:8006"
+            },
+            {
+              "id": "c-2a180bc9-c37d-4856-9788-f13b7b191f23",
+              "type": "rdp",
+              "name": "DE0446T02 - POSMAN 10.5.2.49",
+              "host": "10.5.2.49",
+              "port": 3389
+            },
+            {
+              "id": "c-9a4632e6-e034-4af1-a0d3-5f48312673a7",
+              "type": "web",
+              "name": "Monitoring Link",
+              "url": "http://10.5.4.253/device/79"
+            },
+            {
+              "id": "c-4a079cc9-b723-4896-b443-7cb3f895b87a",
+              "type": "web",
+              "name": "redTAC",
+              "url": "http://10.240.10.250/cgi-bin/index.sh"
+            }
+          ],
+          "folders": []
+        },
+        {
+          "id": "f-90e4bc36-4663-4379-911e-3c32a5f308cc",
+          "name": "DE0491 - Eilenburg",
+          "open": true,
+          "items": [
+            {
+              "id": "c-d058e872-6973-496c-be12-2dbd77b8d4a4",
+              "type": "ssh",
+              "name": "DE0491N01 - 10.240.55.221",
+              "host": "10.240.55.221",
+              "port": 22,
+              "username": "root"
+            },
+            {
+              "id": "c-0b144fb4-2acc-44a2-9797-b0416e965681",
+              "type": "rdp",
+              "name": "DE0491S01 - DD5V2T2/T340/LTO6",
+              "host": "DE0491S01",
+              "port": 3389
+            },
+            {
+              "id": "c-a24ea1de-2c13-4d00-9b0a-7abb6f7e8663",
+              "type": "rdp",
+              "name": "DE0491S02 - 10.240.55.201 Archikart",
+              "host": "DE0491S02",
+              "port": 3389
+            },
+            {
+              "id": "c-7bb3d2f3-2549-4717-b84b-7a57f9e92c8f",
+              "type": "rdp",
+              "name": "DE0491SI1 - 10.240.55.205",
+              "host": "10.240.55.205",
+              "port": 3389
+            },
+            {
+              "id": "c-1bf8f950-0711-4daf-af72-92eb5cf55836",
+              "type": "web",
+              "name": "DE0491SX1 - 10.240.55.214",
+              "url": "https://10.240.55.214:8006"
+            },
+            {
+              "id": "c-b0c45e1b-1a96-46dc-a544-e8876e074c57",
+              "type": "rdp",
+              "name": "DE0491T01 - RUMS/POSMAN",
+              "host": "DE0491T01",
+              "port": 3389
+            },
+            {
+              "id": "c-cc33df4b-b4c0-42b4-9db3-fc375141d84b",
+              "type": "rdp",
+              "name": "DE0491T02 - SFIRM",
+              "host": "DE0491T02",
+              "port": 3389
+            },
+            {
+              "id": "c-3ce7570a-7994-4c52-ac6f-7b6c24ebb54f",
+              "type": "web",
+              "name": "iDRAC - 10.240.55.215",
+              "url": "http://10.240.55.215"
+            },
+            {
+              "id": "c-88f7a690-fd09-4412-b2b1-b3d72f5eb65f",
+              "type": "web",
+              "name": "Monitor LINK",
+              "url": "http://10.5.4.253/device/90"
+            }
+          ],
+          "folders": []
+        },
+        {
+          "id": "f-1352250c-46e9-44f7-96b5-8a032def5798",
+          "name": "DE0543 - RETA - DHCP Zentral",
+          "open": true,
+          "items": [
+            {
+              "id": "c-e19d1ced-3b82-4014-9d5d-b4e226ccba8f",
+              "type": "ssh",
+              "name": "DE0543N01 - 10.240.125.191 - Serverraum VWG",
+              "host": "10.240.125.191",
+              "port": 22,
+              "username": "root"
+            },
+            {
+              "id": "c-db008b79-1fc2-469e-b138-a58038f7c8bf",
+              "type": "ssh",
+              "name": "DE0543N02 - 10.240.125.192 - Serverraum Anlage",
+              "host": "10.240.125.192",
+              "port": 22,
+              "username": "root"
+            },
+            {
+              "id": "c-0b0284a0-4f8b-45ef-9c62-388d1f0442fb",
+              "type": "ssh",
+              "name": "DE0543N03 - 10.240.125.193 - Serverraum VWG",
+              "host": "10.240.125.193",
+              "port": 22,
+              "username": "root"
+            },
+            {
+              "id": "c-85e33f8e-d5db-46fb-9d37-575b9dc346bc",
+              "type": "ssh",
+              "name": "DE0543N04 - 10.240.125.194 - Serverraum VWG",
+              "host": "10.240.125.194",
+              "port": 22,
+              "username": "root"
+            },
+            {
+              "id": "c-bc990038-d177-42e7-b5bf-b69cf085e30e",
+              "type": "ssh",
+              "name": "DE0543N05 - 10.240.125.195 - Waage",
+              "host": "10.240.125.195",
+              "port": 22,
+              "username": "root"
+            },
+            {
+              "id": "c-871f3b65-c292-4430-ae93-15559f3296df",
+              "type": "ssh",
+              "name": "DE0543N06 - 10.240.125.196 - Meisterbüro",
+              "host": "10.240.125.196",
+              "port": 22,
+              "username": "root"
+            },
+            {
+              "id": "c-5418929a-2f35-43fa-9a06-010069786671",
+              "type": "ssh",
+              "name": "DE0543N07 - 10.240.125.197 - Serverraum Anlage 12P",
+              "host": "10.240.125.197",
+              "port": 22,
+              "username": "root"
+            },
+            {
+              "id": "c-e00e4d6c-0cd2-4ccf-b374-a227d6e31179",
+              "type": "rdp",
+              "name": "de0543s01 - altes Schichtbuch",
+              "host": "de0543s01",
+              "port": 3389
+            },
+            {
+              "id": "c-66743d24-ab86-43d1-ae91-79a904e87971",
+              "type": "rdp",
+              "name": "de0543s03 - Fileserver / GefDokPro",
+              "host": "de0543s03",
+              "port": 3389
+            },
+            {
+              "id": "c-a67d4689-0fd6-4925-b82e-38ec656b6a92",
+              "type": "rdp",
+              "name": "de0543s04 - DASI LTO6 VCSA Ping Node 2X3KSY3",
+              "host": "de0543s04",
+              "port": 3389
+            },
+            {
+              "id": "c-5295d373-31f7-4584-bc39-1612812c3ae7",
+              "type": "rdp",
+              "name": "DE0543S05 - ApiPro Win2022",
+              "host": "DE0543S05",
+              "port": 3389
+            },
+            {
+              "id": "c-bd29fcdd-72c7-4e3f-9172-f84d5e40215f",
+              "type": "rdp",
+              "name": "de0543s07 - JUNE5 Server",
+              "host": "de0543s07",
+              "port": 3389
+            },
+            {
+              "id": "c-62dc2441-70d2-4fc6-a395-f08144f16c01",
+              "type": "rdp",
+              "name": "DE0543S10 - WasteAnt Datebroker",
+              "host": "DE0543S10",
+              "port": 3389
+            },
+            {
+              "id": "c-8f82f613-36eb-4fae-a9e4-2b48d2c8fc0d",
+              "type": "web",
+              "name": "DE0543SX1 - 10.240.125.212",
+              "url": "https://10.240.125.212:8006"
+            },
+            {
+              "id": "c-7cb33029-c31a-4891-8361-e9d87be34e16",
+              "type": "web",
+              "name": "DE0543SX2 - 10.240.125.213",
+              "url": "https://10.240.125.213:8006"
+            },
+            {
+              "id": "c-0f0650bb-3bd3-4995-ac0d-4318511c06ef",
+              "type": "web",
+              "name": "DE0543SX3 - 10.240.125.214",
+              "url": "https://10.240.125.214:8006"
+            },
+            {
+              "id": "c-3ab28ab7-a2e4-443a-847f-527f90b4bd7d",
+              "type": "web",
+              "name": "iDRAC - DE0543S01 - 10.240.125.215",
+              "url": "https://10.240.125.215/"
+            },
+            {
+              "id": "c-36aaf5e2-e112-493d-8c60-7695cd77a73e",
+              "type": "web",
+              "name": "iDRAC - DE0543S04 - 10.240.125.190",
+              "url": "http://10.240.125.190"
+            },
+            {
+              "id": "c-49c31659-3dfd-435b-8add-c1f3da6dba75",
+              "type": "web",
+              "name": "iDRAC - DE0543SX2 10.124.8.112",
+              "url": "https://10.124.8.112"
+            },
+            {
+              "id": "c-d71b78ed-9cda-43fa-8e13-3142bfcd6331",
+              "type": "web",
+              "name": "iDRAC-DE0543SX1 10.124.8.111",
+              "url": "https://10.124.8.111"
+            },
+            {
+              "id": "c-f64b4fe7-5307-4c5e-99c6-1e3890573f80",
+              "type": "web",
+              "name": "iDRAC-DE0543SX3 10.124.8.113",
+              "url": "https://10.124.8.113"
+            },
+            {
+              "id": "c-dad075d8-8ee0-4044-8988-31ca0eb17f72",
+              "type": "web",
+              "name": "Monitoring LINK",
+              "url": "http://10.5.4.253/device/41"
+            },
+            {
+              "id": "c-497b0975-2f61-478c-9350-bc6f6a53a102",
+              "type": "web",
+              "name": "Monitoring LINK",
+              "url": "http://10.5.4.253/device/46"
+            },
+            {
+              "id": "c-82cde151-1b06-4b3c-af8a-e15653c9c5c1",
+              "type": "web",
+              "name": "Monitoring LINK",
+              "url": "http://10.5.4.253/device/43"
+            },
+            {
+              "id": "c-5b59302c-a67a-42b1-84e0-110c7b6946f5",
+              "type": "web",
+              "name": "Monitoring LINK",
+              "url": "http://10.5.4.253/device/44"
+            },
+            {
+              "id": "c-d2c6ee43-82ee-4771-b1e2-7ed6b8644e11",
+              "type": "web",
+              "name": "Monitoring LINK",
+              "url": "http://10.5.4.253/device/42"
+            },
+            {
+              "id": "c-d2eb1f29-c0e4-4bd1-ae36-5a717c810fe0",
+              "type": "web",
+              "name": "Monitoring LINK",
+              "url": "http://10.5.4.253/device/40"
+            },
+            {
+              "id": "c-3702f93a-9f87-40a9-91f7-d2ae5531d144",
+              "type": "web",
+              "name": "Monitoring LINK",
+              "url": "http://10.5.4.253/device/45"
+            },
+            {
+              "id": "c-5c434297-4c44-4846-ac24-38fb8bdb787a",
+              "type": "web",
+              "name": "N543APC1 - USV Serverraum",
+              "url": "http://10.240.125.253"
+            }
+          ],
+          "folders": []
+        },
+        {
+          "id": "f-4fe8e0a2-c378-4a5d-aa0f-762685c5565d",
+          "name": "DE0593 - Sondershausen - DHCP Zentral",
+          "open": true,
+          "items": [
+            {
+              "id": "c-fc9913d4-c506-42ac-a681-3b1f72d371c4",
+              "type": "ssh",
+              "name": "DE0593N01 - 10.240.177.234",
+              "host": "10.240.177.234",
+              "port": 22,
+              "username": "root"
+            },
+            {
+              "id": "c-c6ba5ea9-54c3-446e-aad6-ab84662bed5d",
+              "type": "rdp",
+              "name": "DE0593S01 - DF18Z03/T340/LTO6",
+              "host": "DE0593S01",
+              "port": 3389
+            },
+            {
+              "id": "c-24bc9a72-b07c-421c-ae3a-faf1a956bb83",
+              "type": "web",
+              "name": "iDRAC - 10.240.177.215",
+              "url": "http://10.240.177.215"
+            },
+            {
+              "id": "c-6b1d9914-9dc6-4808-95a6-6c84f6cdd116",
+              "type": "web",
+              "name": "Monitoring Link",
+              "url": "http://10.5.4.253/device/78"
+            }
+          ],
+          "folders": []
+        },
+        {
+          "id": "f-cd595654-ac4c-4f66-b709-91b939c723fe",
+          "name": "DE0775 - Schönau - DHCP Zentral",
+          "open": true,
+          "items": [
+            {
+              "id": "c-05f952be-f4df-4da0-8675-7857d7553222",
+              "type": "rdp",
+              "name": "DE0775S01 - 5YHQYQ2/T330/LTO5",
+              "host": "de0775s01",
+              "port": 3389
+            },
+            {
+              "id": "c-058a7fe2-4020-453a-bca4-387a6bf03f0a",
+              "type": "web",
+              "name": "iDRAC - 10.241.59.215",
+              "url": "https://10.241.59.215"
+            }
+          ],
+          "folders": []
+        },
+        {
+          "id": "f-28b4e1b6-a4b1-4a00-8e15-07e6d9fcca11",
+          "name": "DE0776 - Kronach - DHCP Zentral",
+          "open": true,
+          "items": [
+            {
+              "id": "c-eef31f67-09a4-4808-8aa8-46bab8a06940",
+              "type": "ssh",
+              "name": "DE0776N01 - 10.241.61.221",
+              "host": "10.241.61.221",
+              "port": 22,
+              "username": "root"
+            },
+            {
+              "id": "c-fa5add56-e380-4dd2-b42c-feb3a514fe5e",
+              "type": "rdp",
+              "name": "DE0776S01 - DFNQ2T2/T340/LTO5",
+              "host": "de0776s01",
+              "port": 3389
+            },
+            {
+              "id": "c-e09714c2-5782-42a7-bb68-70d53fb92e22",
+              "type": "web",
+              "name": "iDRAC - 10.241.61.215",
+              "url": "https://10.241.61.215"
+            },
+            {
+              "id": "c-a3c4dee8-81f9-4812-a210-9cf2831fb020",
+              "type": "web",
+              "name": "Monitoring LINK",
+              "url": "http://10.5.4.253/device/47"
+            },
+            {
+              "id": "c-70627691-ec2c-4cc8-ba47-6f4f21c6b4f9",
+              "type": "web",
+              "name": "Samsung CLX-9251",
+              "url": "http://10.241.61.240/sws/index.sws"
+            },
+            {
+              "id": "c-96f0a481-f094-4b2f-bb60-0c5a4f58ac11",
+              "type": "web",
+              "name": "Samsung ML-3710ND Dispo",
+              "url": "http://10.241.61.243/sws/index.html"
+            },
+            {
+              "id": "c-04d9ca54-4339-47a7-a876-a3540bcfee3e",
+              "type": "web",
+              "name": "Samsung ML-3710ND NL",
+              "url": "http://10.241.61.244/sws/index.html"
+            },
+            {
+              "id": "c-a432f7b3-9ac4-44dd-bfba-565a62841d27",
+              "type": "web",
+              "name": "Samsung SCX-4833FR DSD",
+              "url": "http://10.241.61.242/sws/index.html"
+            },
+            {
+              "id": "c-35dbde1b-16c3-49bd-852c-e8a1d74be520",
+              "type": "web",
+              "name": "Samsung SCX-4833FR Faktura",
+              "url": "http://10.241.61.241/sws/index.html"
+            }
+          ],
+          "folders": []
+        },
+        {
+          "id": "f-b192ad23-404d-4e71-b8fa-f213f83d9faa",
+          "name": "PROXMOX - Server",
+          "open": true,
+          "items": [
+            {
+              "id": "c-cfc02eb6-1d8d-49d6-9c0e-782094f42b63",
+              "type": "web",
+              "name": "de0924pvs01 / 10.5.2.29 / PROXMOX Backup Server",
+              "url": "https://10.5.2.29:8007"
+            },
+            {
+              "id": "c-93334d1b-f3c8-46c5-8a81-1a5eb69c81d8",
+              "type": "web",
+              "name": "de0924sx1 / 10.5.2.185",
+              "url": "https://10.5.2.185:8006"
+            },
+            {
+              "id": "c-2bc17b9e-f72a-481a-9c66-e82345638be9",
+              "type": "web",
+              "name": "de0924sx2 / 10.5.2.186",
+              "url": "https://10.5.2.186:8006"
+            },
+            {
+              "id": "c-d7ddcbf2-c4b1-4cd5-b1f7-598e606071bb",
+              "type": "web",
+              "name": "de0924sx3 / 10.55.2.22",
+              "url": "http://10.5.2.22:8006"
+            },
+            {
+              "id": "c-3d494587-493e-4a92-b004-ac9d9faaae6d",
+              "type": "web",
+              "name": "de0924sx4 / 10.55.2.23",
+              "url": "http://10.5.2.23:8006"
+            },
+            {
+              "id": "c-2011125b-056f-41e1-a6b2-a1d49a830c99",
+              "type": "web",
+              "name": "DE2389SPVE / 10.124.56.214",
+              "url": "https://10.124.56.214:8006"
+            },
+            {
+              "id": "c-23e9f777-245a-49de-9b71-90dd7e3ea802",
+              "type": "web",
+              "name": "DE2467SPVE / 10.124.48.214",
+              "url": "https://10.124.48.214:8006"
+            },
+            {
+              "id": "c-2f07ce10-a94e-4977-80a7-2bc5257b84f6",
+              "type": "web",
+              "name": "DE2472PVE01 / 10.124.52.214",
+              "url": "https://10.124.52.214:8006"
+            }
+          ],
+          "folders": []
+        },
+        {
+          "id": "f-231541bb-3f22-47d2-ad7d-d834520525e8",
+          "name": "DE1421 - Zwickau",
+          "open": true,
+          "items": [
+            {
+              "id": "c-98e4fda8-dbde-48be-a4b4-5acc9cb9c784",
+              "type": "ssh",
+              "name": "DE1421N01 - 10.124.30.221",
+              "host": "10.124.30.221",
+              "port": 22,
+              "username": "root"
+            },
+            {
+              "id": "c-d5fc3c47-2d23-405f-a063-0cbacac0c50b",
+              "type": "rdp",
+              "name": "DE1421S01 - 9FC2X53/T340/LTO6",
+              "host": "DE1421S01",
+              "port": 3389
+            },
+            {
+              "id": "c-458b12be-ed2e-40f8-a481-a8042776946e",
+              "type": "web",
+              "name": "iDRAC - 10.124.30.215",
+              "url": "http://10.124.30.215"
+            },
+            {
+              "id": "c-1352669a-a988-4a9b-afce-0808f5e92114",
+              "type": "web",
+              "name": "Monitoring LINK",
+              "url": "http://10.5.4.253/device/48"
+            }
+          ],
+          "folders": []
+        },
+        {
+          "id": "f-45dae6d0-fd7c-4cf4-b615-1eb48c9129d8",
+          "name": "DE1701 - Weißenfels - DHCP Zentral",
+          "open": true,
+          "items": [
+            {
+              "id": "c-9659a6ff-3805-45d6-8069-2c51cf6c15c4",
+              "type": "ssh",
+              "name": "DE1701N01 - 10.124.32.221",
+              "host": "10.124.32.221",
+              "port": 22,
+              "username": "root"
+            },
+            {
+              "id": "c-12654a7c-e845-47ab-b34a-e06b5558048c",
+              "type": "ssh",
+              "name": "DE1701N02 - 10.124.32.222",
+              "host": "10.124.32.222",
+              "port": 22,
+              "username": "root"
+            },
+            {
+              "id": "c-167fce66-57b4-47ad-a98c-71ec86743b78",
+              "type": "rdp",
+              "name": "DE1701S01 - 6C2G643/T340/LTO6",
+              "host": "de1701s01",
+              "port": 3389
+            },
+            {
+              "id": "c-c2c06cad-b4e4-4559-b30c-657dcdff2b78",
+              "type": "rdp",
+              "name": "DE1701SI1 - 10.124.32.205",
+              "host": "DE1701SI1",
+              "port": 3389
+            },
+            {
+              "id": "c-8da6e28b-99c4-47d5-a745-08b054757f92",
+              "type": "web",
+              "name": "DE1701SX1 - 10.124.32.214",
+              "url": "https://10.124.32.214:8006"
+            },
+            {
+              "id": "c-3e3c7726-aa37-403e-b353-761f9fba0336",
+              "type": "rdp",
+              "name": "DE1701T01 - RUMS/POSMAN",
+              "host": "DE1701T01",
+              "port": 3389
+            },
+            {
+              "id": "c-572d1044-e58c-483a-b8c2-ed1059227335",
+              "type": "web",
+              "name": "iDRAC - 10.124.32.215",
+              "url": "http://10.124.32.215"
+            },
+            {
+              "id": "c-eafa030b-2527-477c-92a0-80ff4757095d",
+              "type": "web",
+              "name": "Monitoring LINK",
+              "url": "http://10.5.4.253/device/49"
+            },
+            {
+              "id": "c-183d5d82-533d-4852-8e60-137e82a9dfd0",
+              "type": "web",
+              "name": "Monitoring LINK",
+              "url": "http://10.5.4.253/device/50"
+            }
+          ],
+          "folders": []
+        },
+        {
+          "id": "f-f724f3b0-d5b9-459b-83e5-8271691dbf44",
+          "name": "DE1703 - Zeitz - DHCP Zentral",
+          "open": true,
+          "items": [
+            {
+              "id": "c-9db8b177-1a7a-40df-a9cf-216f1cdf2ac2",
+              "type": "ssh",
+              "name": "DE1703N01 - 10.124.31.221",
+              "host": "10.124.31.221",
+              "port": 22,
+              "username": "root"
+            },
+            {
+              "id": "c-2693459d-0846-417d-ab15-fbf512b3cfbe",
+              "type": "rdp",
+              "name": "DE1703S01 - 5C2G643/T340/LTO6",
+              "host": "10.124.31.200",
+              "port": 3389
+            },
+            {
+              "id": "c-51959d24-9e61-473b-afb8-3eeca434912b",
+              "type": "rdp",
+              "name": "DE1703T01 - RUMS+Tankanlage/POSMAN",
+              "host": "DE1703T01",
+              "port": 3389
+            },
+            {
+              "id": "c-a968a5df-30d5-49d3-8930-d83a0e40f8ac",
+              "type": "web",
+              "name": "iDRAC - 10.124.31.215",
+              "url": "http://10.124.31.215"
+            },
+            {
+              "id": "c-dc693e1e-df54-49e5-96a3-729c9b023379",
+              "type": "web",
+              "name": "Monitoring LINK",
+              "url": "http://10.5.4.253/device/23"
+            }
+          ],
+          "folders": []
+        },
+        {
+          "id": "f-841d6864-4628-44d0-bfa4-c8eb47c4f4ed",
+          "name": "DE1707 - Neustadt Orla Neuenhofen - DHCP Zentral",
+          "open": true,
+          "items": [
+            {
+              "id": "c-cc177457-7189-4a1f-b46c-db73ebdefbc9",
+              "type": "rdp",
+              "name": "DE1707S01 - 1W1R643/T340/LTO6",
+              "host": "DE1707S01",
+              "port": 3389
+            },
+            {
+              "id": "c-257de469-a1fc-493f-a1f9-3df3cd9a4ce6",
+              "type": "web",
+              "name": "iDRAC - 10.124.34.215",
+              "url": "http://10.124.34.215"
+            }
+          ],
+          "folders": []
+        },
+        {
+          "id": "f-b0fad3d1-e6b1-4f2e-848c-0f3bb4deff93",
+          "name": "DE1708 - Schkopau - DHCP Zentral",
+          "open": true,
+          "items": [
+            {
+              "id": "c-33adbbdb-2d14-4bfe-a625-5e8d22fca0ef",
+              "type": "ssh",
+              "name": "DE1708N01 - 10.124.35.221",
+              "host": "10.124.35.221",
+              "port": 22,
+              "username": "root"
+            },
+            {
+              "id": "c-373710c5-2f74-46e4-80fe-3de930638c1e",
+              "type": "rdp",
+              "name": "DE1708S01 - 2W1R643/T340/LTO6",
+              "host": "10.124.35.200",
+              "port": 3389
+            },
+            {
+              "id": "c-d6a2a211-4810-4aed-bfc4-1c3da42326d0",
+              "type": "web",
+              "name": "iDRAC - 10.124.35.215",
+              "url": "http://10.124.35.215"
+            },
+            {
+              "id": "c-127ef87e-c901-4070-afb6-cb12de94b594",
+              "type": "web",
+              "name": "Monitoring LINK",
+              "url": "http://10.5.4.253/device/51"
+            }
+          ],
+          "folders": []
+        },
+        {
+          "id": "f-fa747b6c-9cc3-4aaf-a86f-a4aa9cbc4a1f",
+          "name": "DE1714 - Apolda Ilmtal - DHCP Zentral",
+          "open": true,
+          "items": [
+            {
+              "id": "c-3788c7bf-008d-4631-bab0-fe6d7619fd5b",
+              "type": "rdp",
+              "name": "DE1714S01 - DBB9Q53/T340/LTO6",
+              "host": "10.124.26.200",
+              "port": 3389
+            },
+            {
+              "id": "c-cd275b9b-c37f-4783-ac44-6b6943cd1ec7",
+              "type": "rdp",
+              "name": "DE1714T01 - RUMS/POSMAN",
+              "host": "DE1714T01",
+              "port": 3389
+            },
+            {
+              "id": "c-74a113f7-b33c-4cd8-a7e2-ee3c31a75bb1",
+              "type": "web",
+              "name": "iDRAC - 10.124.26.215",
+              "url": "http://10.124.26.215"
+            }
+          ],
+          "folders": []
+        },
+        {
+          "id": "f-e938be2e-7cb3-42af-8d35-031103a11140",
+          "name": "DE1747 - Lidzba Cottbus - DHCP Zentral",
+          "open": true,
+          "items": [
+            {
+              "id": "c-059f82c4-ba55-4569-a788-84f30c2065bb",
+              "type": "ssh",
+              "name": "DE1747N01 - 10.124.36.221",
+              "host": "10.124.36.221",
+              "port": 22,
+              "username": "root"
+            },
+            {
+              "id": "c-61763f24-5f08-4cf6-b341-9366bb1eaf13",
+              "type": "rdp",
+              "name": "DE1747S01 - FBB9Q53/T340/LTO6",
+              "host": "DE1747S01",
+              "port": 3389
+            },
+            {
+              "id": "c-039c6725-82f6-434f-b0d3-27e58871533c",
+              "type": "web",
+              "name": "iDRAC - 10.124.36.215",
+              "url": "https://10.124.36.215"
+            },
+            {
+              "id": "c-8c0a5de5-a97d-4be1-b899-9ba31f6663c8",
+              "type": "web",
+              "name": "Monitoring LINK",
+              "url": "http://10.5.4.253/device/52"
+            }
+          ],
+          "folders": []
+        },
+        {
+          "id": "f-295e3a80-0cd0-4b30-9479-024477f07085",
+          "name": "DE1923 - Mühlau - DHCP Zentral",
+          "open": true,
+          "items": [
+            {
+              "id": "c-6589e9e2-3d96-4abf-9ef3-e4cad2adf4ff",
+              "type": "ssh",
+              "name": "DE1923N01 - 10.124.39.221",
+              "host": "10.124.39.221",
+              "port": 22,
+              "username": "root"
+            },
+            {
+              "id": "c-1403026a-e707-4a0e-b5a9-07c8097e07db",
+              "type": "ssh",
+              "name": "DE1923N02 - 10.124.39.222",
+              "host": "10.124.39.222",
+              "port": 22,
+              "username": "root"
+            },
+            {
+              "id": "c-70d23c1b-066c-4c50-a7c0-9ed3a15906c7",
+              "type": "rdp",
+              "name": "DE1923S01 - F924SP2/T330/LTO5",
+              "host": "DE1923S01",
+              "port": 3389
+            },
+            {
+              "id": "c-3eb68578-531b-4bb9-8729-ee5dfb6f290c",
+              "type": "rdp",
+              "name": "DE1923S02 - David.net",
+              "host": "DE1923S02",
+              "port": 3389
+            },
+            {
+              "id": "c-c5a374d5-ad04-4d23-a159-4727ccddcc5e",
+              "type": "rdp",
+              "name": "DE1923T01 - RUMS/POSMAN",
+              "host": "DE1923T01",
+              "port": 3389
+            },
+            {
+              "id": "c-ce49f9bb-9a97-4763-bb0b-427e904e2a8a",
+              "type": "web",
+              "name": "iDRAC 10.124.39.215",
+              "url": "https://10.124.39.215"
+            },
+            {
+              "id": "c-db2a7c64-bc2c-4763-8db7-6e8da0478f6a",
+              "type": "web",
+              "name": "Monitoring LINK",
+              "url": "http://10.5.4.253/device/53"
+            }
+          ],
+          "folders": []
+        },
+        {
+          "id": "f-160dc4ea-874e-4458-8274-27c941f84f32",
+          "name": "DE1924 - VT Berlin",
+          "open": true,
+          "items": [
+            {
+              "id": "c-5b3d374a-1c66-45d9-ac47-d95340ade31e",
+              "type": "rdp",
+              "name": "DE1924S01 - C3SNV03 ROMICO",
+              "host": "10.124.23.211",
+              "port": 3389
+            },
+            {
+              "id": "c-d8202168-db7b-4283-b3e5-148e04a12ede",
+              "type": "web",
+              "name": "DE1924S01 - iDRAC 10.124.23.252",
+              "url": "https://10.124.23.252"
+            },
+            {
+              "id": "c-4708b1a3-1414-481b-aab6-076a80fb3c99",
+              "type": "rdp",
+              "name": "DE1924S03 - AGVIP VM auf DE1924S01",
+              "host": "DE1924S03",
+              "port": 3389
+            }
+          ],
+          "folders": []
+        },
+        {
+          "id": "f-3f67c5b1-2aa9-49de-b54e-a68fc5c9a63f",
+          "name": "DE2255 - Berlin Pennecke - DHCP Zentral",
+          "open": true,
+          "items": [
+            {
+              "id": "c-0bdc70fc-a014-4918-9366-38a292855e4d",
+              "type": "ssh",
+              "name": "DE2255N01 - 10.124.24.221",
+              "host": "10.124.24.221",
+              "port": 22,
+              "username": "root"
+            },
+            {
+              "id": "c-099b6ad3-f23b-4183-8ba9-7ace84c41f53",
+              "type": "rdp",
+              "name": "DE2255T02 - Emos / Diamant",
+              "host": "10.5.2.219",
+              "port": 3389
+            },
+            {
+              "id": "c-0533b3c3-3ab5-428a-9ced-083566e097bf",
+              "type": "web",
+              "name": "Monitoring LINK",
+              "url": "http://10.5.4.253/device/54"
+            }
+          ],
+          "folders": []
+        },
+        {
+          "id": "f-be188130-b723-4ea2-87ea-e4c36eee93e8",
+          "name": "DE2368 - Jessen - DHCP Zentral",
+          "open": true,
+          "items": [
+            {
+              "id": "c-c0ed0601-894b-4078-b3d1-ac8a159291f2",
+              "type": "ssh",
+              "name": "DE2368N01 - 10.124.51.235 - Verwaltung",
+              "host": "10.124.51.235",
+              "port": 22,
+              "username": "root"
+            },
+            {
+              "id": "c-3d32aff4-8a7c-4df7-b68a-d690e836c844",
+              "type": "ssh",
+              "name": "DE2368N02 - 10.124.51.236 - Waage",
+              "host": "10.124.51.236",
+              "port": 22,
+              "username": "root"
+            },
+            {
+              "id": "c-b935111b-26a6-4430-abf3-c2aebaed8b36",
+              "type": "rdp",
+              "name": "DE2368S01 - 9WFSSC3/T340/LTO6",
+              "host": "DE2368S01",
+              "port": 3389
+            },
+            {
+              "id": "c-a6edad0a-9716-4233-a1d6-d09d7b5ce3d9",
+              "type": "rdp",
+              "name": "DE2368SI1 - IvantiShare",
+              "host": "DE2368SI1",
+              "port": 3389
+            },
+            {
+              "id": "c-68daa931-a860-47ba-bb71-ea4d7c7c55d1",
+              "type": "web",
+              "name": "DE2368SX1",
+              "url": "https://10.124.51.214:8006"
+            },
+            {
+              "id": "c-45754c04-3a7f-43ff-b273-169c88b976d0",
+              "type": "rdp",
+              "name": "DE2368T01 - ??? Druckserver",
+              "host": "DE2368T01",
+              "port": 3389
+            },
+            {
+              "id": "c-0a425fa8-7348-40c8-ac33-75e2dfd8c999",
+              "type": "rdp",
+              "name": "DE2368T03 - MOBA",
+              "host": "DE2368T03",
+              "port": 3389
+            },
+            {
+              "id": "c-7df82be6-8ada-42a2-b174-bff9338701ad",
+              "type": "rdp",
+              "name": "DE2368T04 - POSMAN 10.124.51.206",
+              "host": "10.124.51.206",
+              "port": 3389
+            },
+            {
+              "id": "c-446cdee8-9e0e-4c02-a059-66d1602ca8a5",
+              "type": "web",
+              "name": "iDRAC - 10.124.51.215",
+              "url": "http://10.124.51.215"
+            },
+            {
+              "id": "c-48f801c0-d2f0-4a34-84b8-290c1564f69c",
+              "type": "web",
+              "name": "Monitoring LINK",
+              "url": "http://10.5.4.253/device/73"
+            },
+            {
+              "id": "c-b1132f02-cf36-4237-b442-9f174e3bcdef",
+              "type": "web",
+              "name": "Monitoring LINK",
+              "url": "http://10.5.4.253/device/74"
+            }
+          ],
+          "folders": []
+        },
+        {
+          "id": "f-468b5541-85ef-497b-a4c6-f6a2f670afaf",
+          "name": "DE2375 - Zauchwitz - DHCP Zentral",
+          "open": true,
+          "items": [
+            {
+              "id": "c-9c5a8403-317c-4116-a849-84a4dbcdf02d",
+              "type": "ssh",
+              "name": "DE2375N01 - 10.124.4.235",
+              "host": "10.124.4.235",
+              "port": 22,
+              "username": "root"
+            },
+            {
+              "id": "c-f155a839-2198-4d55-81dc-0ffdade8c4b8",
+              "type": "rdp",
+              "name": "DE2375SI1 - VM auf DE2375SX1",
+              "host": "10.124.4.205",
+              "port": 3389
+            },
+            {
+              "id": "c-5c6d26b1-e45e-46cd-b2bf-d2c17a9d88aa",
+              "type": "web",
+              "name": "DE2375SX1 - AMT",
+              "url": "https://10.124.4.215:16993/index.htm"
+            },
+            {
+              "id": "c-df36634d-ef2e-4bcc-8000-dbefeab732d4",
+              "type": "web",
+              "name": "DE2375SX1 - Proxmox",
+              "url": "https://10.124.4.214:8006/"
+            },
+            {
+              "id": "c-1d7e678e-3ace-4dc1-89cb-6320a03344ec",
+              "type": "rdp",
+              "name": "DE2375T01 - RUMS/FVW",
+              "host": "10.5.2.6",
+              "port": 3389
+            },
+            {
+              "id": "c-ae5acef8-a30c-498f-8625-83167ca143e6",
+              "type": "rdp",
+              "name": "DE2375T02 -  Tankstelle auf dem DE2375SX1",
+              "host": "10.124.4.202",
+              "port": 3389
+            },
+            {
+              "id": "c-35a27541-ac2e-4a35-b47f-64035a5915e0",
+              "type": "web",
+              "name": "Monitoring LINK",
+              "url": "http://10.5.4.253/device/55"
+            }
+          ],
+          "folders": []
+        },
+        {
+          "id": "f-12186bf1-43fa-4177-8b16-f4df27f86690",
+          "name": "DE2402 - Trebsen",
+          "open": true,
+          "items": [
+            {
+              "id": "c-70a77d1f-8694-4d5c-b2a5-8525c515fba7",
+              "type": "ssh",
+              "name": "DE2402N01 - 10.124.6.235",
+              "host": "10.124.6.235",
+              "port": 22,
+              "username": "root"
+            },
+            {
+              "id": "c-bfc6f0a4-b386-401c-a219-f546f1f6ae5f",
+              "type": "ssh",
+              "name": "DE2402N02 - 10.124.6.236",
+              "host": "10.124.6.236",
+              "port": 22,
+              "username": "root"
+            },
+            {
+              "id": "c-d438fd83-3ecf-4bcd-a909-2b6c39ddb9c3",
+              "type": "web",
+              "name": "DE2402S01 - iDRAC 10.124.6.215",
+              "url": "http://10.124.6.215"
+            },
+            {
+              "id": "c-88c704fc-cb70-429b-9092-04f7be7807d8",
+              "type": "rdp",
+              "name": "DE2402S01 - JKY9H73/T340/LTO6",
+              "host": "DE2402S01",
+              "port": 3389
+            },
+            {
+              "id": "c-f825cd8c-484b-46e0-b976-9d31448da67b",
+              "type": "rdp",
+              "name": "DE2402T01 -  RUMS/POSMAN",
+              "host": "DE2402T01",
+              "port": 3389
+            },
+            {
+              "id": "c-b1b42b19-7faa-48ef-acfd-70df3ebc8839",
+              "type": "web",
+              "name": "Monitoring LINK",
+              "url": "http://10.5.4.253/device/81"
+            },
+            {
+              "id": "c-2903a1e1-8407-4c84-8aa1-ef5f6d3db9f0",
+              "type": "web",
+              "name": "Monitoring LINK",
+              "url": "http://10.5.4.253/device/56"
+            }
+          ],
+          "folders": []
+        },
+        {
+          "id": "f-ef7918f1-2694-44f3-9f54-239f25a1e16d",
+          "name": "DE2404 - Gotha - DHCP Zenral",
+          "open": true,
+          "items": [
+            {
+              "id": "c-8d1fdc4c-c7ff-43f8-8b32-0ebd600e1fe2",
+              "type": "ssh",
+              "name": "DE2404N01 - 10.124.7.235",
+              "host": "10.124.7.235",
+              "port": 22,
+              "username": "root"
+            },
+            {
+              "id": "c-c8d2f124-0587-4c40-b6a7-491d121e7b35",
+              "type": "rdp",
+              "name": "DE2404S01 - 1LY9H73/T340/LTO6",
+              "host": "DE2404S01",
+              "port": 3389
+            },
+            {
+              "id": "c-a837b999-69fe-4941-885a-16743b443f30",
+              "type": "web",
+              "name": "DE2404S01 - iDRAC 10.124.7.215",
+              "url": "http://10.124.7.215"
+            },
+            {
+              "id": "c-65cc94ec-20d5-4bb9-a05d-06b9b883530c",
+              "type": "web",
+              "name": "Monitoring LINK",
+              "url": "http://10.5.4.253/device/57"
+            }
+          ],
+          "folders": []
+        },
+        {
+          "id": "f-bb14b260-0de4-4af9-a736-689ed9108257",
+          "name": "DE2405 - Crimmitschau - DHCP Zentral",
+          "open": true,
+          "items": [
+            {
+              "id": "c-3f96e021-6a2c-4a15-b2fc-16dd21d900b7",
+              "type": "ssh",
+              "name": "DE2405N01 - 10.124.13.235",
+              "host": "10.124.13.235",
+              "port": 22,
+              "username": "root"
+            },
+            {
+              "id": "c-3d1f125b-999b-41eb-b1d9-7aa033e0d1d9",
+              "type": "rdp",
+              "name": "DE2405S01 - HKY9H73/T340/LTO6",
+              "host": "DE2405S01",
+              "port": 3389
+            },
+            {
+              "id": "c-5499bb2e-71f5-4cf8-a31c-800445c53b05",
+              "type": "web",
+              "name": "DE2405S01 - iDRAC 10.124.13.215",
+              "url": "http://10.124.13.215"
+            },
+            {
+              "id": "c-2916c759-bb65-49fa-9fd6-896f27febb90",
+              "type": "rdp",
+              "name": "DE2405T01 RUMS/POSMAN",
+              "host": "DE2405T01",
+              "port": 3389
+            },
+            {
+              "id": "c-0b4998bf-36fd-4110-88a7-2e6deb701cc3",
+              "type": "web",
+              "name": "Monitoring LINK",
+              "url": "http://10.5.4.253/device/58"
+            }
+          ],
+          "folders": []
+        },
+        {
+          "id": "f-b7100374-536f-45ae-b955-0c760c8b539f",
+          "name": "DE2407 - RESA Wanzleben - DHCP Zentral",
+          "open": true,
+          "items": [
+            {
+              "id": "c-3d4ac0da-8453-433a-9114-994a5cf691dd",
+              "type": "ssh",
+              "name": "DE2407N01 - 10.124.58.235",
+              "host": "10.124.58.235",
+              "port": 22,
+              "username": "root"
+            },
+            {
+              "id": "c-15ff8257-230b-4430-b002-f0346b0191c7",
+              "type": "ssh",
+              "name": "DE2407N02 - 10.124.58.236",
+              "host": "10.124.58.236",
+              "port": 22,
+              "username": "root"
+            },
+            {
+              "id": "c-053ef39d-de81-4560-adc1-11c659557798",
+              "type": "rdp",
+              "name": "DE2407S01 - 7WFSSC3/T340/LTO6",
+              "host": "DE2407S01",
+              "port": 3389
+            },
+            {
+              "id": "c-aebca7d9-638d-489a-8bcd-e5d9296365f9",
+              "type": "rdp",
+              "name": "DE2407T01 - MOBA/MAWIS",
+              "host": "DE2407T01",
+              "port": 3389
+            },
+            {
+              "id": "c-09e2ffe8-524b-4c57-ad40-30b655f14237",
+              "type": "rdp",
+              "name": "DE2407T02 - Tankstelle",
+              "host": "DE2407T02",
+              "port": 3389
+            },
+            {
+              "id": "c-e30dffa9-ce02-43a9-b4bd-0273b38bdfd6",
+              "type": "web",
+              "name": "iDRAC - 10.124.58.215",
+              "url": "http://10.124.58.215"
+            },
+            {
+              "id": "c-fce06823-34f5-4a48-9874-5da60b985166",
+              "type": "web",
+              "name": "Monitoring LINK",
+              "url": "http://10.5.4.253/device/59"
+            },
+            {
+              "id": "c-acdc22ea-2a69-401b-93e0-34acb06ab857",
+              "type": "web",
+              "name": "Monitoring LINK",
+              "url": "http://10.5.4.253/device/59"
+            }
+          ],
+          "folders": []
+        },
+        {
+          "id": "f-066e052a-fc06-4c9d-97ae-f768b4bf089e",
+          "name": "DE2410 - RESA Burg - DHCP Zentral",
+          "open": true,
+          "items": [
+            {
+              "id": "c-2ebf5e6b-7ed6-4537-9fd0-4c75994af4d7",
+              "type": "rdp",
+              "name": "DE2410S01 - 1WFSSC3/T340/LTO6",
+              "host": "DE240S01",
+              "port": 3389
+            }
+          ],
+          "folders": []
+        },
+        {
+          "id": "f-c1687c03-5ddd-422f-a965-6a8d51132092",
+          "name": "DE2411 - Aschersleben - DHCP Zentral",
+          "open": true,
+          "items": [
+            {
+              "id": "c-12eb92ee-ae53-4ce5-9bfb-198727558f4a",
+              "type": "ssh",
+              "name": "DE2411N01 - 10.124.55.235",
+              "host": "10.124.55.235",
+              "port": 22,
+              "username": "root"
+            },
+            {
+              "id": "c-622f972e-c935-410a-a22c-4ed9a692eae3",
+              "type": "rdp",
+              "name": "DE2411S01 - 8WFSSC3/T340/LTO6",
+              "host": "DE2411S01",
+              "port": 3389
+            },
+            {
+              "id": "c-e86fd48f-2e3f-4080-a0fe-5703bc27b17a",
+              "type": "rdp",
+              "name": "DE2411SI1 - 10.124.55.205",
+              "host": "10.124.55.205",
+              "port": 3389
+            },
+            {
+              "id": "c-6e559390-15ca-43ab-a88d-ae1c3a61373c",
+              "type": "web",
+              "name": "DE2411SX1 - 10.124.55.214",
+              "url": "https://10.124.55.214:8006"
+            },
+            {
+              "id": "c-3eb0d3a7-d6e2-4f07-ae25-da98761434eb",
+              "type": "rdp",
+              "name": "DE2411T01 - Druckserver",
+              "host": "DE2411T01",
+              "port": 3389
+            },
+            {
+              "id": "c-5113e5d7-ee45-4eb8-a78e-2002ca8101bf",
+              "type": "web",
+              "name": "iDRAC - 10.124.55.215",
+              "url": "http://10.124.55.215"
+            },
+            {
+              "id": "c-3330b8ad-7bb1-4822-ac42-645cc93bce13",
+              "type": "web",
+              "name": "Monitoring LINK",
+              "url": "http://10.5.4.253/device/60"
+            }
+          ],
+          "folders": []
+        },
+        {
+          "id": "f-44465e86-7490-43d1-acf1-1de51428f923",
+          "name": "DE2421 - Rembrand  Hoppegarten - DHCP Zentral",
+          "open": true,
+          "items": [
+            {
+              "id": "c-63338833-9571-4fb9-b853-1e62ffddf411",
+              "type": "ssh",
+              "name": "DE2421N01 - 10.124.47.235",
+              "host": "10.124.47.235",
+              "port": 22,
+              "username": "root"
+            },
+            {
+              "id": "c-059ec0d3-5ffc-4763-98f2-bd3ff7fe9473",
+              "type": "ssh",
+              "name": "DE2421N02 - 10.124.47.236",
+              "host": "10.124.47.236",
+              "port": 22,
+              "username": "root"
+            },
+            {
+              "id": "c-952c2736-1f34-45e5-b8b2-752d88cf2bae",
+              "type": "rdp",
+              "name": "DE2421S01 - 2WFSSC3/T340/LT0",
+              "host": "DE2421S01",
+              "port": 3389
+            },
+            {
+              "id": "c-b9c0b174-7321-4ae1-9e25-33c924c85f35",
+              "type": "rdp",
+              "name": "DE2421T01 - FVWIN",
+              "host": "10.5.2.209",
+              "port": 3389
+            },
+            {
+              "id": "c-ee5183bf-daed-4f7b-b689-2176e73942d4",
+              "type": "rdp",
+              "name": "DE2421T02 - Kasse",
+              "host": "DE2421T02",
+              "port": 3389
+            },
+            {
+              "id": "c-d4505199-3718-45ac-96f2-d55bb86b5205",
+              "type": "web",
+              "name": "iDRAC - 10.124.47.215",
+              "url": "http://10.124.47.215"
+            },
+            {
+              "id": "c-0ab3e9ab-ea62-4bd9-8e74-a03516b9e5d6",
+              "type": "web",
+              "name": "Monitoring LINK",
+              "url": "http://10.5.4.253/device/64"
+            },
+            {
+              "id": "c-92ad341c-6927-4d99-bdf9-6e1425344472",
+              "type": "web",
+              "name": "Monitoring LINK",
+              "url": "http://10.5.4.253/device/63"
+            }
+          ],
+          "folders": []
+        },
+        {
+          "id": "f-228d25fe-9332-48b7-bc9c-fb1da3936f66",
+          "name": "DE2436 - Jena - DHCP Zentral",
+          "open": true,
+          "items": [
+            {
+              "id": "c-598d49cb-b58d-4adc-b648-6c7c75258b41",
+              "type": "ssh",
+              "name": "DE2436N01 - 10.124.44.235",
+              "host": "10.124.44.235",
+              "port": 22,
+              "username": "root"
+            },
+            {
+              "id": "c-151fa951-3e36-427f-89a5-c3ae705e0326",
+              "type": "rdp",
+              "name": "DE2436S01 - 5WFSSC3/T340/LTO6",
+              "host": "DE2436S01",
+              "port": 3389
+            },
+            {
+              "id": "c-90e89ed8-bb06-446a-8234-6e02cfcb64d6",
+              "type": "web",
+              "name": "iDRAC  10.124.44.215",
+              "url": "http://10.124.44.215"
+            },
+            {
+              "id": "c-8bad9db8-8279-4225-bd1a-25b74e66c8f0",
+              "type": "web",
+              "name": "Monitoring LINK",
+              "url": "http://10.5.4.253/device/61"
+            }
+          ],
+          "folders": []
+        },
+        {
+          "id": "f-5eb4a59d-a840-4bc0-9bcd-d7949fee9911",
+          "name": "DE2437 - Falkenstein - DHCP Zentral",
+          "open": true,
+          "items": [
+            {
+              "id": "c-bf13d9f8-f148-4b7d-a4ec-d1ad8cd88395",
+              "type": "ssh",
+              "name": "DE2437N01 - 10.124.43.235",
+              "host": "10.124.43.235",
+              "port": 22,
+              "username": "root"
+            },
+            {
+              "id": "c-570d0555-e272-4c05-8986-96d1feaa5380",
+              "type": "rdp",
+              "name": "DE2437S01 - 4WFSSC3/T340/LTO6",
+              "host": "DE2437S01",
+              "port": 3389
+            },
+            {
+              "id": "c-7092e447-47cc-49f2-b259-a4d06f661850",
+              "type": "web",
+              "name": "iDRAC 10.124.43.215",
+              "url": "http://10.124.43.215"
+            },
+            {
+              "id": "c-a70ef9a7-98aa-4de3-9b9f-6d615d94424d",
+              "type": "web",
+              "name": "Monitoring LINK",
+              "url": "http://10.5.4.253/device/62"
+            }
+          ],
+          "folders": []
+        },
+        {
+          "id": "f-f86b9474-cb39-46da-9643-213b4b4d764d",
+          "name": "DE2438 - Rodewisch",
+          "open": true,
+          "items": [
+            {
+              "id": "c-efc60b15-4129-44fe-91bb-fe8e64cdf050",
+              "type": "rdp",
+              "name": "DE2438S01 - 6WFSSC3/T340/LTO6",
+              "host": "DE2438S01",
+              "port": 3389
+            }
+          ],
+          "folders": []
+        },
+        {
+          "id": "f-95f4da5c-33f3-4a15-a954-144617f3cd25",
+          "name": "DE2467 - Grünheide Tesla - DHCP Zentral",
+          "open": true,
+          "items": [
+            {
+              "id": "c-a816d78a-85f4-4f3f-a4c6-d8ce4a23ed72",
+              "type": "ssh",
+              "name": "DE2467N01 - 10.124.48.235",
+              "host": "10.124.48.235",
+              "port": 22,
+              "username": "root"
+            },
+            {
+              "id": "c-df9abb87-6970-4d48-b41b-4588d7756dc6",
+              "type": "rdp",
+              "name": "DE2467S01 - PROXMOX VM",
+              "host": "DE2467S01",
+              "port": 3389
+            },
+            {
+              "id": "c-ae39a240-97af-42d7-8c02-5c5919c88875",
+              "type": "web",
+              "name": "DE2467SX1 - 10.124.48.214",
+              "url": "https://10.124.48.214:8006"
+            },
+            {
+              "id": "c-f5aac7c3-1361-4b86-9d4f-f138e7b1bf73",
+              "type": "web",
+              "name": "iDRAC - 10.124.48.215",
+              "url": "https://10.124.48.215"
+            },
+            {
+              "id": "c-f54ce398-7821-4a23-bbfa-e3ada258947b",
+              "type": "web",
+              "name": "Monitoring LINK",
+              "url": "http://10.5.4.253/device/65"
+            }
+          ],
+          "folders": []
+        },
+        {
+          "id": "f-40ff392a-7831-44f4-b13b-fe98c477589a",
+          "name": "DE2472 RCZ Herzberg - DHCP Zentral",
+          "open": true,
+          "items": [
+            {
+              "id": "c-2c11db0a-8565-4d24-91a6-f5782ccfe53f",
+              "type": "ssh",
+              "name": "DE2472N01 - 10.124.52.235",
+              "host": "10.124.52.235",
+              "port": 22,
+              "username": "root"
+            },
+            {
+              "id": "c-c792e058-14f6-4301-926a-2efd5a826094",
+              "type": "web",
+              "name": "DE2472SX1 - AMT",
+              "url": "https://10.124.52.215:16993/index.htm"
+            },
+            {
+              "id": "c-7bce9284-2057-4e28-8be1-ae6b5e4c7023",
+              "type": "web",
+              "name": "DE2472SX1 - Proxmox",
+              "url": "https://10.124.52.213:8006"
+            },
+            {
+              "id": "c-8eb1c1e7-1efb-4e6c-8c4a-7707578fd0e0",
+              "type": "rdp",
+              "name": "DE2472T01 - Kasse PROXMOX",
+              "host": "DE2472T01",
+              "port": 3389
+            },
+            {
+              "id": "c-d36fd1dd-7bdb-4b6b-a2e2-e7107686f90b",
+              "type": "web",
+              "name": "Monitoring LINK",
+              "url": "http://10.5.4.253/device/68"
+            }
+          ],
+          "folders": []
+        },
+        {
+          "id": "f-ecec3718-78a5-4a74-bee2-e7ab3da3ddd6",
+          "name": "DE2716 - Kronach Wagner - DHCP Zentral",
+          "open": true,
+          "items": [
+            {
+              "id": "c-908ebbaa-c3a6-4fda-8aa2-0921a6996f6a",
+              "type": "ssh",
+              "name": "DE2716N01 - 10.124.62.221",
+              "host": "10.124.62.221",
+              "port": 22,
+              "username": "root"
+            },
+            {
+              "id": "c-f2df9129-20e3-42c1-a73d-ff8758e0cd36",
+              "type": "rdp",
+              "name": "DE2716SI1 - IvantiShare",
+              "host": "DE2716SI1",
+              "port": 3389
+            },
+            {
+              "id": "c-f81e1d9a-9ba9-465d-b4a7-b2caa971ad5a",
+              "type": "web",
+              "name": "DE2716SX1 - AMT",
+              "url": "https://10.241.61.216:16993/index.htm"
+            },
+            {
+              "id": "c-e83fc22e-06ef-4963-a017-e2199a6d75b2",
+              "type": "web",
+              "name": "DE2716SX1 - PROXMOX",
+              "url": "https://10.241.61.214:8006"
+            },
+            {
+              "id": "c-38fe156a-a43d-40d7-b0c4-d10238b524bb",
+              "type": "rdp",
+              "name": "DE2716T01 - Navision",
+              "host": "10.241.61.41",
+              "port": 3389
+            },
+            {
+              "id": "c-a3d4caa7-de14-4c3c-a325-f48e9b3d7ae5",
+              "type": "rdp",
+              "name": "DE2716T02 - Timemaster/Lexware/Tankstelle",
+              "host": "10.241.61.42",
+              "port": 3389
+            },
+            {
+              "id": "c-6f75c903-f5d1-4f4c-973e-396abff4974b",
+              "type": "web",
+              "name": "Monitoring LINK",
+              "url": "http://10.5.4.253/device/83"
+            }
+          ],
+          "folders": []
+        },
+        {
+          "id": "f-888cc335-3204-4884-8316-fd50f77834cb",
+          "name": "DE2717 - Coburg - DHCP Zentral",
+          "open": true,
+          "items": [
+            {
+              "id": "c-9efd4329-9408-4a06-a85c-6ecb20166d97",
+              "type": "ssh",
+              "name": "DE2717N01 10.124.63.221 DHCP Zentral",
+              "host": "10.124.63.221",
+              "port": 22,
+              "username": "root"
+            },
+            {
+              "id": "c-30f7956a-3106-4a61-8e11-92ae78b20c5c",
+              "type": "rdp",
+              "name": "DE2717SI1 - 10.124.63.205",
+              "host": "DE2717SI1",
+              "port": 3389
+            },
+            {
+              "id": "c-87b27389-88ae-44b8-8d4d-c17786c42caf",
+              "type": "rdp",
+              "name": "DE2717SR1",
+              "host": "DE2717SR1",
+              "port": 3389
+            },
+            {
+              "id": "c-9282b275-5bb5-4c04-ad44-1a4ee36a9d7e",
+              "type": "web",
+              "name": "Monitoring LINK",
+              "url": "http://10.5.4.253/device/84"
+            }
+          ],
+          "folders": []
+        },
+        {
+          "id": "f-9e75b625-7619-4906-9971-755ec3e66b5d",
+          "name": "DE2741 - Stadtilm",
+          "open": true,
+          "items": [
+            {
+              "id": "c-1d49f9a0-3205-45da-96e7-3beff2beecbe",
+              "type": "ssh",
+              "name": "DE2741N01 - 10.124.25.221",
+              "host": "10.124.25.221",
+              "port": 22,
+              "username": "root"
+            },
+            {
+              "id": "c-e5b3ef50-1a36-4f2f-a5ba-d40bf11464c7",
+              "type": "rdp",
+              "name": "DE2741SI1 - IvantiShare",
+              "host": "DE2741SI1",
+              "port": 3389
+            },
+            {
+              "id": "c-7b5c1137-508d-4f72-aa93-681db8dc574e",
+              "type": "rdp",
+              "name": "DE2741T01 - Druckserver",
+              "host": "DE2741T01",
+              "port": 3389
+            }
+          ],
+          "folders": []
+        },
+        {
+          "id": "f-e9735746-cbb7-4a12-85af-8e3666aa089e",
+          "name": "DE2799 - Tempelhof DHCP Zentral",
+          "open": true,
+          "items": [
+            {
+              "id": "c-28e52898-9313-4141-8cab-f729816998c2",
+              "type": "ssh",
+              "name": "DE2799N01 - 10.124.10.221",
+              "host": "10.124.10.221",
+              "port": 22,
+              "username": "root"
+            },
+            {
+              "id": "c-f15e44bc-5989-46ae-a65a-27842e6dcb2e",
+              "type": "ssh",
+              "name": "DE2799N02 - 10.124.10.222",
+              "host": "10.124.10.222",
+              "port": 22,
+              "username": "root"
+            },
+            {
+              "id": "c-14caa14b-5f22-4174-82ae-debaa8eafd49",
+              "type": "rdp",
+              "name": "DE2799T01 - Druckserver - 10.124.10.201",
+              "host": "10.124.10.201",
+              "port": 3389
+            },
+            {
+              "id": "c-6d41773f-8b4a-472d-a2c4-5beebb3a4191",
+              "type": "rdp",
+              "name": "DE2799TP1 - Kasse - 10.5.2.99",
+              "host": "10.5.2.99",
+              "port": 3389
+            },
+            {
+              "id": "c-3f61f342-09a4-4281-ac7c-7d490e2ac9e0",
+              "type": "web",
+              "name": "Monitoring LINK",
+              "url": "http://10.5.4.253/device/87"
+            },
+            {
+              "id": "c-9978587e-7b9d-44ef-8a3e-ce3c810ffb35",
+              "type": "web",
+              "name": "Monitoring LINK",
+              "url": "http://10.5.4.253/device/88"
+            }
+          ],
+          "folders": []
+        },
+        {
+          "id": "f-44676fd3-434f-4e65-a194-dcef964e834b",
+          "name": "DE2963 - Karl Meyer",
+          "open": true,
+          "items": [
+            {
+              "id": "c-b984cc64-018d-4a8e-adc5-e6074ffb054c",
+              "type": "ssh",
+              "name": "DE2963N01 - 10.124.33.220",
+              "host": "10.124.33.220",
+              "port": 22,
+              "username": "root"
+            },
+            {
+              "id": "c-3f6b24bd-543b-4833-abd7-915ec40ae265",
+              "type": "rdp",
+              "name": "DE2963SI1 - Ivanti Share",
+              "host": "10.124.33.200",
+              "port": 3389
+            },
+            {
+              "id": "c-c174b57a-e61a-40f3-922b-a9b8a93d3898",
+              "type": "web",
+              "name": "DE2963SX1 - AMT",
+              "url": "https://10.124.33.215:16993"
+            },
+            {
+              "id": "c-b346c09f-dde3-4eb3-8c17-46802db8ebad",
+              "type": "web",
+              "name": "DE2963SX1 - PROXMOX",
+              "url": "https://10.124.33.214:8006"
+            }
+          ],
+          "folders": []
+        },
+        {
+          "id": "f-430331ee-3465-41ae-b4a7-1cc20a611c4a",
+          "name": "DE2981 - Königs Wusterhausen",
+          "open": true,
+          "items": [
+            {
+              "id": "c-9d7bfa64-e809-43f1-ab78-a0a51702d7e9",
+              "type": "ssh",
+              "name": "DE2963N01 - 10.124.33.220",
+              "host": "10.124.33.220",
+              "port": 22,
+              "username": "root"
+            },
+            {
+              "id": "c-62839fad-4e7f-4131-8cac-de947066770a",
+              "type": "web",
+              "name": "DE2963SX1 - AMT",
+              "url": "https://10.124.33.215:16993"
+            },
+            {
+              "id": "c-a60d3caf-0a9f-4b69-9c2a-e99dbe2898f7",
+              "type": "web",
+              "name": "DE2963SX1 - PROXMOX",
+              "url": "https://10.124.33.214:8006"
+            },
+            {
+              "id": "c-d9b9a12f-e84b-445a-9a0f-c51326a63773",
+              "type": "rdp",
+              "name": "DE2981SI1 - Ivanti Share",
+              "host": "10.124.54.48",
+              "port": 3389
+            }
+          ],
+          "folders": []
+        },
+        {
+          "id": "f-f2206835-9032-4aca-a018-aa25e4c91657",
+          "name": "DE3072 - Hohenstein-Ernsthtal",
+          "open": true,
+          "items": [
+            {
+              "id": "c-d3d18cab-8904-43f3-a38a-854f250c96ef",
+              "type": "rdp",
+              "name": "DE3072T01 - POSMAN 10.5.2.33",
+              "host": "10.5.2.33",
+              "port": 3389
+            }
+          ],
+          "folders": []
+        },
+        {
+          "id": "f-bf8611e9-83e2-4177-92ec-43f46bfc6aa9",
+          "name": "LÜNEN",
+          "open": true,
+          "items": [
+            {
+              "id": "c-a1371273-90ab-40be-9f52-d766470a747c",
+              "type": "rdp",
+              "name": "DE9899SGG - Ivanti",
+              "host": "DE9899SGG",
+              "port": 3389
+            },
+            {
+              "id": "c-4bc0b10b-31e7-456f-bad3-d51e6a40812e",
+              "type": "rdp",
+              "name": "DE9899SGN - LIVE Forms 12 Report u. Printserver",
+              "host": "DE9899SGN",
+              "port": 3389
+            },
+            {
+              "id": "c-0cf81e6d-889e-4ad2-b43b-8399cedc9cae",
+              "type": "rdp",
+              "name": "DE9899SH1 - TEST Forms 12 Report u. Printserver",
+              "host": "DE9899SH1",
+              "port": 3389
+            },
+            {
+              "id": "c-a79cf8d0-0273-44d6-b6fc-8ea9abbe70cf",
+              "type": "rdp",
+              "name": "DE9899SH2 - Prerelease Forms 12 Report u. Print",
+              "host": "DE9899SH2",
+              "port": 3389
+            },
+            {
+              "id": "c-615f3a87-9a14-4215-8611-669e03f80a4b",
+              "type": "rdp",
+              "name": "DE9899SH5",
+              "host": "DE9899SH5",
+              "port": 3389
+            },
+            {
+              "id": "c-7845f34a-4ce0-4b64-98d4-535abdad1d31",
+              "type": "rdp",
+              "name": "xx0000scm",
+              "host": "xx0000scm",
+              "port": 3389
+            }
+          ],
+          "folders": []
+        }
+      ]
+    },
+    {
+      "id": "f-e15ba247-4d33-47f3-8ab0-d558ab939c60",
+      "name": "Archiviert",
+      "open": false,
+      "items": [],
+      "folders": [
+        {
+          "id": "f-e67aa0ec-edea-4b45-9930-70269970dd7e",
+          "name": "DE2387 - Aquatool Brandenburg - DHCP Zentral",
+          "open": true,
+          "items": [
+            {
+              "id": "c-0caf66bd-c94c-42e0-ab78-0ac1e9ef05bf",
+              "type": "ssh",
+              "name": "DE2387N01 10.124.5.235",
+              "host": "10.124.5.235",
+              "port": 22,
+              "username": "root"
+            },
+            {
+              "id": "c-beda5556-60a1-4847-9d9b-a2d342396b60",
+              "type": "ssh",
+              "name": "DE2387N02 10.124.5.236",
+              "host": "10.124.5.236",
+              "port": 22,
+              "username": "root"
+            },
+            {
+              "id": "c-ffb1426a-9471-400c-8649-bbd3b65ae3eb",
+              "type": "ssh",
+              "name": "DE2387N03 10.124.5.237",
+              "host": "10.124.5.237",
+              "port": 22,
+              "username": "root"
+            },
+            {
+              "id": "c-9ce78e05-63e9-412d-8a57-91dcd576a5e3",
+              "type": "rdp",
+              "name": "DE2387S01 - 6WFSSC3/LTO6",
+              "host": "10.124.5.200",
+              "port": 3389
+            },
+            {
+              "id": "c-04c035b7-96da-4525-ae1b-72735a1080dd",
+              "type": "rdp",
+              "name": "DE2387S02 - Lexware neu",
+              "host": "DE2387S02",
+              "port": 3389
+            },
+            {
+              "id": "c-fe48936a-86a5-46d7-8c7e-ee8180bdf3b8",
+              "type": "rdp",
+              "name": "DE2387S03 - NetPhone",
+              "host": "DE2387S03",
+              "port": 3389
+            },
+            {
+              "id": "c-577e8b79-3dfe-461e-917c-43329db2e87e",
+              "type": "web",
+              "name": "DE2387SAN",
+              "url": "https://10.124.5.240/"
+            },
+            {
+              "id": "c-5f110650-ce01-4d3a-b07b-41f34271c6d3",
+              "type": "web",
+              "name": "iDRAC 10.124.5.215",
+              "url": "https://10.124.5.215"
+            },
+            {
+              "id": "c-0b64024a-4872-457d-84b8-f5ed174052ac",
+              "type": "web",
+              "name": "Monitoring LINK",
+              "url": "http://10.5.4.253/device/72"
+            },
+            {
+              "id": "c-bcda0ce2-860c-4783-89a0-291df3d3c588",
+              "type": "web",
+              "name": "Monitoring LINK",
+              "url": "http://10.5.4.253/device/70"
+            },
+            {
+              "id": "c-c3926877-2a0e-42b2-85ec-83e76c542d9c",
+              "type": "web",
+              "name": "Monitoring LINK",
+              "url": "http://10.5.4.253/device/71"
+            }
+          ],
+          "folders": []
+        }
+      ]
+    }
+  ],
+  "rev": 593
+}

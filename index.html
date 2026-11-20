@@ -13,9 +13,10 @@
 <div class="titlebar">
   <div class="titlebar-left drag-region">Remote Connection Manager</div>
   <div class="titlebar-controls">
-    <button id="min-btn"   class="title-btn" title="Minimieren"><span>–</span></button>
-    <button id="max-btn"   class="title-btn" title="Maximieren"><span id="max-icon">□</span></button>
-    <button id="close-btn" class="title-btn close" title="Schließen"><span>×</span></button>
+    <!-- Windows-11-Symbole aus der Schrift "Segoe Fluent Icons" -->
+    <button id="min-btn"   class="title-btn" title="Minimieren"><span class="caption-icon">&#xE921;</span></button>
+    <button id="max-btn"   class="title-btn" title="Maximieren"><span class="caption-icon" id="max-icon">&#xE922;</span></button>
+    <button id="close-btn" class="title-btn close" title="Schließen"><span class="caption-icon">&#xE8BB;</span></button>
   </div>
 </div>
 
@@ -41,6 +42,17 @@
     <div id="tab-bar"></div>
     <div id="tab-content-area"></div>
   </main>
+</div>
+
+<!-- Auto-Update-Banner (unten rechts, standardmäßig versteckt) -->
+<div id="update-banner" style="display:none">
+  <div id="update-banner-inner">
+    <div id="update-icon"></div>
+    <div id="update-text"></div>
+    <button id="update-action" style="display:none"></button>
+    <button id="update-dismiss" title="Schließen">✕</button>
+  </div>
+  <div id="update-progress-track" style="display:none"><div id="update-progress-bar"></div></div>
 </div>
 
 <script src="renderer.js"></script>

@@ -4,8 +4,8 @@
 document.addEventListener("DOMContentLoaded", async () => {
   // ── Lokalisierung ────────────────────────────────────────────────────
   const _EMBEDDED = {
-    de: {"searchPlaceholder": "🔍 Suchen...", "settings": "Einstellungen", "save": "Speichern", "cancel": "Abbrechen", "delete": "Löschen", "close": "Schließen", "ok": "OK", "yes": "Ja", "no": "Nein", "edit": "Bearbeiten", "rename": "Umbenennen", "duplicate": "Duplizieren", "ctxNewFolder": "Neuer Ordner", "ctxRenameFolder": "Ordner umbenennen…", "ctxDeleteFolder": "Ordner löschen…", "ctxNewRdp": "Neue RDP-Verbindung…", "ctxNewSsh": "Neue SSH-Verbindung…", "ctxNewWeb": "Neue Website…", "ctxNewSerial": "Neue Serielle Verbindung…", "ctxEdit": "Bearbeiten…", "ctxDelete": "Löschen…", "settingsTitle": "Einstellungen", "sectionConnData": "📁 Verbindungsdaten", "import": "Importieren", "importDesc": "mRemoteNG XML oder Devolutions RDM XML", "importBtn": "📥 Importieren…", "export": "Exportieren", "exportDesc": "Alle Verbindungen als JSON-Backup speichern", "exportBtn": "📤 Exportieren…", "openDataFolder": "Daten-Ordner öffnen", "openDataFolderBtn": "📂 Öffnen", "sectionDesign": "🎨 Design", "darkMode": "🌙 Dunkel", "lightMode": "☀️ Hell", "sectionSshTerminal": "🖥 SSH Terminal", "fontSize": "Schriftgröße", "fontSizeDesc": "Gilt für neue SSH-Sitzungen", "sectionCredentials": "🔐 Zugangsdaten", "personalCreds": "Persönliche Zugangsdaten (RDP)", "personalCredsDesc": "Für RDP – Toggle im Verbindungs-Formular aktivieren.", "username": "Benutzername", "password": "Passwort", "passwordSaved": "Gespeichert – leer lassen zum Behalten", "saveBtn": "💾 Speichern", "deleteBtn": "🗑 Löschen", "sshPasswords": "SSH-Passwörter", "sshPasswordsDesc": "Pro Verbindung, mit \"Merken\" beim SSH-Verbinden gespeichert", "sectionConnStatus": "📡 Verbindungsstatus", "connStatusDesc": "TCP-Check auf den Verbindungsport – grüner/roter Punkt in der Sidebar. Beim Hover wird die Latenz angezeigt.", "intervalOff": "Aus", "interval30s": "30 Sek.", "interval1m": "1 Min.", "interval5m": "5 Min.", "sectionLanguage": "🌐 Sprache", "langDesc": "Wird nach einem Neustart angewendet.", "langDe": "🇩🇪 Deutsch", "langEn": "🇬🇧 English", "restartRequired": "Neustart erforderlich", "restartMsg": "Die Sprache wird nach einem Neustart angewendet.", "sectionAbout": "ℹ Über", "aboutApp": "Remote Connection Manager", "aboutDesc": "Entwickelt mit Electron + Node.js", "aboutConns": "Verbindungen", "aboutFolders": "Ordner", "connVerbindung": "VERBINDUNG", "connName": "Name", "connHostIp": "Host / IP", "connPort": "Port", "connUsername": "Benutzername", "connUsernameOptional": "Benutzername (optional)", "connNotes": "Notizen", "connNotesPlaceholder": "Optionale Notizen zur Verbindung…", "connAnzeige": "ANZEIGE", "connFullscreen": "Vollbild", "connWindow": "Fenster", "connMultiMonitor": "Multi-Monitor", "connWidth": "Breite", "connHeight": "Höhe", "connOptionen": "OPTIONEN", "connAdmin": "Admin-Sitzung", "connAdminDesc": "Als Konsolenadministrator (/admin) verbinden", "connClipboard": "Zwischenablage", "connClipboardDesc": "Kopieren / Einfügen zwischen lokal und remote", "connPrinter": "Drucker weiterleiten", "connPrinterDesc": "Lokale Drucker im RDP-Fenster verfügbar machen", "connColorDepth": "Farbtiefe", "connAdvanced": "Erweitert – Gateway & Laufwerke", "connGatewayHost": "Gateway-Host", "connUsage": "Nutzung", "connUsageAlways": "immer", "connUsageIfNeeded": "bei Bedarf", "connUsageNever": "nie", "connDrives": "Laufwerke weiterleiten", "connDrivesPlaceholder": "leer = keine   * = alle   z. B. C:;D:;", "connAnmeldedaten": "ANMELDEDATEN", "connUsePersonal": "Persönliche Zugangsdaten verwenden", "connUsePersonalDesc": "Username + Passwort aus Einstellungen → Persönliche Zugangsdaten", "connUsePersonalOff": "Wenn deaktiviert: Windows-Anmeldedialog erscheint beim Verbinden.", "sshPassword": "Passwort (optional)", "sshPasswordSaved": "Neues Passwort (leer = bestehendes behalten)", "sshPasswordPlaceholder": "Leer = beim Verbinden abfragen", "sshRemember": "Passwort merken", "sshRememberDesc": "DPAPI-verschlüsselt", "sshPasswordSavedLabel": "✓ Passwort gespeichert", "sshPasswordDelete": "Löschen", "newRdpTitle": "Neue RDP-Verbindung", "newSshTitle": "Neue SSH-Verbindung", "newWebTitle": "Neue Web-Verbindung", "editConnTitle": "Verbindung bearbeiten", "editSshTitle": "SSH bearbeiten", "editWebTitle": "Web-Verbindung bearbeiten", "webUrl": "URL", "webUrlPlaceholder": "https://", "webName": "Name", "serialPort": "COM-Port", "serialBaudRate": "Baudrate", "serialDataBits": "Datenbits", "serialParity": "Parität", "serialStopBits": "Stoppbits", "serialParityNone": "Keine", "serialParityEven": "Gerade", "serialParityOdd": "Ungerade", "serialRefreshPorts": "Ports neu laden", "newSerialTitle": "Neue Serielle Verbindung", "editSerialTitle": "Serielle Verbindung bearbeiten", "promptPassword": "Passwort", "confirmDelete": "Löschen bestätigen", "confirmDeleteConn": "Verbindung wirklich löschen?", "confirmDeleteFolder": "Ordner und alle Verbindungen darin wirklich löschen?", "confirmDeleteSshPasswords": "Alle gespeicherten SSH-Passwörter löschen?", "confirmDeletePersonalCreds": "Persönliche Zugangsdaten wirklich löschen?", "importSuccess": "Import erfolgreich", "importError": "Import-Fehler", "exportSuccess": "Export erfolgreich", "exportError": "Export-Fehler", "startError": "Start-Fehler", "saved": "Gespeichert", "deleted": "Gelöscht", "done": "Erledigt", "allSshDeleted": "Alle gespeicherten Passwörter wurden gelöscht.", "personalCredsSaved": "Persönliche Zugangsdaten gespeichert.", "personalCredsUpdated": "Persönliche Zugangsdaten aktualisiert.", "personalCredsDeleted": "Persönliche Zugangsdaten wurden gelöscht.", "importPersonalTitle": "Persönliche Zugangsdaten", "connecting": "Verbindet...", "focusWindow": "🪟 Fenster in den Vordergrund", "connInfoNotes": "NOTIZEN", "connInfoNotesPlaceholder": "Notizen zur Verbindung eingeben…", "connInfoSaved": "✓ Gespeichert", "connInfoError": "Fehler beim Speichern", "folderName": "Ordnername", "folderNamePlaceholder": "z. B. Produktion", "newFolderTitle": "Neuer Ordner", "renameFolderTitle": "Ordner umbenennen", "noResults": "Keine Ergebnisse.", "openDataFolderDesc": "Ordner mit connections.json im Explorer anzeigen", "themeAppliedImmediately": "Wird sofort angewendet", "closeTab": "Tab schließen", "colorScheme": "Farbschema", "ctxNewSubFolder": "Neuer Unterordner…", "emptyStateHint": "Rechtsklick → Neuer Ordner / Neue Verbindung", "rdpError": "RDP-Fehler", "rdpConnectFailed": "Start fehlgeschlagen.", "sshConnError": "SSH-Verbindungsfehler", "sshConnFailed": "Verbindung fehlgeschlagen.", "exportedTo": "Gespeichert unter:\n{0}", "deleteTitle": "Löschen", "deleteFolderTitle": "Ordner löschen", "deleteConnTitle": "Verbindung löschen", "deletePasswordsTitle": "Passwörter löschen", "unknownTypesNote": "Unbekannte Typen (bitte melden):", "sshPasswordKeepPlaceholder": "Leer lassen um gespeichertes zu behalten", "importInvalidXml": "Die Datei konnte nicht als XML gelesen werden.", "importUnknownFormat": "Unbekanntes Format.\nUnterstützt: mRemoteNG XML, Devolutions RDM XML", "sshPasswordForLabel": "Passwort für", "confirmTitle": "Bestätigen", "continueQuestion": "Fortfahren?", "newSubfolderTitle": "Neuer Unterordner", "newNameLabel": "Neuer Name", "errorTitle": "Fehler", "allFiles": "Alle Dateien", "connectionDataXml": "Verbindungsdaten (XML)", "rootFolderError": "Root-Ordner konnte nicht erstellt werden.", "passwordEnterPlaceholder": "Passwort eingeben", "connectionClosed": "Verbindung getrennt", "connectionClosedTabClosing": "Verbindung getrennt – Tab schließt...", "noFolderTitle": "Kein Ordner", "noFolderMsg": "Noch kein Ordner vorhanden. Jetzt anlegen?", "importPersonalCredsMsg": "{0} neue RDP-Verbindung(en) importiert.\n\nSollen alle die Persönlichen Zugangsdaten\n(Einstellungen → Zugangsdaten) verwenden?", "sectionDataSource": "🔄 Datenquelle", "dataSourceDesc": "Bestimmt wo connections.json gespeichert wird. Änderungen werden sofort wirksam.", "dataSourceLocal": "Lokal", "dataSourceSmb": "Netzlaufwerk (SMB)", "smbPathLabel": "Pfad zur connections.json", "smbPathPlaceholder": "\\\\server\\freigabe\\rcm\\connections.json", "smbModeReadonly": "Nur lesen", "smbModeReadwrite": "Lesen & Schreiben", "smbOfflineNotice": "Netzlaufwerk nicht erreichbar – zeige letzten bekannten Stand"},
-    en: {"searchPlaceholder": "🔍 Search...", "settings": "Settings", "save": "Save", "cancel": "Cancel", "delete": "Delete", "close": "Close", "ok": "OK", "yes": "Yes", "no": "No", "edit": "Edit", "rename": "Rename", "duplicate": "Duplicate", "ctxNewFolder": "New Folder", "ctxRenameFolder": "Rename Folder…", "ctxDeleteFolder": "Delete Folder…", "ctxNewRdp": "New RDP Connection…", "ctxNewSsh": "New SSH Connection…", "ctxNewWeb": "New Website…", "ctxNewSerial": "New Serial Connection…", "ctxEdit": "Edit…", "ctxDelete": "Delete…", "settingsTitle": "Settings", "sectionConnData": "📁 Connection Data", "import": "Import", "importDesc": "mRemoteNG XML or Devolutions RDM XML", "importBtn": "📥 Import…", "export": "Export", "exportDesc": "Save all connections as JSON backup", "exportBtn": "📤 Export…", "openDataFolder": "Open Data Folder", "openDataFolderBtn": "📂 Open", "sectionDesign": "🎨 Design", "darkMode": "🌙 Dark", "lightMode": "☀️ Light", "sectionSshTerminal": "🖥 SSH Terminal", "fontSize": "Font Size", "fontSizeDesc": "Applies to new SSH sessions", "sectionCredentials": "🔐 Credentials", "personalCreds": "Personal Credentials (RDP)", "personalCredsDesc": "For RDP – enable the toggle in the connection form.", "username": "Username", "password": "Password", "passwordSaved": "Saved – leave empty to keep", "saveBtn": "💾 Save", "deleteBtn": "🗑 Delete", "sshPasswords": "SSH Passwords", "sshPasswordsDesc": "Per connection, saved with \"Remember\" during SSH connect", "sectionConnStatus": "📡 Connection Status", "connStatusDesc": "TCP check on connection port – green/red dot in sidebar. Hover to see latency.", "intervalOff": "Off", "interval30s": "30 sec.", "interval1m": "1 min.", "interval5m": "5 min.", "sectionLanguage": "🌐 Language", "langDesc": "Applied after restart.", "langDe": "🇩🇪 Deutsch", "langEn": "🇬🇧 English", "restartRequired": "Restart required", "restartMsg": "The language will be applied after restart.", "sectionAbout": "ℹ About", "aboutApp": "Remote Connection Manager", "aboutDesc": "Built with Electron + Node.js", "aboutConns": "Connections", "aboutFolders": "Folders", "connVerbindung": "CONNECTION", "connName": "Name", "connHostIp": "Host / IP", "connPort": "Port", "connUsername": "Username", "connUsernameOptional": "Username (optional)", "connNotes": "Notes", "connNotesPlaceholder": "Optional connection notes…", "connAnzeige": "DISPLAY", "connFullscreen": "Fullscreen", "connWindow": "Window", "connMultiMonitor": "Multi-Monitor", "connWidth": "Width", "connHeight": "Height", "connOptionen": "OPTIONS", "connAdmin": "Admin Session", "connAdminDesc": "Connect as console administrator (/admin)", "connClipboard": "Clipboard", "connClipboardDesc": "Copy / Paste between local and remote", "connPrinter": "Forward Printer", "connPrinterDesc": "Make local printers available in RDP window", "connColorDepth": "Color Depth", "connAdvanced": "Advanced – Gateway & Drives", "connGatewayHost": "Gateway Host", "connUsage": "Usage", "connUsageAlways": "always", "connUsageIfNeeded": "if needed", "connUsageNever": "never", "connDrives": "Forward Drives", "connDrivesPlaceholder": "empty = none   * = all   e.g. C:;D:;", "connAnmeldedaten": "CREDENTIALS", "connUsePersonal": "Use personal credentials", "connUsePersonalDesc": "Username + Password from Settings → Personal Credentials", "connUsePersonalOff": "If disabled: Windows login dialog appears when connecting.", "sshPassword": "Password (optional)", "sshPasswordSaved": "New password (leave empty to keep existing)", "sshPasswordPlaceholder": "Empty = prompt when connecting", "sshRemember": "Remember password", "sshRememberDesc": "DPAPI-encrypted", "sshPasswordSavedLabel": "✓ Password saved", "sshPasswordDelete": "Delete", "newRdpTitle": "New RDP Connection", "newSshTitle": "New SSH Connection", "newWebTitle": "New Web Connection", "editConnTitle": "Edit Connection", "editSshTitle": "Edit SSH", "editWebTitle": "Edit Web Connection", "webUrl": "URL", "webUrlPlaceholder": "https://", "webName": "Name", "serialPort": "COM Port", "serialBaudRate": "Baud Rate", "serialDataBits": "Data Bits", "serialParity": "Parity", "serialStopBits": "Stop Bits", "serialParityNone": "None", "serialParityEven": "Even", "serialParityOdd": "Odd", "serialRefreshPorts": "Refresh ports", "newSerialTitle": "New Serial Connection", "editSerialTitle": "Edit Serial Connection", "promptPassword": "Password", "confirmDelete": "Confirm Delete", "confirmDeleteConn": "Really delete this connection?", "confirmDeleteFolder": "Really delete folder and all its connections?", "confirmDeleteSshPasswords": "Delete all saved SSH passwords?", "confirmDeletePersonalCreds": "Really delete personal credentials?", "importSuccess": "Import successful", "importError": "Import error", "exportSuccess": "Export successful", "exportError": "Export error", "startError": "Launch error", "saved": "Saved", "deleted": "Deleted", "done": "Done", "allSshDeleted": "All saved passwords have been deleted.", "personalCredsSaved": "Personal credentials saved.", "personalCredsUpdated": "Personal credentials updated.", "personalCredsDeleted": "Personal credentials have been deleted.", "importPersonalTitle": "Personal Credentials", "connecting": "Connecting...", "focusWindow": "🪟 Bring Window to Front", "connInfoNotes": "NOTES", "connInfoNotesPlaceholder": "Enter connection notes…", "connInfoSaved": "✓ Saved", "connInfoError": "Error saving", "folderName": "Folder name", "folderNamePlaceholder": "e.g. Production", "newFolderTitle": "New Folder", "renameFolderTitle": "Rename Folder", "noResults": "No results.", "openDataFolderDesc": "Open folder containing connections.json in Explorer", "themeAppliedImmediately": "Applied immediately", "closeTab": "Close tab", "colorScheme": "Color scheme", "ctxNewSubFolder": "New Subfolder…", "emptyStateHint": "Right-click → New Folder / New Connection", "rdpError": "RDP Error", "rdpConnectFailed": "Failed to start.", "sshConnError": "SSH Connection Error", "sshConnFailed": "Connection failed.", "exportedTo": "Saved to:\n{0}", "deleteTitle": "Delete", "deleteFolderTitle": "Delete Folder", "deleteConnTitle": "Delete Connection", "deletePasswordsTitle": "Delete Passwords", "unknownTypesNote": "Unknown types (please report):", "sshPasswordKeepPlaceholder": "Leave empty to keep saved password", "importInvalidXml": "The file could not be read as XML.", "importUnknownFormat": "Unknown format.\nSupported: mRemoteNG XML, Devolutions RDM XML", "sshPasswordForLabel": "Password for", "confirmTitle": "Confirm", "continueQuestion": "Continue?", "newSubfolderTitle": "New Subfolder", "newNameLabel": "New Name", "errorTitle": "Error", "allFiles": "All Files", "connectionDataXml": "Connection Data (XML)", "rootFolderError": "Root folder could not be created.", "passwordEnterPlaceholder": "Enter password", "connectionClosed": "Connection closed", "connectionClosedTabClosing": "Connection closed – tab closing...", "noFolderTitle": "No Folder", "noFolderMsg": "No folder exists yet. Create one now?", "importPersonalCredsMsg": "{0} new RDP connection(s) imported.\n\nUse personal credentials\n(Settings → Credentials) for all of them?", "sectionDataSource": "🔄 Data Source", "dataSourceDesc": "Determines where connections.json is stored. Changes apply immediately.", "dataSourceLocal": "Local", "dataSourceSmb": "Network Drive (SMB)", "smbPathLabel": "Path to connections.json", "smbPathPlaceholder": "\\\\server\\share\\rcm\\connections.json", "smbModeReadonly": "Read only", "smbModeReadwrite": "Read & Write", "smbOfflineNotice": "Network drive unreachable – showing last known state"}
+    de: {"searchPlaceholder": "🔍 Suchen...", "save": "Speichern", "cancel": "Abbrechen", "close": "Schließen", "ok": "OK", "yes": "Ja", "no": "Nein", "ctxNewFolder": "Neuer Ordner", "ctxRenameFolder": "Ordner umbenennen…", "ctxDeleteFolder": "Ordner löschen…", "ctxNewRdp": "Neue RDP-Verbindung…", "ctxNewSsh": "Neue SSH-Verbindung…", "ctxNewWeb": "Neue Website…", "ctxNewSerial": "Neue Serielle Verbindung…", "ctxEdit": "Bearbeiten…", "ctxDelete": "Löschen…", "settingsTitle": "Einstellungen", "import": "Importieren", "importDesc": "mRemoteNG XML oder Devolutions RDM XML", "export": "Exportieren", "exportDesc": "Alle Verbindungen als JSON-Backup speichern", "openDataFolder": "Daten-Ordner öffnen", "openDataFolderBtn": "📂 Öffnen", "sectionDesign": "🎨 Design", "darkMode": "🌙 Dunkel", "lightMode": "☀️ Hell", "sectionSshTerminal": "🖥 SSH Terminal", "fontSize": "Schriftgröße", "fontSizeDesc": "Gilt für neue SSH-Sitzungen", "sectionCredentials": "🔐 Zugangsdaten", "personalCreds": "Persönliche Zugangsdaten (RDP)", "username": "Benutzername", "password": "Passwort", "passwordSaved": "Gespeichert – leer lassen zum Behalten", "saveBtn": "💾 Speichern", "deleteBtn": "🗑 Löschen", "sshPasswords": "SSH-Passwörter", "sshPasswordsDesc": "Pro Verbindung, mit \"Merken\" beim SSH-Verbinden gespeichert", "sectionConnStatus": "📡 Verbindungsstatus", "connStatusDesc": "TCP-Check auf den Verbindungsport – grüner/roter Punkt in der Sidebar. Beim Hover wird die Latenz angezeigt.", "intervalOff": "Aus", "interval30s": "30 Sek.", "interval1m": "1 Min.", "interval5m": "5 Min.", "sectionLanguage": "🌐 Sprache", "langDesc": "Wird nach einem Neustart angewendet.", "langDe": "🇩🇪 Deutsch", "langEn": "🇬🇧 English", "restartRequired": "Neustart erforderlich", "restartMsg": "Die Sprache wird nach einem Neustart angewendet.", "sectionAbout": "ℹ Über", "aboutApp": "Remote Connection Manager", "aboutDesc": "Entwickelt mit Electron + Node.js", "aboutConns": "Verbindungen", "aboutFolders": "Ordner", "connVerbindung": "VERBINDUNG", "connName": "Name", "connHostIp": "Host / IP", "connPort": "Port", "connUsername": "Benutzername", "connAnzeige": "ANZEIGE", "connFullscreen": "Vollbild", "connWindow": "Fenster", "connMultiMonitor": "Multi-Monitor", "connWidth": "Breite", "connOptionen": "OPTIONEN", "connAdmin": "Admin-Sitzung", "connAdminDesc": "Als Konsolenadministrator (/admin) verbinden", "connClipboard": "Zwischenablage", "connPrinter": "Drucker weiterleiten", "connPrinterDesc": "Lokale Drucker im RDP-Fenster verfügbar machen", "connColorDepth": "Farbtiefe", "connAdvanced": "Erweitert – Gateway & Laufwerke", "connGatewayHost": "Gateway-Host", "connUsage": "Nutzung", "connUsageAlways": "immer", "connUsageIfNeeded": "bei Bedarf", "connUsageNever": "nie", "connDrives": "Laufwerke weiterleiten", "connDrivesPlaceholder": "leer = keine   * = alle   z. B. C:;D:;", "connAnmeldedaten": "ANMELDEDATEN", "connUsePersonal": "Persönliche Zugangsdaten verwenden", "connUsePersonalDesc": "Username + Passwort aus Einstellungen → Persönliche Zugangsdaten", "connUsePersonalOff": "Wenn deaktiviert: Windows-Anmeldedialog erscheint beim Verbinden.", "sshPassword": "Passwort (optional)", "sshPasswordSaved": "Neues Passwort (leer = bestehendes behalten)", "sshPasswordPlaceholder": "Leer = beim Verbinden abfragen", "sshPasswordSavedLabel": "✓ Passwort gespeichert", "sshPasswordDelete": "Löschen", "newRdpTitle": "Neue RDP-Verbindung", "newSshTitle": "Neue SSH-Verbindung", "newWebTitle": "Neue Web-Verbindung", "editConnTitle": "Verbindung bearbeiten", "editSshTitle": "SSH bearbeiten", "editWebTitle": "Web-Verbindung bearbeiten", "serialParityNone": "Keine", "serialParityEven": "Gerade", "serialParityOdd": "Ungerade", "newSerialTitle": "Neue Serielle Verbindung", "editSerialTitle": "Serielle Verbindung bearbeiten", "confirmDeleteConn": "Verbindung wirklich löschen?", "confirmDeleteFolder": "Ordner und alle Verbindungen darin wirklich löschen?", "confirmDeleteSshPasswords": "Alle gespeicherten SSH-Passwörter löschen?", "confirmDeletePersonalCreds": "Persönliche Zugangsdaten wirklich löschen?", "importError": "Import-Fehler", "exportSuccess": "Export erfolgreich", "exportError": "Export-Fehler", "startError": "Start-Fehler", "saved": "Gespeichert", "done": "Erledigt", "allSshDeleted": "Alle gespeicherten Passwörter wurden gelöscht.", "personalCredsSaved": "Persönliche Zugangsdaten gespeichert.", "personalCredsUpdated": "Persönliche Zugangsdaten aktualisiert.", "importPersonalTitle": "Persönliche Zugangsdaten", "connecting": "Verbindet...", "connInfoNotes": "NOTIZEN", "connInfoNotesPlaceholder": "Notizen zur Verbindung eingeben…", "connInfoSaved": "✓ Gespeichert", "connInfoError": "Fehler beim Speichern", "folderName": "Ordnername", "folderNamePlaceholder": "z. B. Produktion", "renameFolderTitle": "Ordner umbenennen", "noResults": "Keine Ergebnisse.", "openDataFolderDesc": "Ordner mit connections.json im Explorer anzeigen", "themeAppliedImmediately": "Wird sofort angewendet", "closeTab": "Tab schließen", "ctxNewSubFolder": "Neuer Unterordner…", "emptyStateHint": "Rechtsklick → Neuer Ordner / Neue Verbindung", "rdpError": "RDP-Fehler", "rdpConnectFailed": "Start fehlgeschlagen.", "sshConnError": "SSH-Verbindungsfehler", "sshConnFailed": "Verbindung fehlgeschlagen.", "exportedTo": "Gespeichert unter:\n{0}", "deleteTitle": "Löschen", "deleteFolderTitle": "Ordner löschen", "deleteConnTitle": "Verbindung löschen", "deletePasswordsTitle": "Passwörter löschen", "unknownTypesNote": "Unbekannte Typen (bitte melden):", "sshPasswordKeepPlaceholder": "Leer lassen um gespeichertes zu behalten", "importInvalidXml": "Die Datei konnte nicht als XML gelesen werden.", "importUnknownFormat": "Unbekanntes Format.\nUnterstützt: mRemoteNG XML, Devolutions RDM XML", "sshPasswordForLabel": "Passwort für", "confirmTitle": "Bestätigen", "continueQuestion": "Fortfahren?", "newSubfolderTitle": "Neuer Unterordner", "newNameLabel": "Neuer Name", "errorTitle": "Fehler", "allFiles": "Alle Dateien", "connectionDataXml": "Verbindungsdaten (XML)", "rootFolderError": "Root-Ordner konnte nicht erstellt werden.", "passwordEnterPlaceholder": "Passwort eingeben", "connectionClosed": "Verbindung getrennt", "connectionClosedTabClosing": "Verbindung getrennt – Tab schließt...", "noFolderTitle": "Kein Ordner", "noFolderMsg": "Noch kein Ordner vorhanden. Jetzt anlegen?", "importPersonalCredsMsg": "{0} neue RDP-Verbindung(en) importiert.\n\nSollen alle die Persönlichen Zugangsdaten\n(Einstellungen → Zugangsdaten) verwenden?", "dataSourceLocal": "Lokal", "dataSourceSmb": "Netzlaufwerk (SMB)", "smbPathLabel": "Pfad zur connections.json", "smbPathPlaceholder": "\\\\server\\freigabe\\rcm\\connections.json", "smbModeReadonly": "Nur lesen", "smbModeReadwrite": "Lesen & Schreiben", "smbOfflineNotice": "Netzlaufwerk nicht erreichbar – zeige letzten bekannten Stand", "ctxNotes": "Notizen…", "dataSourceChangeBtn": "Ändern…", "dataSourceLocalDetail": "Verbindungen werden lokal auf diesem Gerät gespeichert", "dataSourceDialogTitle": "Datenquelle konfigurieren", "dataSourceModeLabel": "Speicherort", "dataSourceBrowse": "Durchsuchen…", "smbModeLabel": "Zugriffsmodus", "dataSourceNoPath": "Bitte zuerst einen Pfad zur connections.json auswählen.", "dataSourceCreateTitle": "Datei anlegen?", "dataSourceCreateMsg": "Unter diesem Pfad existiert noch keine gültige connections.json:\n\n{0}\n\nSoll eine neue, leere Datei angelegt werden?", "dataSourceCreateOk": "Anlegen", "sshAuthMethod": "Anmeldung", "sshAuthPassword": "Passwort", "sshAuthKey": "Schlüsseldatei", "sshKeyPath": "Private Schlüsseldatei", "sshKeyPathPlaceholder": "Noch keine Datei ausgewählt", "sshKeyPassphraseHint": "Die Passphrase wird beim Verbinden abgefragt und nicht gespeichert.", "sshPassphraseForLabel": "Passphrase des Schlüssels für", "rdpNamePlaceholder": "z. B. Fileserver", "sshNamePlaceholder": "z. B. Webserver", "serialNamePlaceholder": "z. B. Cisco Switch", "windowRestore": "Wiederherstellen", "windowMaximize": "Maximieren", "windowMinimize": "Minimieren", "rdpHostPlaceholder": "192.168.1.1 oder server.local", "sshJumpEnable": "Über Jumphost verbinden", "sshJumpDesc": "Verbindung über einen Sprungserver leiten", "sshJumpHost": "Jumphost (Host / IP)", "sshJumpHostPlaceholder": "z. B. bastion.firma.local", "sshJumpUser": "Jumphost-Benutzer", "sshJumpKeyPath": "Jumphost-Schlüsseldatei", "sshJumpHint": "Am Jumphost wird immer per Schlüssel angemeldet. Die Passphrase wird beim Verbinden abgefragt.", "vaultUnlockTitle": "Geteilte Zugangsdaten entsperren", "vaultUnlockDesc": "Für die gemeinsam genutzten Passwörter (z. B. Switch-Zugänge) wird das Team-Passwort benötigt.", "vaultUnlockLabel": "Team-Passwort", "vaultUnlockBtn": "Entsperren", "vaultRemember": "Auf diesem Rechner merken", "vaultWrongPassword": "Falsches Passwort.", "vaultForgotLink": "Passwort vergessen?", "vaultSetupTitle": "Geteilte Zugangsdaten einrichten", "vaultSetupDesc": "Lege ein Team-Passwort fest, mit dem die gemeinsam genutzten Verbindungspasswörter verschlüsselt werden. Alle, die diese Zugänge nutzen, brauchen dieses Passwort.", "vaultSetupPw1": "Team-Passwort", "vaultSetupPw2": "Team-Passwort wiederholen", "vaultSetupBtn": "Einrichten", "vaultSetupEmpty": "Bitte ein Passwort eingeben.", "vaultSetupMismatch": "Die Passwörter stimmen nicht überein.", "vaultSetupWarn": "⚠ Wird dieses Passwort vergessen, sind die geteilten Passwörter unwiederbringlich verloren. Bewahre es sicher auf.", "vaultResetTitle": "Geteilte Passwörter zurücksetzen?", "vaultResetMsg": "Alle geteilten Passwörter werden gelöscht und der Tresor entfernt. Die Verbindungen selbst bleiben erhalten, aber die geteilten Passwörter müssen neu eingegeben werden. Fortfahren?", "vaultResetOk": "Zurücksetzen", "sshPwStorageLabel": "Passwort speichern", "sshPwModeNone": "Nicht speichern (beim Verbinden fragen)", "sshPwModePersonal": "Persönlich", "sshPwModePersonalHint": "(nur ich, lokal per DPAPI)", "sshPwModeShared": "Geteilt", "sshPwModeSharedHint": "(für alle, verschlüsselt im Team-Tresor)", "vaultNeededMsg": "Ohne entsperrten Tresor kann kein geteiltes Passwort gespeichert werden.", "vaultMissingTitle": "Tresor nicht gefunden", "vaultMissingMsg": "Diese Verbindung hat ein geteiltes Passwort, aber am aktuellen Speicherort wurde kein Tresor (vault.json) gefunden. Bitte stelle sicher, dass die Datei vault.json neben der connections.json liegt.", "dataSourcePickExisting": "Vorhandene wählen…", "dataSourcePickNew": "Neu anlegen…", "vaultStatusChecking": "Prüfe…", "vaultStatusNone": "Kein Tresor eingerichtet", "vaultStatusLocked": "Tresor vorhanden (gesperrt)", "vaultStatusUnlocked": "Tresor vorhanden (entsperrt)", "vaultResetHint": "Bei vergessenem Team-Passwort zurücksetzen. Die geteilten Passwörter gehen dabei verloren.", "vaultResetBtn": "Zurücksetzen…", "vaultResetDoneTitle": "Tresor zurückgesetzt", "vaultResetDoneMsg": "Der Tresor wurde entfernt. {0} geteilte Passwörter wurden gelöscht. Du kannst nun ein neues Team-Passwort einrichten, wenn du wieder ein geteiltes Passwort speicherst.", "rdpAllPersonalLabel": "Alle RDP-Verbindungen", "rdpAllPersonalHint": "Alle vorhandenen RDP-Verbindungen auf persönliche Anmeldung umstellen.", "rdpAllPersonalBtn": "Auf persönlich umstellen", "rdpAllPersonalNone": "Es gibt keine RDP-Verbindungen.", "rdpAllPersonalConfirmTitle": "Alle RDP auf persönlich?", "rdpAllPersonalConfirmMsg": "{0} RDP-Verbindungen werden auf persönliche Anmeldung umgestellt. Fortfahren?", "rdpAllPersonalDoneTitle": "Umgestellt", "rdpAllPersonalDoneMsg": "{0} RDP-Verbindungen wurden auf persönliche Anmeldung umgestellt.", "rdpAllPersonalAlready": "Alle RDP-Verbindungen stehen bereits auf persönlich.", "vaultForgetBtn": "Gemerktes Passwort vergessen", "vaultForgetTitle": "Gemerktes Passwort vergessen?", "vaultForgetMsg": "Das auf diesem Rechner gemerkte Team-Passwort wird entfernt. Beim nächsten Start wird wieder danach gefragt. Die geteilten Passwörter bleiben erhalten.", "vaultForgetDoneTitle": "Passwort vergessen", "vaultForgetDoneMsg": "Das gemerkte Team-Passwort wurde von diesem Rechner entfernt.", "vaultNoVaultHint": "Kein Tresor eingerichtet.", "vaultNothingRemembered": "Auf diesem Rechner ist kein Passwort gemerkt.", "quickSearchPlaceholder": "Verbindung suchen und mit Enter verbinden…", "quickSearchHint": "↑↓ Navigieren · Enter Verbinden · Esc Schließen", "quickSearchNone": "Keine Verbindung gefunden", "sectionShortcuts": "⌨ Tastenkombinationen", "shortcutQuickSearch": "Schnellsuche öffnen", "shortcutQuickSearchHint": "Globales Kürzel, das das Schnellsuche-Fenster öffnet (auch wenn die App im Hintergrund ist).", "shortcutChange": "Ändern", "shortcutDefault": "Standard", "shortcutPressKeys": "Tasten drücken…", "shortcutRecording": "Drücke die gewünschte Tastenkombination (Esc bricht ab).", "shortcutNeedModifier": "Bitte mit Strg, Shift oder Alt kombinieren.", "shortcutSaved": "Gespeichert.", "shortcutInUse": "Diese Kombination ist belegt. Bitte eine andere wählen.", "sectionConnOptions": "🔌 Verbindungsoptionen", "storageOptionsLabel": "Speicheroptionen", "storageSmbActive": "(SMB aktiv)", "storageLocalActive": "(Lokal aktiv)", "updateChecking": "Suche nach Updates…", "updateAvailable": "Version {0} ist verfügbar.", "updateInstallBtn": "Installieren", "updateDownloading": "Wird heruntergeladen…", "updateReady": "Update bereit. Zum Installieren neu starten.", "updateRestartBtn": "Neu starten", "updateError": "Update-Suche fehlgeschlagen.", "updateStartingInstaller": "Update wird installiert – die App startet gleich neu…", "aboutVersion": "Version", "webUnreachableTitle": "Seite nicht erreichbar", "webUnreachableMsg": "{0} konnte nicht geladen werden. Der Server ist möglicherweise offline oder nicht erreichbar.", "sectionBackground": "🖥 Hintergrundbetrieb", "trayMode": "Beim Schließen in den Infobereich", "trayModeDesc": "Das X versteckt RCM nur. Es läuft im Infobereich (neben der Uhr) weiter, die Schnellsuche per Tastenkürzel bleibt verfügbar. Beenden per Rechtsklick auf das Symbol.", "autostart": "Mit Windows starten", "autostartDesc": "RCM startet bei der Anmeldung unsichtbar im Infobereich. Wirkt nur in der installierten App."},
+    en: {"searchPlaceholder": "🔍 Search...", "save": "Save", "cancel": "Cancel", "close": "Close", "ok": "OK", "yes": "Yes", "no": "No", "ctxNewFolder": "New Folder", "ctxRenameFolder": "Rename Folder…", "ctxDeleteFolder": "Delete Folder…", "ctxNewRdp": "New RDP Connection…", "ctxNewSsh": "New SSH Connection…", "ctxNewWeb": "New Website…", "ctxNewSerial": "New Serial Connection…", "ctxEdit": "Edit…", "ctxDelete": "Delete…", "settingsTitle": "Settings", "import": "Import", "importDesc": "mRemoteNG XML or Devolutions RDM XML", "export": "Export", "exportDesc": "Save all connections as JSON backup", "openDataFolder": "Open Data Folder", "openDataFolderBtn": "📂 Open", "sectionDesign": "🎨 Design", "darkMode": "🌙 Dark", "lightMode": "☀️ Light", "sectionSshTerminal": "🖥 SSH Terminal", "fontSize": "Font Size", "fontSizeDesc": "Applies to new SSH sessions", "sectionCredentials": "🔐 Credentials", "personalCreds": "Personal Credentials (RDP)", "username": "Username", "password": "Password", "passwordSaved": "Saved – leave empty to keep", "saveBtn": "💾 Save", "deleteBtn": "🗑 Delete", "sshPasswords": "SSH Passwords", "sshPasswordsDesc": "Per connection, saved with \"Remember\" during SSH connect", "sectionConnStatus": "📡 Connection Status", "connStatusDesc": "TCP check on connection port – green/red dot in sidebar. Hover to see latency.", "intervalOff": "Off", "interval30s": "30 sec.", "interval1m": "1 min.", "interval5m": "5 min.", "sectionLanguage": "🌐 Language", "langDesc": "Applied after restart.", "langDe": "🇩🇪 Deutsch", "langEn": "🇬🇧 English", "restartRequired": "Restart required", "restartMsg": "The language will be applied after restart.", "sectionAbout": "ℹ About", "aboutApp": "Remote Connection Manager", "aboutDesc": "Built with Electron + Node.js", "aboutConns": "Connections", "aboutFolders": "Folders", "connVerbindung": "CONNECTION", "connName": "Name", "connHostIp": "Host / IP", "connPort": "Port", "connUsername": "Username", "connAnzeige": "DISPLAY", "connFullscreen": "Fullscreen", "connWindow": "Window", "connMultiMonitor": "Multi-Monitor", "connWidth": "Width", "connOptionen": "OPTIONS", "connAdmin": "Admin Session", "connAdminDesc": "Connect as console administrator (/admin)", "connClipboard": "Clipboard", "connPrinter": "Forward Printer", "connPrinterDesc": "Make local printers available in RDP window", "connColorDepth": "Color Depth", "connAdvanced": "Advanced – Gateway & Drives", "connGatewayHost": "Gateway Host", "connUsage": "Usage", "connUsageAlways": "always", "connUsageIfNeeded": "if needed", "connUsageNever": "never", "connDrives": "Forward Drives", "connDrivesPlaceholder": "empty = none   * = all   e.g. C:;D:;", "connAnmeldedaten": "CREDENTIALS", "connUsePersonal": "Use personal credentials", "connUsePersonalDesc": "Username + Password from Settings → Personal Credentials", "connUsePersonalOff": "If disabled: Windows login dialog appears when connecting.", "sshPassword": "Password (optional)", "sshPasswordSaved": "New password (leave empty to keep existing)", "sshPasswordPlaceholder": "Empty = prompt when connecting", "sshPasswordSavedLabel": "✓ Password saved", "sshPasswordDelete": "Delete", "newRdpTitle": "New RDP Connection", "newSshTitle": "New SSH Connection", "newWebTitle": "New Web Connection", "editConnTitle": "Edit Connection", "editSshTitle": "Edit SSH", "editWebTitle": "Edit Web Connection", "serialParityNone": "None", "serialParityEven": "Even", "serialParityOdd": "Odd", "newSerialTitle": "New Serial Connection", "editSerialTitle": "Edit Serial Connection", "confirmDeleteConn": "Really delete this connection?", "confirmDeleteFolder": "Really delete folder and all its connections?", "confirmDeleteSshPasswords": "Delete all saved SSH passwords?", "confirmDeletePersonalCreds": "Really delete personal credentials?", "importError": "Import error", "exportSuccess": "Export successful", "exportError": "Export error", "startError": "Launch error", "saved": "Saved", "done": "Done", "allSshDeleted": "All saved passwords have been deleted.", "personalCredsSaved": "Personal credentials saved.", "personalCredsUpdated": "Personal credentials updated.", "importPersonalTitle": "Personal Credentials", "connecting": "Connecting...", "connInfoNotes": "NOTES", "connInfoNotesPlaceholder": "Enter connection notes…", "connInfoSaved": "✓ Saved", "connInfoError": "Error saving", "folderName": "Folder name", "folderNamePlaceholder": "e.g. Production", "renameFolderTitle": "Rename Folder", "noResults": "No results.", "openDataFolderDesc": "Open folder containing connections.json in Explorer", "themeAppliedImmediately": "Applied immediately", "closeTab": "Close tab", "ctxNewSubFolder": "New Subfolder…", "emptyStateHint": "Right-click → New Folder / New Connection", "rdpError": "RDP Error", "rdpConnectFailed": "Failed to start.", "sshConnError": "SSH Connection Error", "sshConnFailed": "Connection failed.", "exportedTo": "Saved to:\n{0}", "deleteTitle": "Delete", "deleteFolderTitle": "Delete Folder", "deleteConnTitle": "Delete Connection", "deletePasswordsTitle": "Delete Passwords", "unknownTypesNote": "Unknown types (please report):", "sshPasswordKeepPlaceholder": "Leave empty to keep saved password", "importInvalidXml": "The file could not be read as XML.", "importUnknownFormat": "Unknown format.\nSupported: mRemoteNG XML, Devolutions RDM XML", "sshPasswordForLabel": "Password for", "confirmTitle": "Confirm", "continueQuestion": "Continue?", "newSubfolderTitle": "New Subfolder", "newNameLabel": "New Name", "errorTitle": "Error", "allFiles": "All Files", "connectionDataXml": "Connection Data (XML)", "rootFolderError": "Root folder could not be created.", "passwordEnterPlaceholder": "Enter password", "connectionClosed": "Connection closed", "connectionClosedTabClosing": "Connection closed – tab closing...", "noFolderTitle": "No Folder", "noFolderMsg": "No folder exists yet. Create one now?", "importPersonalCredsMsg": "{0} new RDP connection(s) imported.\n\nUse personal credentials\n(Settings → Credentials) for all of them?", "dataSourceLocal": "Local", "dataSourceSmb": "Network Drive (SMB)", "smbPathLabel": "Path to connections.json", "smbPathPlaceholder": "\\\\server\\share\\rcm\\connections.json", "smbModeReadonly": "Read only", "smbModeReadwrite": "Read & Write", "smbOfflineNotice": "Network drive unreachable – showing last known state", "ctxNotes": "Notes…", "dataSourceChangeBtn": "Change…", "dataSourceLocalDetail": "Connections are stored locally on this device", "dataSourceDialogTitle": "Configure Data Source", "dataSourceModeLabel": "Storage location", "dataSourceBrowse": "Browse…", "smbModeLabel": "Access mode", "dataSourceNoPath": "Please select a path to connections.json first.", "dataSourceCreateTitle": "Create file?", "dataSourceCreateMsg": "No valid connections.json exists at this path yet:\n\n{0}\n\nCreate a new, empty file?", "dataSourceCreateOk": "Create", "sshAuthMethod": "Authentication", "sshAuthPassword": "Password", "sshAuthKey": "Key file", "sshKeyPath": "Private key file", "sshKeyPathPlaceholder": "No file selected yet", "sshKeyPassphraseHint": "The passphrase is prompted when connecting and is never stored.", "sshPassphraseForLabel": "Key passphrase for", "rdpNamePlaceholder": "e.g. Fileserver", "sshNamePlaceholder": "e.g. Webserver", "serialNamePlaceholder": "e.g. Cisco Switch", "windowRestore": "Restore", "windowMaximize": "Maximize", "windowMinimize": "Minimize", "rdpHostPlaceholder": "192.168.1.1 or server.local", "sshJumpEnable": "Connect via jumphost", "sshJumpDesc": "Route the connection through a bastion server", "sshJumpHost": "Jumphost (host / IP)", "sshJumpHostPlaceholder": "e.g. bastion.company.local", "sshJumpUser": "Jumphost user", "sshJumpKeyPath": "Jumphost key file", "sshJumpHint": "The jumphost always authenticates by key. The passphrase is prompted when connecting.", "vaultUnlockTitle": "Unlock shared credentials", "vaultUnlockDesc": "The team password is required for the shared passwords (e.g. switch access).", "vaultUnlockLabel": "Team password", "vaultUnlockBtn": "Unlock", "vaultRemember": "Remember on this computer", "vaultWrongPassword": "Wrong password.", "vaultForgotLink": "Forgot password?", "vaultSetupTitle": "Set up shared credentials", "vaultSetupDesc": "Set a team password used to encrypt the shared connection passwords. Everyone using these will need this password.", "vaultSetupPw1": "Team password", "vaultSetupPw2": "Repeat team password", "vaultSetupBtn": "Set up", "vaultSetupEmpty": "Please enter a password.", "vaultSetupMismatch": "The passwords do not match.", "vaultSetupWarn": "⚠ If this password is lost, the shared passwords are gone for good. Keep it safe.", "vaultResetTitle": "Reset shared passwords?", "vaultResetMsg": "All shared passwords will be deleted and the vault removed. The connections themselves remain, but shared passwords must be re-entered. Continue?", "vaultResetOk": "Reset", "sshPwStorageLabel": "Save password", "sshPwModeNone": "Don't save (ask when connecting)", "sshPwModePersonal": "Personal", "sshPwModePersonalHint": "(only me, locally via DPAPI)", "sshPwModeShared": "Shared", "sshPwModeSharedHint": "(for everyone, encrypted in the team vault)", "vaultNeededMsg": "A shared password cannot be saved without an unlocked vault.", "vaultMissingTitle": "Vault not found", "vaultMissingMsg": "This connection has a shared password, but no vault (vault.json) was found at the current storage location. Please make sure vault.json is next to connections.json.", "dataSourcePickExisting": "Choose existing…", "dataSourcePickNew": "Create new…", "vaultStatusChecking": "Checking…", "vaultStatusNone": "No vault set up", "vaultStatusLocked": "Vault present (locked)", "vaultStatusUnlocked": "Vault present (unlocked)", "vaultResetHint": "Reset if the team password was forgotten. The shared passwords will be lost.", "vaultResetBtn": "Reset…", "vaultResetDoneTitle": "Vault reset", "vaultResetDoneMsg": "The vault was removed. {0} shared passwords were deleted. You can set up a new team password when you next save a shared password.", "rdpAllPersonalLabel": "All RDP connections", "rdpAllPersonalHint": "Switch all existing RDP connections to personal login.", "rdpAllPersonalBtn": "Switch to personal", "rdpAllPersonalNone": "There are no RDP connections.", "rdpAllPersonalConfirmTitle": "Switch all RDP to personal?", "rdpAllPersonalConfirmMsg": "{0} RDP connections will be switched to personal login. Continue?", "rdpAllPersonalDoneTitle": "Switched", "rdpAllPersonalDoneMsg": "{0} RDP connections were switched to personal login.", "rdpAllPersonalAlready": "All RDP connections are already set to personal.", "vaultForgetBtn": "Forget remembered password", "vaultForgetTitle": "Forget remembered password?", "vaultForgetMsg": "The team password remembered on this computer will be removed. You will be asked for it again on next start. The shared passwords remain intact.", "vaultForgetDoneTitle": "Password forgotten", "vaultForgetDoneMsg": "The remembered team password was removed from this computer.", "vaultNoVaultHint": "No vault set up.", "vaultNothingRemembered": "No password is remembered on this computer.", "quickSearchPlaceholder": "Search connection and press Enter to connect…", "quickSearchHint": "↑↓ Navigate · Enter Connect · Esc Close", "quickSearchNone": "No connection found", "sectionShortcuts": "⌨ Keyboard shortcuts", "shortcutQuickSearch": "Open quick search", "shortcutQuickSearchHint": "Global shortcut that opens the quick search window (even when the app is in the background).", "shortcutChange": "Change", "shortcutDefault": "Default", "shortcutPressKeys": "Press keys…", "shortcutRecording": "Press the desired key combination (Esc to cancel).", "shortcutNeedModifier": "Please combine with Ctrl, Shift or Alt.", "shortcutSaved": "Saved.", "shortcutInUse": "This combination is in use. Please choose another.", "sectionConnOptions": "🔌 Connection options", "storageOptionsLabel": "Storage options", "storageSmbActive": "(SMB active)", "storageLocalActive": "(Local active)", "updateChecking": "Checking for updates…", "updateAvailable": "Version {0} is available.", "updateInstallBtn": "Install", "updateDownloading": "Downloading…", "updateReady": "Update ready. Restart to install.", "updateRestartBtn": "Restart", "updateError": "Update check failed.", "updateStartingInstaller": "Installing update – the app will restart shortly…", "aboutVersion": "Version", "webUnreachableTitle": "Page unreachable", "webUnreachableMsg": "{0} could not be loaded. The server may be offline or unreachable.", "sectionBackground": "🖥 Background mode", "trayMode": "Minimize to tray on close", "trayModeDesc": "The X only hides RCM. It keeps running in the notification area (next to the clock) and the quick search shortcut stays available. Quit via right-click on the icon.", "autostart": "Start with Windows", "autostartDesc": "RCM starts hidden in the notification area when you sign in. Only works in the installed app."}
   };
   let _tr = _EMBEDDED.de;
   let _lang = "de";
@@ -42,6 +42,12 @@ document.addEventListener("DOMContentLoaded", async () => {
   if (_settingsBtn) _settingsBtn.title = t("settingsTitle");
   const _searchInput = document.querySelector('#search-input');
   if (_searchInput) _searchInput.placeholder = t("searchPlaceholder");
+  const _minBtn = document.querySelector('#min-btn');
+  if (_minBtn) _minBtn.title = t("windowMinimize");
+  const _maxBtn0 = document.querySelector('#max-btn');
+  if (_maxBtn0) _maxBtn0.title = t("windowMaximize");
+  const _closeBtn = document.querySelector('#close-btn');
+  if (_closeBtn) _closeBtn.title = t("close");
 
   function escHtml(s) {
     return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
@@ -57,8 +63,9 @@ document.addEventListener("DOMContentLoaded", async () => {
   if(closeBtn)closeBtn.addEventListener("click",()=>window.api?.close?.());
   if(window.api?.onWindowState&&maxBtn&&maxIcon){
     window.api.onWindowState((s)=>{
-      if(s?.isMaximized){maxBtn.title="Wiederherstellen";maxIcon.textContent="🗗";}
-      else{maxBtn.title="Maximieren";maxIcon.textContent="▢";}
+      // Windows-11-Symbole: E923 = Wiederherstellen (zwei Fenster), E922 = Maximieren
+      if(s?.isMaximized){maxBtn.title=t("windowRestore");maxIcon.textContent="";}
+      else{maxBtn.title=t("windowMaximize");maxIcon.textContent="";}
     });
   }
   const dragRegion=document.querySelector(".drag-region");
@@ -115,7 +122,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     return new Promise((resolve)=>{
       const bd=document.createElement("div");bd.className="modal-backdrop";
       const m=document.createElement("div");m.className="modal";
-      m.innerHTML=`<div class="modal-header">${escHtml(title)}</div><div class="modal-body"><label>${escHtml(label)}</label><input type="${password?"password":"text"}" id="mi" placeholder="${String(placeholder).replaceAll('"',"&quot;")}"/></div><div class="modal-actions"><button class="btn" id="mc">${cancelLabel}</button><button class="btn primary" id="mo">${okLabel}</button></div>`;
+      m.innerHTML=`<div class="modal-header">${escHtml(title)}</div><div class="modal-body"><label>${escHtml(label)}</label><input type="${password?"password":"text"}" id="mi" placeholder="${String(placeholder).replaceAll('"',"&quot;")}"/></div><div class="modal-actions"><button class="btn" id="mc">${t("cancel")}</button><button class="btn primary" id="mo">${t("ok")}</button></div>`;
       bd.appendChild(m);document.body.appendChild(bd);
       const inp=m.querySelector("#mi");inp.value=defaultValue??"";inp.focus();inp.select();
       const cl=(v)=>{bd.remove();resolve(v);};
@@ -174,11 +181,11 @@ document.addEventListener("DOMContentLoaded", async () => {
     <div class="rdp-section-title">${t("connVerbindung")}</div>
     <div class="rdp-field-row">
       <div class="rdp-field rdp-field-grow"><label>${t("connName")}</label>
-        <input type="text" id="f-name" placeholder="z. B. Fileserver"/></div>
+        <input type="text" id="f-name" placeholder="${t('rdpNamePlaceholder')}"/></div>
     </div>
     <div class="rdp-field-row">
       <div class="rdp-field rdp-field-grow"><label>${t("connHostIp")}</label>
-        <input type="text" id="f-host" placeholder="192.168.1.1 oder server.local"/></div>
+        <input type="text" id="f-host" placeholder="${t('rdpHostPlaceholder')}"/></div>
       <div class="rdp-field" style="width:82px"><label>${t("connPort")}</label>
         <input type="text" id="f-port" value="3389"/></div>
     </div>
@@ -272,20 +279,12 @@ document.addEventListener("DOMContentLoaded", async () => {
       </div>
       <div class="rdp-field-row">
         <div class="rdp-field rdp-field-grow"><label>${t("connDrives")}</label>
-          <input type="text" id="p-dr" placeholder="leer = keine &nbsp; * = alle &nbsp; z. B. C:;D:;"/></div>
+          <input type="text" id="p-dr" placeholder="${t('connDrivesPlaceholder')}"/></div>
       </div>
     </div>
   </details>
 
 </div>
-  <div class="rdp-section" style="border-bottom:none">
-    <div class="rdp-section-title">${t("connNotes")}</div>
-    <textarea id="f-notes" rows="3"
-      style="width:100%;box-sizing:border-box;resize:vertical;padding:8px 10px;font-size:13px;
-             background:var(--bg-input);color:var(--tx-in);border:1px solid var(--bd-2);
-             border-radius:6px;outline:none;font-family:inherit"
-      placeholder="${t('connNotesPlaceholder')}"></textarea>
-  </div>
 <div class="modal-actions">
   <button class="btn" id="btn-cancel">${t("cancel")}</button>
   <button class="btn primary" id="btn-ok">${t("save")}</button>
@@ -319,7 +318,6 @@ document.addEventListener("DOMContentLoaded", async () => {
         });
       });
 
-      m.querySelector("#f-notes").value = defaults.profile?.notes || defaults.notes || "";
       const fN = m.querySelector("#f-name"); fN.focus(); fN.select();
       const cl = (v) => { bd.remove(); resolve(v); };
 
@@ -346,7 +344,6 @@ document.addEventListener("DOMContentLoaded", async () => {
           },
         };
         const usePersonal = m.querySelector("#p-use-personal").checked;
-        profile.notes = m.querySelector("#f-notes")?.value.trim() || "";
         cl({
           name: m.querySelector("#f-name").value.trim() || host, host, port, profile,
           credMode: usePersonal ? "personal" : "none",
@@ -371,7 +368,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     <div class="rdp-section-title">${t("connVerbindung")}</div>
     <div class="rdp-field-row">
       <div class="rdp-field rdp-field-grow"><label>${t("connName")}</label>
-        <input type="text" id="s-name" placeholder="z. B. Webserver"/></div>
+        <input type="text" id="s-name" placeholder="${t('sshNamePlaceholder')}"/></div>
     </div>
     <div class="rdp-field-row">
       <div class="rdp-field rdp-field-grow"><label>${t("connHostIp")}</label>
@@ -385,30 +382,89 @@ document.addEventListener("DOMContentLoaded", async () => {
     </div>
   </div>
       <div class="rdp-section" style="border-bottom:none">
-    <div class="rdp-section-title">${t("password")}</div>
-    <div class="rdp-field-row"><div class="rdp-field rdp-field-grow">
-      <label>${hasSaved?t("sshPasswordSaved"):t("sshPassword")}</label>
-      <input type="password" id="s-pass"
-        placeholder="${hasSaved?"Leer lassen":"Leer = beim Verbinden abfragen"}"/>
-    </div></div>
-    <div class="rdp-toggle-row" style="margin-top:6px">
-      <div class="rdp-toggle-info">
-        <span>${t("sshRemember")}</span>
-        <span class="rdp-toggle-desc">DPAPI-verschlüsselt</span>
-      </div>
-      <label class="toggle">
-        <input type="checkbox" id="s-save" ${hasSaved?"checked":""}>
-        <span class="toggle-track"><span class="toggle-thumb"></span></span>
+    <div class="rdp-section-title">${t("sshAuthMethod")}</div>
+    <div style="display:flex;gap:10px;margin-bottom:14px">
+      <label class="rdp-display-card" style="flex:1">
+        <input type="radio" name="s-auth" value="password" ${defaults.authType!=="key"?"checked":""}/>
+        <div class="rdp-display-card-inner" style="padding:10px 8px;text-align:center;font-size:13px">🔑 ${t("sshAuthPassword")}</div>
+      </label>
+      <label class="rdp-display-card" style="flex:1">
+        <input type="radio" name="s-auth" value="key" ${defaults.authType==="key"?"checked":""}/>
+        <div class="rdp-display-card-inner" style="padding:10px 8px;text-align:center;font-size:13px">📄 ${t("sshAuthKey")}</div>
       </label>
     </div>
-    ${hasSaved?`<div style="margin-top:5px;font-size:11px;color:var(--tx-5)">${t("sshPasswordSavedLabel")} &nbsp;<a href="#" id="s-clearpw" style="color:var(--err);text-decoration:none">${t("sshPasswordDelete")}</a></div>`:""}
+
+    <div id="s-auth-password" style="display:${defaults.authType==="key"?"none":"block"}">
+      <div class="rdp-field-row"><div class="rdp-field rdp-field-grow">
+        <label>${hasSaved?t("sshPasswordSaved"):t("sshPassword")}</label>
+        <input type="password" id="s-pass"
+          placeholder="${hasSaved?t("sshPasswordKeepPlaceholder"):t("sshPasswordPlaceholder")}"/>
+      </div></div>
+      <div class="pw-storage">
+        <div class="pw-storage-title">${t("sshPwStorageLabel")}</div>
+        <label class="pw-storage-opt">
+          <input type="radio" name="s-pwmode" value="none" ${(!hasSaved && defaults.sharedPassword==null)?"checked":""}/>
+          <span class="pw-storage-main">${t("sshPwModeNone")}</span>
+        </label>
+        <label class="pw-storage-opt">
+          <input type="radio" name="s-pwmode" value="personal" ${hasSaved?"checked":""}/>
+          <span class="pw-storage-main">${t("sshPwModePersonal")}</span>
+          <span class="pw-storage-hint">${t("sshPwModePersonalHint")}</span>
+        </label>
+        <label class="pw-storage-opt">
+          <input type="radio" name="s-pwmode" value="shared" ${defaults.sharedPassword!=null?"checked":""}/>
+          <span class="pw-storage-main">${t("sshPwModeShared")}</span>
+          <span class="pw-storage-hint">${t("sshPwModeSharedHint")}</span>
+        </label>
+      </div>
+      ${hasSaved?`<div style="margin-top:8px;font-size:11px;color:var(--tx-5)">${t("sshPasswordSavedLabel")} &nbsp;<a href="#" id="s-clearpw" style="color:var(--err);text-decoration:none">${t("sshPasswordDelete")}</a></div>`:""}
+    </div>
+
+    <div id="s-auth-key" style="display:${defaults.authType==="key"?"block":"none"}">
+      <div class="rdp-field-row"><div class="rdp-field rdp-field-grow">
+        <label>${t("sshKeyPath")}</label>
+        <div style="display:flex;gap:8px">
+          <input type="text" id="s-keypath" readonly placeholder="${t("sshKeyPathPlaceholder")}"
+            style="flex:1;box-sizing:border-box;padding:8px 10px;font-size:12px;background:var(--bg-input);color:var(--tx-in);border:1px solid var(--bd-2);border-radius:6px;outline:none;font-family:monospace"/>
+          <button class="btn" id="s-keybrowse" type="button">${t("dataSourceBrowse")}</button>
+        </div>
+      </div></div>
+      <div style="margin-top:8px;font-size:11px;color:var(--tx-5)">${t("sshKeyPassphraseHint")}</div>
+    </div>
   </div>
 
   <div class="rdp-section" style="border-bottom:none">
-    <div class="rdp-section-title">${t("connNotes")}</div>
-    <textarea id="s-notes" rows="3"
-      style="width:100%;box-sizing:border-box;resize:vertical;padding:8px 10px;font-size:13px;background:var(--bg-input);color:var(--tx-in);border:1px solid var(--bd-2);border-radius:6px;outline:none;font-family:inherit"
-      placeholder="${t('connNotesPlaceholder')}"></textarea>
+    <div class="rdp-toggle-row">
+      <div class="rdp-toggle-info">
+        <span>${t("sshJumpEnable")}</span>
+        <span class="rdp-toggle-desc">${t("sshJumpDesc")}</span>
+      </div>
+      <label class="toggle">
+        <input type="checkbox" id="s-jump-enable" ${defaults.jump?"checked":""}>
+        <span class="toggle-track"><span class="toggle-thumb"></span></span>
+      </label>
+    </div>
+    <div id="s-jump-fields" style="display:${defaults.jump?"block":"none"};margin-top:12px">
+      <div class="rdp-field-row">
+        <div class="rdp-field rdp-field-grow"><label>${t("sshJumpHost")}</label>
+          <input type="text" id="s-jump-host" placeholder="${t('sshJumpHostPlaceholder')}"/></div>
+        <div class="rdp-field" style="width:80px"><label>${t("connPort")}</label>
+          <input type="text" id="s-jump-port" value="22"/></div>
+      </div>
+      <div class="rdp-field-row">
+        <div class="rdp-field rdp-field-grow"><label>${t("sshJumpUser")}</label>
+          <input type="text" id="s-jump-user" placeholder="root"/></div>
+      </div>
+      <div class="rdp-field-row"><div class="rdp-field rdp-field-grow">
+        <label>${t("sshJumpKeyPath")}</label>
+        <div style="display:flex;gap:8px">
+          <input type="text" id="s-jump-keypath" readonly placeholder="${t("sshKeyPathPlaceholder")}"
+            style="flex:1;box-sizing:border-box;padding:8px 10px;font-size:12px;background:var(--bg-input);color:var(--tx-in);border:1px solid var(--bd-2);border-radius:6px;outline:none;font-family:monospace"/>
+          <button class="btn" id="s-jump-keybrowse" type="button">${t("dataSourceBrowse")}</button>
+        </div>
+      </div></div>
+      <div style="margin-top:8px;font-size:11px;color:var(--tx-5)">${t("sshJumpHint")}</div>
+    </div>
   </div>
 <div class="modal-actions">
   <button class="btn" id="btn-cancel">${t("cancel")}</button>
@@ -420,8 +476,39 @@ document.addEventListener("DOMContentLoaded", async () => {
       m.querySelector("#s-host").value = defaults.host  || "";
       m.querySelector("#s-port").value = defaults.port  != null ? String(defaults.port) : "22";
       m.querySelector("#s-user").value = defaults.username || "";
-      m.querySelector("#s-notes").value = defaults.notes || "";
       m.querySelector("#s-name").focus(); m.querySelector("#s-name").select();
+
+      // Auth-Umschaltung Passwort/Schlüssel
+      let keyPath = defaults.keyPath || "";
+      const kpInput = m.querySelector("#s-keypath");
+      if (kpInput) kpInput.value = keyPath;
+      m.querySelectorAll('input[name="s-auth"]').forEach(r => {
+        r.addEventListener("change", () => {
+          m.querySelector("#s-auth-password").style.display = r.value === "password" ? "block" : "none";
+          m.querySelector("#s-auth-key").style.display      = r.value === "key"      ? "block" : "none";
+        });
+      });
+      m.querySelector("#s-keybrowse")?.addEventListener("click", async () => {
+        const picked = await window.api.ssh.pickKeyPath();
+        if (picked?.filePath) { keyPath = picked.filePath; if (kpInput) kpInput.value = keyPath; }
+      });
+
+      // ── Jumphost ──
+      let jumpKeyPath = defaults.jump?.keyPath || "";
+      const jkpInput = m.querySelector("#s-jump-keypath");
+      if (jkpInput) jkpInput.value = jumpKeyPath;
+      if (defaults.jump) {
+        m.querySelector("#s-jump-host").value = defaults.jump.host || "";
+        m.querySelector("#s-jump-port").value = defaults.jump.port != null ? String(defaults.jump.port) : "22";
+        m.querySelector("#s-jump-user").value = defaults.jump.username || "";
+      }
+      m.querySelector("#s-jump-enable")?.addEventListener("change", (e) => {
+        m.querySelector("#s-jump-fields").style.display = e.target.checked ? "block" : "none";
+      });
+      m.querySelector("#s-jump-keybrowse")?.addEventListener("click", async () => {
+        const picked = await window.api.ssh.pickKeyPath();
+        if (picked?.filePath) { jumpKeyPath = picked.filePath; if (jkpInput) jkpInput.value = jumpKeyPath; }
+      });
 
       // Credential-Modus-Umschalter
       const credSection=m.querySelector("#cred-section");
@@ -444,9 +531,10 @@ document.addEventListener("DOMContentLoaded", async () => {
       // "Passwort löschen"-Link
       m.querySelector("#s-clearpw")?.addEventListener("click", async (e) => {
         e.preventDefault();
-        m.querySelector("#s-save").checked = false;
+        const noneRadio = m.querySelector('input[name="s-pwmode"][value="none"]');
+        if (noneRadio) noneRadio.checked = true;
         m.querySelector("#s-clearpw").closest("div").remove();
-        m.querySelector("#s-pass").placeholder = "Leer = beim Verbinden abfragen";
+        m.querySelector("#s-pass").placeholder = t("sshPasswordPlaceholder");
       });
 
       const cl = (v) => { bd.remove(); resolve(v); };
@@ -458,13 +546,40 @@ document.addEventListener("DOMContentLoaded", async () => {
         if (!user) { m.querySelector("#s-user").focus(); return; }
         const port = Number(m.querySelector("#s-port").value.trim() || "22");
         if (!Number.isFinite(port) || port <= 0 || port > 65535) { m.querySelector("#s-port").focus(); return; }
+        const authSel = m.querySelector('input[name="s-auth"]:checked')?.value === "key" ? "key" : "password";
+        if (authSel === "key" && !keyPath.trim()) { m.querySelector("#s-keybrowse")?.focus(); return; }
+
+        // Jumphost auslesen (nur wenn aktiviert)
+        const jumpOn = !!m.querySelector("#s-jump-enable")?.checked;
+        let jumpHost = "", jumpPort = 22, jumpUser = "", jKeyPath = "";
+        if (jumpOn) {
+          jumpHost = m.querySelector("#s-jump-host").value.trim();
+          jumpUser = m.querySelector("#s-jump-user").value.trim();
+          jKeyPath = jumpKeyPath.trim();
+          const jp = Number(m.querySelector("#s-jump-port").value.trim() || "22");
+          if (!jumpHost) { m.querySelector("#s-jump-host").focus(); return; }
+          if (!jumpUser) { m.querySelector("#s-jump-user").focus(); return; }
+          if (!jKeyPath) { m.querySelector("#s-jump-keybrowse")?.focus(); return; }
+          if (!Number.isFinite(jp) || jp <= 0 || jp > 65535) { m.querySelector("#s-jump-port").focus(); return; }
+          jumpPort = jp;
+        }
+
+        const pwMode = authSel === "key" ? "none"
+          : (m.querySelector('input[name="s-pwmode"]:checked')?.value || "none");
+
         cl({
           name: m.querySelector("#s-name").value.trim() || host,
           host, port, username: user,
-          notes:        m.querySelector("#s-notes")?.value.trim() || "",
-          password:     m.querySelector("#s-pass")?.value || "",
-          savePassword: !!m.querySelector("#s-save")?.checked,
-          clearPassword: hasSaved && !m.querySelector("#s-save")?.checked,
+          authType: authSel,
+          keyPath:  authSel === "key" ? keyPath.trim() : (keyPath.trim() || ""),
+          password:     authSel === "key" ? "" : (m.querySelector("#s-pass")?.value || ""),
+          pwMode, // "none" | "personal" | "shared"
+          hadSaved: hasSaved,
+          // Jumphost: leerer Host = kein Jumphost (Backend entfernt ihn dann)
+          jumpHost:     jumpOn ? jumpHost : "",
+          jumpPort:     jumpOn ? jumpPort : 22,
+          jumpUsername: jumpOn ? jumpUser : "",
+          jumpKeyPath:  jumpOn ? jKeyPath : "",
         });
       });
       m.querySelector("#btn-cancel").addEventListener("click", () => cl(null));
@@ -509,7 +624,69 @@ document.addEventListener("DOMContentLoaded", async () => {
   }
 
   function clearSelection(){document.querySelectorAll(".tree-item,.tree-folder-header").forEach(i=>i.classList.remove("active"));selectedConnId=null;}
-  function findFolderNameById(folders,id){for(const f of folders){if(f.id===id)return f.name;const r=findFolderNameById(f.folders||[],id);if(r!==null)return r;}return null;}
+  // Findet die Liste (Array), in der ein Ordner liegt, und seinen Index darin.
+  // Sucht sowohl auf oberster Ebene als auch in Unterordnern.
+  function findFolderParentList(folders,id,parentId){
+    for(let i=0;i<(folders||[]).length;i++){
+      if(folders[i].id===id)return {list:folders,index:i,parentId:parentId||null};
+      const r=findFolderParentList(folders[i].folders||[],id,folders[i].id);
+      if(r)return r;
+    }
+    return null;
+  }
+  // Sortiert einen Ordner neben einen Geschwister-Ordner ein (davor/dahinter),
+  // auf derselben Ebene wie das Geschwister.
+  async function dropFolderBeside({dragId,siblingId,before}){
+    try{
+      // Ebene und Position des Ziel-Geschwisters bestimmen
+      const sib=findFolderParentList(model?.folders,siblingId);
+      if(!sib)return;
+      let targetIndex=sib.index+(before?0:1);
+      // Grenzfall: gezogener Ordner liegt in DERSELBEN Liste vor der Zielposition
+      const drag=findFolderParentList(model?.folders,dragId);
+      if(drag&&drag.list===sib.list){
+        if(drag.index<targetIndex)targetIndex-=1;
+        if(drag.index===targetIndex)return; // gleiche Stelle → nichts tun
+      }
+      await window.api.store.moveFolder({
+        folderId:dragId,
+        targetFolderId:sib.parentId, // null = oberste Ebene
+        targetIndex
+      });
+      await loadAndRender();
+    }catch(err){console.error(err);await showAlert({title:t("errorTitle"),message:String(err?.message||err)});}
+  }
+
+  // Findet einen Ordner (das Objekt selbst) im Model anhand seiner ID.
+  function findFolderInModel(folders,id){for(const f of(folders||[])){if(f.id===id)return f;const r=findFolderInModel(f.folders||[],id);if(r)return r;}return null;}
+  // Fügt eine gezogene Verbindung an der Zielposition ein (Umsortieren).
+  // Berücksichtigt den Grenzfall, dass beim Umsortieren im GLEICHEN Ordner
+  // das Herausnehmen die Indizes verschiebt.
+  async function dropConnectionAt({drag,targetFolderId,targetConnId,before}){
+    try{
+      const targetFolder=findFolderInModel(model?.folders,targetFolderId);
+      if(!targetFolder)return;
+      const items=targetFolder.items||[];
+      let targetIndex=items.findIndex(c=>c.id===targetConnId);
+      if(targetIndex===-1)targetIndex=items.length;
+      else if(!before)targetIndex+=1; // untere Hälfte → dahinter einfügen
+      // Grenzfall: gleicher Ordner und die gezogene Verbindung liegt VOR
+      // der Zielposition → nach dem Herausnehmen rutscht alles eins hoch.
+      if(drag.folderId===targetFolderId){
+        const fromIndex=items.findIndex(c=>c.id===drag.id);
+        if(fromIndex!==-1&&fromIndex<targetIndex)targetIndex-=1;
+        if(fromIndex===targetIndex)return; // an dieselbe Stelle → nichts tun
+      }
+      await window.api.store.moveConnection({
+        sourceFolderId:drag.folderId,
+        connectionId:drag.id,
+        targetFolderId,
+        targetIndex
+      });
+      await loadAndRender();
+    }catch(err){console.error(err);await showAlert({title:t("errorTitle"),message:String(err?.message||err)});}
+    finally{currentDrag=null;}
+  }
 
   /* =========================================================
      Multi-Tab Manager
@@ -520,9 +697,12 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   // ── Verbindungsstatus (TCP-Check) ───────────────────────────────────────
   const statusMap = new Map(); // id → { reachable, latency, checking }
+  let statusEnabled = true; // ob die Statusanzeige aktiv ist (pingInterval > 0)
   let pingIntervalId = null;
 
   function getStatusDotHtml(id) {
+    // Wenn die Statusanzeige aus ist, gar keinen Kreis erzeugen
+    if (!statusEnabled) return "";
     const s = statusMap.get(id);
     if (!s) return `<span class="status-dot status-unknown" data-sid="${id}"></span>`;
     if (s.checking) return `<span class="status-dot status-checking" data-sid="${id}"></span>`;
@@ -541,14 +721,41 @@ document.addEventListener("DOMContentLoaded", async () => {
     });
   }
 
+  // Zerlegt eine Web-URL in Host und Port für den Erreichbarkeits-Check.
+  // Beispiele: "https://host"        → { host, port: 443 }
+  //            "http://host"         → { host, port: 80 }
+  //            "https://host:8443"   → { host, port: 8443 }
+  // Gibt null zurück, wenn die URL nicht auswertbar ist.
+  function hostPortFromUrl(url) {
+    try {
+      // Falls kein Protokoll angegeben ist, https annehmen
+      const u = new URL(/^https?:\/\//i.test(url) ? url : "https://" + url);
+      const host = u.hostname;
+      if (!host) return null;
+      let port = u.port ? Number(u.port) : (u.protocol === "http:" ? 80 : 443);
+      return { host, port };
+    } catch {
+      return null;
+    }
+  }
+
   async function pingConnection(conn) {
-    if (!conn.host) return;
+    // Host+Port bestimmen – bei Web-Verbindungen aus der URL,
+    // sonst direkt aus dem host/port-Feld.
+    let host, port;
+    if (conn.type === "web") {
+      const hp = hostPortFromUrl(conn.url);
+      if (!hp) return; // URL nicht auswertbar → kein Check
+      host = hp.host; port = hp.port;
+    } else {
+      if (!conn.host) return;
+      host = conn.host;
+      port = conn.port || (conn.type === 'ssh' ? 22 : 3389);
+    }
     statusMap.set(conn.id, { ...statusMap.get(conn.id), checking: true });
     updateDot(conn.id);
     try {
-      const port = conn.port || (conn.type === 'ssh' ? 22 : 3389);
-      const r = await window.api.conn.ping({ host: conn.host, port });
-      console.log(`[RDM ping] ${conn.name} (${conn.host}:${port}) → ${r.reachable ? r.latency+"ms" : "nicht erreichbar"}`);
+      const r = await window.api.conn.ping({ host, port });
       statusMap.set(conn.id, { reachable: r.reachable, latency: r.latency, checking: false });
     } catch(e) {
       console.error("[RDM ping] Fehler bei", conn.name, e.message);
@@ -562,88 +769,194 @@ document.addEventListener("DOMContentLoaded", async () => {
     const all = [];
     function collect(folders) {
       for (const f of folders || []) {
-        for (const c of f.items || []) { if (c.host) all.push(c); }
+        for (const c of f.items || []) { if (c.host || (c.type === "web" && c.url)) all.push(c); }
         collect(f.folders);
       }
     }
     collect(model?.folders);
-    console.log("[RDM ping] Verbindungen zum Prüfen:", all.length, all.map(c=>c.id+":"+c.host));
     for (let i = 0; i < all.length; i += 5)
       await Promise.all(all.slice(i, i + 5).map(pingConnection));
   }
 
-  // ── Verbindungs-Info-Panel (Hauptbereich bei Auswahl) ──────────────────
-  let infoPanelTimer = null;
+  // ── Datenquelle konfigurieren (geführter Dialog) ───────────────────────
+  function showDataSourceDialog() {
+    return new Promise(async (resolve) => {
+      const s = await window.api.settings.load() || {};
+      let mode      = s.dataSource === "smb" ? "smb" : "local";
+      let smbPath   = s.smbPath || "";
+      let writeMode = s.smbWriteMode === "readwrite" ? "readwrite" : "readonly";
 
-  function showConnInfoPanel(conn, folderId) {
-    const area  = document.getElementById("tab-content-area");
-    const existing = area.querySelector(".conn-info-panel");
-    if (existing) existing.remove();
+      const bd = document.createElement("div"); bd.className = "modal-backdrop";
+      const m  = document.createElement("div"); m.className = "modal";
 
-    // Nur anzeigen wenn kein aktiver Tab im Vordergrund
-    const hasActiveTab = activeTabId && tabs.get(activeTabId);
-    const notes  = conn.notes || conn.profile?.notes || "";
-    const icon   = conn.type === "ssh" ? "🔒" : conn.type === "web" ? "🌐" : conn.type === "serial" ? "🔌" : "🪟";
-    const meta   = conn.type === "web"
-      ? (conn.url || "")
-      : `${conn.host || ""}${conn.port ? " · Port " + conn.port : ""}`;
-
-    const panel = document.createElement("div");
-    panel.className = "conn-info-panel" + (hasActiveTab ? " conn-info-panel-hidden" : "");
-    panel.dataset.connId = conn.id;
-    panel.innerHTML = `
-      <div class="conn-info-card">
-        <div class="conn-info-header">
-          <span class="conn-info-icon">${icon}</span>
-          <div>
-            <div class="conn-info-name">${escHtml(conn.name)}</div>
-            <div class="conn-info-meta">${escHtml(meta)}</div>
+      function renderDataSourceDialog() {
+        m.innerHTML = `
+          <div class="modal-header">${t("dataSourceDialogTitle")}</div>
+          <div class="modal-body">
+            <label>${t("dataSourceModeLabel")}</label>
+            <div style="display:flex;gap:10px;margin:8px 0 16px">
+              <label class="rdp-display-card" style="flex:1">
+                <input type="radio" name="ds-mode" value="local" ${mode==="local"?"checked":""}/>
+                <div class="rdp-display-card-inner" style="padding:12px 8px;text-align:center">
+                  <div style="font-size:20px;margin-bottom:4px">💻</div>${t("dataSourceLocal")}
+                </div>
+              </label>
+              <label class="rdp-display-card" style="flex:1">
+                <input type="radio" name="ds-mode" value="smb" ${mode==="smb"?"checked":""}/>
+                <div class="rdp-display-card-inner" style="padding:12px 8px;text-align:center">
+                  <div style="font-size:20px;margin-bottom:4px">🖧</div>${t("dataSourceSmb")}
+                </div>
+              </label>
+            </div>
+            <div id="ds-smb-section" style="display:${mode==="smb"?"block":"none"}">
+              <label>${t("smbPathLabel")}</label>
+              <input type="text" id="ds-path" value="${escHtml(smbPath)}" placeholder="${t("smbPathPlaceholder")}" readonly
+                style="width:100%;box-sizing:border-box;padding:8px 10px;font-size:12px;background:var(--bg-input);color:var(--tx-in);border:1px solid var(--bd-2);border-radius:6px;outline:none;font-family:monospace;margin:6px 0 8px"/>
+              <div style="display:flex;gap:8px;margin-bottom:16px">
+                <button class="btn" id="ds-pick-existing" style="flex:1">${t("dataSourcePickExisting")}</button>
+                <button class="btn" id="ds-pick-new" style="flex:1">${t("dataSourcePickNew")}</button>
+              </div>
+              <label>${t("smbModeLabel")}</label>
+              <div style="display:flex;gap:10px;margin-top:6px">
+                <label class="rdp-display-card" style="flex:1">
+                  <input type="radio" name="ds-write" value="readonly" ${writeMode==="readonly"?"checked":""}/>
+                  <div class="rdp-display-card-inner" style="padding:10px 8px;text-align:center;font-size:12px">${t("smbModeReadonly")}</div>
+                </label>
+                <label class="rdp-display-card" style="flex:1">
+                  <input type="radio" name="ds-write" value="readwrite" ${writeMode==="readwrite"?"checked":""}/>
+                  <div class="rdp-display-card-inner" style="padding:10px 8px;text-align:center;font-size:12px">${t("smbModeReadwrite")}</div>
+                </label>
+              </div>
+            </div>
           </div>
-          <button class="conn-info-close" title="${t('close')}">✕</button>
-        </div>
-        <div class="conn-info-notes-label">${t("connInfoNotes")}</div>
-        <textarea class="conn-info-notes" placeholder="${t('connInfoNotesPlaceholder')}">${escHtml(notes)}</textarea>
-        <div class="conn-info-save-status"></div>
-      </div>
-    `;
-    area.appendChild(panel);
+          <div class="modal-actions">
+            <button class="btn" id="ds-cancel">${t("cancel")}</button>
+            <button class="btn primary" id="ds-save">${t("save")}</button>
+          </div>`;
+        wire();
+      }
 
-    panel.querySelector(".conn-info-close").addEventListener("click", () => {
-      panel.remove();
-    });
-    const ta     = panel.querySelector("textarea");
-    const status = panel.querySelector(".conn-info-save-status");
-
-    ta.addEventListener("input", () => {
-      clearTimeout(infoPanelTimer);
-      status.textContent = "";
-      infoPanelTimer = setTimeout(async () => {
-        try {
-          await window.api.store.updateConnection({
-            folderId, connectionId: conn.id,
-            notes: ta.value
+      function wire() {
+        m.querySelectorAll('input[name="ds-mode"]').forEach(r => {
+          r.addEventListener("change", () => {
+            mode = r.value;
+            m.querySelector("#ds-smb-section").style.display = mode === "smb" ? "block" : "none";
           });
-          // update in-memory model
-          const item = (function findItem(folders) {
-            for (const f of folders || []) {
-              const c = (f.items || []).find(x => x.id === conn.id);
-              if (c) { c.notes = ta.value; return c; }
-              const sub = findItem(f.folders);
-              if (sub) return sub;
+        });
+        m.querySelectorAll('input[name="ds-write"]').forEach(r => {
+          r.addEventListener("change", () => { writeMode = r.value; });
+        });
+        const pickExisting = m.querySelector("#ds-pick-existing");
+        if (pickExisting) pickExisting.addEventListener("click", async () => {
+          const picked = await window.api.datasource.pickExisting();
+          if (picked?.filePath) {
+            smbPath = picked.filePath;
+            m.querySelector("#ds-path").value = smbPath;
+          }
+        });
+        const pickNew = m.querySelector("#ds-pick-new");
+        if (pickNew) pickNew.addEventListener("click", async () => {
+          const picked = await window.api.datasource.pickNewFolder();
+          if (picked?.filePath) {
+            smbPath = picked.filePath;
+            m.querySelector("#ds-path").value = smbPath;
+          }
+        });
+        m.querySelector("#ds-cancel").addEventListener("click", () => cl(false));
+        m.querySelector("#ds-save").addEventListener("click", onSave);
+      }
+
+      async function onSave() {
+        if (mode === "smb") {
+          if (!smbPath) {
+            await showAlert({ title: t("dataSourceDialogTitle"), message: t("dataSourceNoPath") });
+            return;
+          }
+          // Prüfen ob am Pfad eine gültige JSON liegt
+          const check = await window.api.datasource.checkPath({ filePath: smbPath });
+          if (!check.valid) {
+            // Keine (gültige) Datei → fragen ob anlegen
+            const create = await showConfirm({
+              title: t("dataSourceCreateTitle"),
+              message: t("dataSourceCreateMsg", smbPath),
+              okLabel: t("dataSourceCreateOk"),
+              cancelLabel: t("cancel")
+            });
+            if (!create) return; // Abbruch – Dialog bleibt offen
+            try {
+              await window.api.datasource.createFile({ filePath: smbPath });
+            } catch (err) {
+              await showAlert({ title: t("errorTitle"), message: String(err?.message || err) });
+              return;
             }
-          })(model?.folders);
-          status.textContent = t("connInfoSaved");
-          setTimeout(() => { status.textContent = ""; }, 2000);
-        } catch {
-          status.textContent = t("connInfoError");
+          }
         }
-      }, 800);
+        // Speichern
+        const cur = await window.api.settings.load() || {};
+        cur.dataSource   = mode;
+        cur.smbPath      = mode === "smb" ? smbPath : (cur.smbPath || "");
+        cur.smbWriteMode = writeMode;
+        await window.api.settings.save(cur);
+        cl(true);
+      }
+
+      const cl = (v) => { bd.remove(); resolve(v); };
+      bd.appendChild(m); document.body.appendChild(bd);
+      renderDataSourceDialog();
+      bd.addEventListener("click", (e) => { if (e.target === bd) cl(false); });
+      m.addEventListener("keydown", (e) => { if (e.key === "Escape") cl(false); });
+      m.addEventListener("contextmenu", (e) => e.preventDefault());
     });
   }
 
-  function hideConnInfoPanel() {
-    const area = document.getElementById("tab-content-area");
-    area.querySelector(".conn-info-panel")?.remove();
+  // ── Notiz-Dialog (über Rechtsklick → Notizen) ──────────────────────────
+  function showNotesDialog(conn, folderId) {
+    return new Promise((resolve) => {
+      const notes = conn.notes || conn.profile?.notes || "";
+      const icon  = conn.type === "ssh" ? "🔒" : conn.type === "web" ? "🌐" : conn.type === "serial" ? "🔌" : "🪟";
+      const meta  = conn.type === "web"
+        ? (conn.url || "")
+        : `${conn.host || ""}${conn.port ? " · Port " + conn.port : ""}`;
+
+      const bd = document.createElement("div"); bd.className = "modal-backdrop";
+      const m  = document.createElement("div"); m.className = "modal";
+      m.innerHTML = `
+        <div class="modal-header">${icon} ${escHtml(conn.name)}</div>
+        <div class="modal-body">
+          <div style="font-size:12px;color:var(--tx-5);margin-bottom:10px">${escHtml(meta)}</div>
+          <label>${t("connInfoNotes")}</label>
+          <textarea id="nd-notes" rows="8"
+            style="width:100%;box-sizing:border-box;resize:vertical;padding:10px 12px;font-size:13px;line-height:1.5;background:var(--bg-input);color:var(--tx-in);border:1px solid var(--bd-2);border-radius:8px;outline:none;font-family:inherit"
+            placeholder="${t('connInfoNotesPlaceholder')}">${escHtml(notes)}</textarea>
+        </div>
+        <div class="modal-actions">
+          <button class="btn" id="nd-cancel">${t("cancel")}</button>
+          <button class="btn primary" id="nd-ok">${t("save")}</button>
+        </div>`;
+      bd.appendChild(m); document.body.appendChild(bd);
+
+      const ta = m.querySelector("#nd-notes");
+      ta.focus();
+      const cl = (v) => { bd.remove(); resolve(v); };
+
+      m.querySelector("#nd-ok").addEventListener("click", async () => {
+        try {
+          await window.api.store.updateConnection({
+            folderId, connectionId: conn.id, notes: ta.value
+          });
+          const found = findConnById(conn.id);
+          if (found) found.conn.notes = ta.value;
+          renderTabBar(); // 📝-Indikator aktualisieren
+          cl(true);
+        } catch (err) {
+          await showAlert({ title: t("connInfoError"), message: String(err?.message || err) });
+        }
+      });
+      m.querySelector("#nd-cancel").addEventListener("click", () => cl(null));
+      bd.addEventListener("click", (e) => { if (e.target === bd) cl(null); });
+      m.addEventListener("keydown", (e) => { if (e.key === "Escape") cl(null); });
+      m.addEventListener("contextmenu", (e) => e.preventDefault());
+    });
   }
 
   async function applyPingInterval() {
@@ -651,20 +964,39 @@ document.addEventListener("DOMContentLoaded", async () => {
     const s = await window.api.settings.load();
     const ms = Number(s?.pingInterval) || 0;
     if (ms === 0) {
-      // Deaktiviert → Status zurücksetzen
+      // Deaktiviert → Merker setzen, Status leeren, vorhandene Kreise entfernen
+      statusEnabled = false;
       statusMap.clear();
-      document.querySelectorAll(".status-dot").forEach(el => {
-        el.className = "status-dot status-unknown";
-        el.title = "";
-      });
+      document.querySelectorAll(".status-dot").forEach(el => el.remove());
       return;
     }
+    // Aktiviert → Merker setzen und neu zeichnen (damit Kreise wieder erscheinen)
+    statusEnabled = true;
+    loadAndRender();
     // Sofort prüfen + Intervall starten
     pingAllVisible();
     pingIntervalId = setInterval(pingAllVisible, ms);
   }
 
   const tabBarEl=document.getElementById("tab-bar");
+  // F5 = aktive Website neu laden (Strg/Umschalt+F5 = ohne Cache), wenn der
+  // Fokus gerade im RCM-Fenster liegt. Im Web-View selbst fängt main.js F5 ab.
+  document.addEventListener("keydown",(e)=>{
+    if(e.key!=="F5")return;
+    const tab=activeTabId?tabs.get(activeTabId):null;
+    if(tab?.type!=="web")return;
+    e.preventDefault();
+    window.api.web.reload({tabId:activeTabId,hard:e.ctrlKey||e.shiftKey}).catch(()=>{});
+  });
+  // Mausrad über der Tab-Leiste → horizontales Scrollen (um an hintere Tabs
+  // zu kommen, wenn viele offen sind). Vertikales Raddrehen wird umgeleitet.
+  if(tabBarEl){
+    tabBarEl.addEventListener("wheel",(e)=>{
+      if(e.deltaY===0)return;              // nur reagieren, wenn vertikal gescrollt wird
+      e.preventDefault();                  // Standard-Scrollen unterdrücken
+      tabBarEl.scrollLeft += e.deltaY;     // vertikale Radbewegung → horizontal
+    },{passive:false});
+  }
   const tabContentArea=document.getElementById("tab-content-area");
 
   function getContentBounds(){const r=tabContentArea.getBoundingClientRect();return{x:Math.round(r.left),y:Math.round(r.top),width:Math.round(r.width),height:Math.round(r.height)};}
@@ -683,6 +1015,81 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   function getTabIcon(type){if(type==="web")return"🌐";if(type==="ssh")return"🔒";if(type==="rdp")return"🪟";if(type==="serial")return"🔌";return"⚙";}
 
+  // Notizen einer Verbindung anhand ihrer ID im Model finden
+  function findConnById(id, folders = model?.folders) {
+    for (const f of folders || []) {
+      const c = (f.items || []).find(x => x.id === id);
+      if (c) return { conn: c, folderId: f.id };
+      const sub = findConnById(id, f.folders);
+      if (sub) return sub;
+    }
+    return null;
+  }
+  function getConnNotes(connId) {
+    const found = findConnById(connId);
+    if (!found) return "";
+    return found.conn.notes || found.conn.profile?.notes || "";
+  }
+
+  // Notiz-Popover, geöffnet über das 📝 in der Tab-Leiste
+  let notesPopoverEl = null;
+  let notesPopoverTimer = null;
+  function closeNotesPopover() {
+    if (notesPopoverEl) { notesPopoverEl.remove(); notesPopoverEl = null; }
+    document.removeEventListener("mousedown", onNotesPopoverOutside, true);
+  }
+  function onNotesPopoverOutside(e) {
+    if (notesPopoverEl && !notesPopoverEl.contains(e.target) &&
+        !e.target.classList?.contains("tab-notes")) {
+      closeNotesPopover();
+    }
+  }
+  function openNotesPopover(anchorEl, connId) {
+    closeNotesPopover();
+    const found = findConnById(connId);
+    if (!found) return;
+    const notes = found.conn.notes || found.conn.profile?.notes || "";
+
+    const pop = document.createElement("div");
+    pop.className = "tab-notes-popover";
+    pop.innerHTML = `
+      <div class="tab-notes-popover-title">${t("connInfoNotes")}</div>
+      <textarea class="tab-notes-popover-area" placeholder="${t('connInfoNotesPlaceholder')}">${escHtml(notes)}</textarea>
+      <div class="tab-notes-popover-status"></div>
+    `;
+    document.body.appendChild(pop);
+
+    // Position: unter dem Anker, rechtsbündig damit es nicht rausläuft
+    const r = anchorEl.getBoundingClientRect();
+    pop.style.top = (r.bottom + 4) + "px";
+    let left = r.right - pop.offsetWidth;
+    if (left < 8) left = 8;
+    pop.style.left = left + "px";
+
+    const ta = pop.querySelector("textarea");
+    const status = pop.querySelector(".tab-notes-popover-status");
+    ta.focus();
+    ta.addEventListener("input", () => {
+      clearTimeout(notesPopoverTimer);
+      status.textContent = "";
+      notesPopoverTimer = setTimeout(async () => {
+        try {
+          await window.api.store.updateConnection({
+            folderId: found.folderId, connectionId: connId, notes: ta.value
+          });
+          const fresh = findConnById(connId);
+          if (fresh) fresh.conn.notes = ta.value;
+          status.textContent = t("connInfoSaved");
+          renderTabBar(); // 📝-Indikator ggf. aktualisieren
+          setTimeout(() => { status.textContent = ""; }, 2000);
+        } catch { status.textContent = t("connInfoError"); }
+      }, 800);
+    });
+
+    notesPopoverEl = pop;
+    setTimeout(() => document.addEventListener("mousedown", onNotesPopoverOutside, true), 0);
+  }
+
   function renderTabBar(){
     tabBarEl.innerHTML="";
     if(tabs.size===0){tabBarEl.style.display="none";return;}
@@ -693,7 +1100,19 @@ document.addEventListener("DOMContentLoaded", async () => {
       const titleEl=document.createElement("span");titleEl.className="tab-title";titleEl.textContent=getTabIcon(tab.type)+" "+tab.title;titleEl.title=tab.title;
       const closeEl=document.createElement("button");closeEl.className="tab-close";closeEl.textContent="×";closeEl.title=t("closeTab");
       closeEl.addEventListener("click",(e)=>{e.stopPropagation();closeTab(tab.id);});
-      tabEl.appendChild(titleEl);tabEl.appendChild(closeEl);
+      tabEl.appendChild(titleEl);
+      // 📝 Notiz-Button – nur wenn die Verbindung Notizen hat
+      if(tab.connId && getConnNotes(tab.connId).trim()){
+        const notesEl=document.createElement("button");
+        notesEl.className="tab-notes";notesEl.textContent="📝";notesEl.title=t("connInfoNotes");
+        notesEl.addEventListener("click",(e)=>{
+          e.stopPropagation();
+          if(notesPopoverEl){closeNotesPopover();}
+          else{openNotesPopover(notesEl,tab.connId);}
+        });
+        tabEl.appendChild(notesEl);
+      }
+      tabEl.appendChild(closeEl);
       tabEl.addEventListener("click",()=>activateTab(tab.id));
       tabBarEl.appendChild(tabEl);
     });
@@ -712,10 +1131,10 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   async function activateTab(tabId){
     if(tabId===activeTabId)return;
+    closeNotesPopover();
     await deactivateCurrentTab();
     const tab=tabs.get(tabId);if(!tab)return;
     activeTabId=tabId;
-    hideConnInfoPanel();
     if(tab.type==="web"){await new Promise(r=>requestAnimationFrame(r));try{await window.api.web.show({tabId,bounds:getContentBounds()});}catch{}}
     else if(tab.type==="ssh"){tab.container.classList.add("active");if(tab.fitAddon)tab.fitAddon.fit();if(tab.term)tab.term.focus();}
     else if(["rdp","settings"].includes(tab.type)){tab.container.classList.add("active");}
@@ -725,6 +1144,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   async function closeTab(tabId){
     const tab=tabs.get(tabId);if(!tab)return;
+    closeNotesPopover();
     if(tab.type==="web"){try{await window.api.web.close({tabId});}catch{}}
     else if(tab.type==="ssh"){
       if(tab.offData)tab.offData();if(tab.offClosed)tab.offClosed();
@@ -763,58 +1183,218 @@ document.addEventListener("DOMContentLoaded", async () => {
       }
     }
     renderTabBar();
-    // Wenn alle Tabs zu: Info-Panel für ausgewählte Verbindung zeigen
-    if(tabs.size===0&&selectedConnId){
-      (function showSelected(folders){
-        for(const f of folders||[]){
-          const c=(f.items||[]).find(x=>x.id===selectedConnId);
-          if(c){showConnInfoPanel(c,f.id);return;}
-          showSelected(f.folders);
+  }
+
+  // Wendet die gewählte Passwort-Speicherart auf eine SSH-Verbindung an.
+  // "personal" → DPAPI (lokal), "shared" → Vault-verschlüsselt in connections.json, "none" → nichts.
+  async function applySshPassword(connId, folderId, result) {
+    if (result.authType === "key") return; // Key-Modus: kein Passwort
+    const mode = result.pwMode || "none";
+
+    if (mode === "personal") {
+      if (result.password) {
+        try { await window.api.cred.save({ id: connId, password: result.password }); } catch {}
+      }
+      // evtl. vorhandenes geteiltes PW entfernen (Moduswechsel)
+      try { await window.api.store.updateConnection({ folderId, connectionId: connId, sharedPassword: "" }); } catch {}
+    }
+    else if (mode === "shared") {
+      // Tresor muss entsperrt sein (legt ihn beim ersten Mal an)
+      const ok = await ensureVaultUnlocked();
+      if (!ok) { await showAlert({ title: t("vaultSetupTitle"), message: t("vaultNeededMsg") }); return; }
+      if (result.password) {
+        const enc = await window.api.vault.encrypt({ plaintext: result.password });
+        if (enc.ok) {
+          await window.api.store.updateConnection({ folderId, connectionId: connId, sharedPassword: enc.ciphertext });
         }
-      })(model?.folders);
+      }
+      // evtl. vorhandenes persönliches DPAPI-PW entfernen (Moduswechsel)
+      try { await window.api.cred.delete({ id: connId }); } catch {}
+    }
+    else { // none
+      if (result.hadSaved) { try { await window.api.cred.delete({ id: connId }); } catch {} }
+      try { await window.api.store.updateConnection({ folderId, connectionId: connId, sharedPassword: "" }); } catch {}
     }
   }
 
+  // ── Schnellsuche (Command-Palette) ─────────────────────────────────────
+  let quickSearchOpen = false;
+  // Wandelt ein Electron-Accelerator ("CommandOrControl+Shift+Space")
+  // in eine lesbare Anzeige um ("Strg + Shift + Leertaste").
+  function shortcutToDisplay(acc) {
+    if (!acc) return "";
+    return acc
+      .replace(/CommandOrControl|CmdOrCtrl/gi, "Strg")
+      .replace(/\bControl\b|\bCtrl\b/gi, "Strg")
+      .replace(/\bSpace\b/gi, "Leertaste")
+      .replace(/\+/g, " + ");
+  }
+
+  function showQuickSearch() {
+    if (quickSearchOpen) return;
+    quickSearchOpen = true;
+
+    // Alle Verbindungen flach sammeln (mit Ordnerpfad für Anzeige)
+    const all = [];
+    (function walk(folders, pathParts) {
+      for (const f of folders || []) {
+        const p = [...pathParts, f.name];
+        for (const c of f.items || []) all.push({ conn: c, path: p.join(" / ") });
+        walk(f.folders, p);
+      }
+    })(model?.folders, []);
+
+    const typeIcon = (t) => t === "rdp" ? "🖥️" : t === "ssh" ? "⌨️" : t === "web" ? "🌐" : t === "serial" ? "🔌" : "•";
+
+    const bd = document.createElement("div");
+    bd.className = "quicksearch-backdrop";
+    const box = document.createElement("div");
+    box.className = "quicksearch-box";
+    box.innerHTML = `
+      <input type="text" id="qs-input" class="quicksearch-input" placeholder="${t("quickSearchPlaceholder")}" autocomplete="off" spellcheck="false"/>
+      <div id="qs-results" class="quicksearch-results"></div>
+      <div class="quicksearch-hint">${t("quickSearchHint")}</div>`;
+    bd.appendChild(box);
+    document.body.appendChild(bd);
+
+    const input = box.querySelector("#qs-input");
+    const results = box.querySelector("#qs-results");
+    let filtered = [];
+    let sel = 0;
+
+    function renderQuickSearchList() {
+      const q = input.value.trim().toLowerCase();
+      filtered = !q ? all.slice(0, 50) : all.filter(({ conn, path }) => {
+        const notes = conn.notes || conn.profile?.notes || "";
+        const hay = `${conn.name} ${conn.host || conn.url || ""} ${path} ${notes}`.toLowerCase();
+        return q.split(/\s+/).every(term => hay.includes(term));
+      }).slice(0, 50);
+      if (sel >= filtered.length) sel = Math.max(0, filtered.length - 1);
+      if (filtered.length === 0) {
+        results.innerHTML = `<div class="quicksearch-empty">${t("quickSearchNone")}</div>`;
+        return;
+      }
+      results.innerHTML = filtered.map(({ conn, path }, i) => `
+        <div class="quicksearch-item ${i === sel ? "selected" : ""}" data-idx="${i}">
+          <span class="qs-icon">${typeIcon(conn.type)}</span>
+          <span class="qs-main">
+            <span class="qs-name">${escHtml(conn.name)}</span>
+            <span class="qs-sub">${escHtml(conn.host || conn.url || "")}${path ? " · " + escHtml(path) : ""}</span>
+          </span>
+        </div>`).join("");
+      const selEl = results.querySelector(".quicksearch-item.selected");
+      if (selEl) selEl.scrollIntoView({ block: "nearest" });
+    }
+
+    async function connectSel() {
+      const chosen = filtered[sel];
+      close();
+      if (chosen) { try { await openConnection(chosen.conn); } catch (err) { await showAlert({ title: t("startError"), message: String(err?.message || err) }); } }
+    }
+
+    function close() {
+      quickSearchOpen = false;
+      bd.remove();
+    }
+
+    input.addEventListener("input", () => { sel = 0; renderQuickSearchList(); });
+    input.addEventListener("keydown", (e) => {
+      if (e.key === "ArrowDown") { e.preventDefault(); if (sel < filtered.length - 1) { sel++; renderQuickSearchList(); } }
+      else if (e.key === "ArrowUp") { e.preventDefault(); if (sel > 0) { sel--; renderQuickSearchList(); } }
+      else if (e.key === "Enter") { e.preventDefault(); connectSel(); }
+      else if (e.key === "Escape") { e.preventDefault(); close(); }
+    });
+    results.addEventListener("click", (e) => {
+      const item = e.target.closest(".quicksearch-item");
+      if (!item) return;
+      sel = Number(item.dataset.idx);
+      connectSel();
+    });
+    bd.addEventListener("mousedown", (e) => { if (e.target === bd) close(); });
+
+    renderQuickSearchList();
+    input.focus();
+  }
+
   async function openConnection(conn){
-    if(conn.type==="web"&&conn.url){await openWebTab({name:conn.name,url:conn.url});return;}
+    if(conn.type==="web"&&conn.url){await openWebTab({connId:conn.id,name:conn.name,url:conn.url});return;}
     if(conn.type==="serial"){
-      await openSerialTab({name:conn.name,comPort:conn.comPort,baudRate:conn.baudRate||9600,dataBits:conn.dataBits||8,parity:conn.parity||"none",stopBits:conn.stopBits||1});
+      await openSerialTab({connId:conn.id,name:conn.name,comPort:conn.comPort,baudRate:conn.baudRate||9600,dataBits:conn.dataBits||8,parity:conn.parity||"none",stopBits:conn.stopBits||1});
       return;
     }
     if(conn.type==="ssh"){
       const prev=await hideActiveWebTab();
-      let username=conn.username||"", password=null;
-      try{
-        const r=await window.api.cred.load({id:conn.id});
-        if(r?.ok) password=r.password;
-      }catch{}
-      if(!password){
-        const typed=await showPrompt({title:`SSH – ${conn.name}`,label:`${t("sshPasswordForLabel")} ${username}@${conn.host||""}`,password:true});
-        if(typed===null){await restoreWebTab(prev);return;}
-        password=typed;
+      let username=conn.username||"", password=null, passphrase=null;
+      const useKey = conn.authType==="key" && !!conn.keyPath;
+
+      // Jumphost-Passphrase (immer Key) – zuerst abfragen, falls Jumphost aktiv
+      let jump=null;
+      if(conn.jump && conn.jump.host){
+        const jpass=await showPrompt({title:`Jumphost – ${conn.jump.host}`,label:`${t("sshPassphraseForLabel")} ${conn.jump.username||""}@${conn.jump.host}`,password:true});
+        if(jpass===null){await restoreWebTab(prev);return;}
+        jump={host:conn.jump.host,port:conn.jump.port||22,username:conn.jump.username||"",keyPath:conn.jump.keyPath||"",passphrase:jpass};
       }
-      await openSshTab({name:conn.name,host:conn.host,port:conn.port||22,username,password});
+
+      if(useKey){
+        // Passphrase wird bewusst NICHT gespeichert – bei jedem Verbinden abfragen
+        const typed=await showPrompt({title:`SSH – ${conn.name}`,label:`${t("sshPassphraseForLabel")} ${username}@${conn.host||""}`,password:true});
+        if(typed===null){await restoreWebTab(prev);return;}
+        passphrase=typed; // leer lassen = Schlüssel ohne Passphrase
+      }else if(conn.sharedPassword){
+        // Geteiltes Passwort: Tresor entsperren und entschlüsseln
+        const st=await window.api.vault.status();
+        if(!st.exists){
+          // Verschlüsseltes Passwort vorhanden, aber kein Tresor-Header am Datenort.
+          // Das darf NICHT den Einrichtungs-Dialog auslösen (neues Passwort würde
+          // die bestehenden Geheimnisse nicht entschlüsseln können).
+          await showAlert({title:t("vaultMissingTitle"),message:t("vaultMissingMsg")});
+          await restoreWebTab(prev);return;
+        }
+        const ok=await ensureVaultUnlocked();
+        if(!ok){await restoreWebTab(prev);return;}
+        const dec=await window.api.vault.decrypt({ciphertext:conn.sharedPassword});
+        if(dec.ok){password=dec.plaintext;}
+        else{await showAlert({title:t("vaultUnlockTitle"),message:dec.error||"Fehler"});await restoreWebTab(prev);return;}
+      }else{
+        try{
+          const r=await window.api.cred.load({id:conn.id});
+          if(r?.ok) password=r.password;
+        }catch{}
+        if(!password){
+          const typed=await showPrompt({title:`SSH – ${conn.name}`,label:`${t("sshPasswordForLabel")} ${username}@${conn.host||""}`,password:true});
+          if(typed===null){await restoreWebTab(prev);return;}
+          password=typed;
+        }
+      }
+      await openSshTab({connId:conn.id,name:conn.name,host:conn.host,port:conn.port||22,username,password,authType:useKey?"key":"password",keyPath:useKey?conn.keyPath:undefined,passphrase,jump});
       return;
     }
     await openRdpTab({connId:conn.id,name:conn.name,host:conn.host,port:conn.port?Number(conn.port):undefined,profile:conn.profile||{}});
   }
 
-  async function openWebTab({name,url}){
+  async function openWebTab({connId,name,url}){
     const tabId=genTabId();await deactivateCurrentTab();
-    tabs.set(tabId,{id:tabId,type:"web",title:name||url,url});activeTabId=tabId;renderTabBar();
+    tabs.set(tabId,{id:tabId,type:"web",title:name||url,url,connId});activeTabId=tabId;renderTabBar();
     await new Promise(r=>requestAnimationFrame(r));
-    try{await window.api.web.open({tabId,url,bounds:getContentBounds()});}
-    catch(err){tabs.delete(tabId);activeTabId=null;renderTabBar();await showAlert({title:"Ladefehler",message:String(err?.message||err)});}
+    let result;
+    try{result=await window.api.web.open({tabId,url,bounds:getContentBounds()});}
+    catch(err){result={ok:false,error:String(err?.message||err)};}
+    // Wenn das Laden fehlschlug (z. B. Server nicht erreichbar): Tab wieder
+    // entfernen und eine kurze Meldung zeigen, statt ein leeres Fenster.
+    if(!result||result.ok===false){
+      tabs.delete(tabId);activeTabId=null;renderTabBar();
+      await showAlert({title:t("webUnreachableTitle"),message:t("webUnreachableMsg",name||url)});
+    }
   }
 
-  async function openSshTab({name,host,port,username,password}){
+  async function openSshTab({connId,name,host,port,username,password,authType,keyPath,passphrase,jump}){
     const tabId=genTabId(),sessionId="ssh-"+tabId;
     await deactivateCurrentTab();
     const container=document.createElement("div");container.className="ssh-tab-container active";
     tabContentArea.appendChild(container);
-    const tabData={id:tabId,type:"ssh",title:name||host,sessionId,host,username,container,term:null,fitAddon:null,offData:null,offClosed:null};
+    const tabData={id:tabId,type:"ssh",title:name||host,sessionId,host,username,connId,container,term:null,fitAddon:null,offData:null,offClosed:null};
     tabs.set(tabId,tabData);activeTabId=tabId;renderTabBar();
-    const connResult=await window.api.ssh.connect({sessionId,host,port,username,password});
+    const connResult=await window.api.ssh.connect({sessionId,host,port,username,password,authType,keyPath,passphrase,jump});
     if(!connResult.ok){tabs.delete(tabId);container.remove();activeTabId=null;renderTabBar();await showAlert({title:t("sshConnError"),message:connResult.error||t("sshConnFailed")});return;}
     const term=new Terminal({cursorBlink:true,fontSize:appSettings.sshFontSize||14,fontFamily:"Consolas,'Courier New',monospace",theme:{background:"#1e1e1e",foreground:"#ddd",cursor:"#ddd",selection:"rgba(255,255,255,0.3)"}});
     const fitAddon=new FitAddon.FitAddon();
@@ -851,7 +1431,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     const portLabel=port&&port!==3389?`:${port}`:"";
     container.innerHTML=`<div class="rdp-placeholder"><div class="rdp-placeholder-icon">🪟</div><div class="rdp-placeholder-name">${escHtml(name)}</div><div class="rdp-placeholder-host">${escHtml(host)}${escHtml(portLabel)}</div><div class="rdp-placeholder-status connecting" id="rdp-status-${tabId}">${t("connecting")}</div><button class="btn primary rdp-focus-btn" id="rdp-focus-btn-${tabId}" style="margin-top:4px">🪟 Fenster in den Vordergrund</button></div>`;
     tabContentArea.appendChild(container);
-    const tabData={id:tabId,type:"rdp",title:name,host,container,offClosed:null};
+    const tabData={id:tabId,type:"rdp",title:name,host,connId,container,offClosed:null};
     tabs.set(tabId,tabData);activeTabId=tabId;renderTabBar();
     container.querySelector(`#rdp-focus-btn-${tabId}`).addEventListener("click",()=>window.api.rdp.focus({tabId}).catch(()=>{}));
     const p=profile||{};
@@ -912,25 +1492,99 @@ document.addEventListener("DOMContentLoaded", async () => {
     let currentSettings={};
     try{currentSettings=await window.api.settings.load()||{};}catch{}
     const currentLangSetting = currentSettings.language || _lang;
+    // Aktuelles Schnellsuche-Kürzel (oder Default), für die Anzeige im Feld
+    const currentShortcut = currentSettings.quickSearchShortcut || "CommandOrControl+Shift+Space";
+    // Verbindungen und Ordner rekursiv zählen (inkl. Unterordner)
+    function countConns(folders) {
+      let n = 0;
+      for (const f of folders || []) { n += (f.items?.length || 0); n += countConns(f.folders); }
+      return n;
+    }
+    function countFolders(folders) {
+      let n = 0;
+      for (const f of folders || []) { n += 1; n += countFolders(f.folders); }
+      return n;
+    }
+    const totalConns   = countConns(model?.folders);
+    const totalFolders = countFolders(model?.folders);
     const container=document.createElement("div");container.className="settings-tab-container active";
     container.innerHTML=`
       <div class="settings-content">
         <h1 class="settings-page-title">${t("settingsTitle")}</h1>
-        <section class="settings-section">
-          <div class="settings-section-title">${t("sectionConnData")}</div>
-          <div class="settings-item">
-            <div class="settings-item-left"><div class="settings-item-label">${t("import")}</div><div class="settings-item-desc">${t("importDesc")}</div></div>
-            <button class="settings-action-btn" id="s-import">📥 ${t("import")}…</button>
+<section class="settings-section">
+          <div class="settings-section-title">${t("sectionCredentials")}</div>
+
+          <div style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.5px;color:var(--tx-5);margin-bottom:8px">${t("personalCreds")}</div>
+          <div class="pers-cred-row">
+            <label>${t("username")}</label>
+            <input type="text" id="s-pers-user" placeholder="user@domain.local" value="${personalCreds?.username||''}"/>
           </div>
-          <div class="settings-item">
-            <div class="settings-item-left"><div class="settings-item-label">${t("export")}</div><div class="settings-item-desc">${t("exportDesc")}</div></div>
-            <button class="settings-action-btn" id="s-export">📤 ${t("export")}…</button>
+          <div class="pers-cred-row">
+            <label>${t("password")}</label>
+            <input type="password" id="s-pers-pw" placeholder="${personalCreds?.ok?t("passwordSaved"):t('passwordEnterPlaceholder')}"/>
           </div>
-          <div class="settings-item">
-            <div class="settings-item-left"><div class="settings-item-label">${t("openDataFolder")}</div><div class="settings-item-desc">${t("openDataFolderDesc")}</div></div>
-            <button class="settings-action-btn" id="s-open-folder">${t("openDataFolderBtn")}</button>
+          <div style="display:flex;gap:8px;margin-top:8px;justify-content:flex-end">
+            <button class="settings-action-btn" id="s-pers-save">${t("saveBtn")}</button>
+            ${personalCreds?.ok?`<button class="settings-action-btn" id="s-pers-del" style="color:var(--err)">${t("deleteBtn")}</button>`:""}
+          </div>
+
+          <div style="border-top:1px solid var(--bd-4);margin-top:14px;padding-top:14px" class="settings-item">
+            <div class="settings-item-left">
+              <div class="settings-item-label">${t("rdpAllPersonalLabel")}</div>
+              <div class="settings-item-desc">${t("rdpAllPersonalHint")}</div>
+            </div>
+            <button class="settings-action-btn" id="rdp-all-personal">${t("rdpAllPersonalBtn")}</button>
+          </div>
+
+          <div style="margin-top:14px;padding-top:0" class="settings-item">
+            <div class="settings-item-left">
+              <div class="settings-item-label">${t("sshPasswords")}</div>
+              <div class="settings-item-desc">${t("sshPasswordsDesc")}</div>
+            </div>
+            <button class="settings-action-btn" id="s-clear-creds">${t("deleteBtn")}</button>
           </div>
         </section>
+
+        <section class="settings-section">
+          <div class="settings-section-title">${t("sectionShortcuts")}</div>
+          <div class="settings-item">
+            <div class="settings-item-left">
+              <div class="settings-item-label">${t("shortcutQuickSearch")}</div>
+              <div class="settings-item-desc">${t("shortcutQuickSearchHint")}</div>
+              <div id="qs-shortcut-msg" style="font-size:12px;margin-top:6px;min-height:16px"></div>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:6px;align-items:flex-end;flex-shrink:0">
+              <input type="text" id="qs-shortcut-display" readonly
+                value="${escHtml(shortcutToDisplay(currentShortcut))}"
+                style="width:180px;box-sizing:border-box;padding:8px 10px;font-size:13px;text-align:center;background:var(--bg-input);color:var(--tx-in);border:1px solid var(--bd-2);border-radius:6px;outline:none;cursor:pointer"/>
+              <div style="display:flex;gap:8px">
+                <button class="settings-action-btn" id="qs-shortcut-change">${t("shortcutChange")}</button>
+                <button class="settings-action-btn" id="qs-shortcut-default">${t("shortcutDefault")}</button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="settings-section">
+          <div class="settings-section-title">${t("sectionBackground")}</div>
+          <div class="settings-item">
+            <div class="settings-item-left">
+              <div class="settings-item-label">${t("trayMode")}</div>
+              <div class="settings-item-desc">${t("trayModeDesc")}</div>
+            </div>
+            <label class="toggle"><input type="checkbox" id="set-tray-mode" ${currentSettings?.trayMode!==false?"checked":""}>
+              <span class="toggle-track"><span class="toggle-thumb"></span></span></label>
+          </div>
+          <div class="settings-item">
+            <div class="settings-item-left">
+              <div class="settings-item-label">${t("autostart")}</div>
+              <div class="settings-item-desc">${t("autostartDesc")}</div>
+            </div>
+            <label class="toggle"><input type="checkbox" id="set-autostart" ${currentSettings?.autostart===true?"checked":""}>
+              <span class="toggle-track"><span class="toggle-thumb"></span></span></label>
+          </div>
+        </section>
+
         <section class="settings-section">
           <div class="settings-section-title">${t("sectionDesign")}</div>
           <div class="settings-item">
@@ -951,44 +1605,43 @@ document.addEventListener("DOMContentLoaded", async () => {
           </div>
         </section>
 
-        <section class="settings-section">
-          <div class="settings-section-title">${t("sectionSshTerminal")}</div>
+                <section class="settings-section">
+          <div class="settings-section-title">${t("sectionConnOptions")}</div>
           <div class="settings-item">
-            <div class="settings-item-left"><div class="settings-item-label">${t("fontSize")}</div><div class="settings-item-desc">${t("fontSizeDesc")}</div></div>
-            <div class="settings-number-row">
-              <button class="settings-number-btn" id="s-font-minus">−</button>
-              <span class="settings-number-value" id="s-font-value">${appSettings.sshFontSize||14}</span>
-              <button class="settings-number-btn" id="s-font-plus">+</button>
-            </div>
+            <div class="settings-item-left"><div class="settings-item-label">${t("import")}</div><div class="settings-item-desc">${t("importDesc")}</div></div>
+            <button class="settings-action-btn" id="s-import">📥 ${t("import")}…</button>
           </div>
-        </section>
-        <section class="settings-section">
-          <div class="settings-section-title">${t("sectionCredentials")}</div>
-
-          <div style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.5px;color:var(--tx-5);margin-bottom:8px">${t("personalCreds")}</div>
-          <div class="pers-cred-row">
-            <label>${t("username")}</label>
-            <input type="text" id="s-pers-user" placeholder="user@domain.local" value="${personalCreds?.username||''}"/>
+          <div class="settings-item">
+            <div class="settings-item-left"><div class="settings-item-label">${t("export")}</div><div class="settings-item-desc">${t("exportDesc")}</div></div>
+            <button class="settings-action-btn" id="s-export">📤 ${t("export")}…</button>
           </div>
-          <div class="pers-cred-row">
-            <label>${t("password")}</label>
-            <input type="password" id="s-pers-pw" placeholder="${personalCreds?.ok?t("passwordSaved"):t('passwordEnterPlaceholder')}"/>
+          <div class="settings-item">
+            <div class="settings-item-left"><div class="settings-item-label">${t("openDataFolder")}</div><div class="settings-item-desc">${t("openDataFolderDesc")}</div></div>
+            <button class="settings-action-btn" id="s-open-folder">${t("openDataFolderBtn")}</button>
           </div>
-          <div style="display:flex;gap:8px;margin-top:8px;justify-content:flex-end">
-            <button class="settings-action-btn" id="s-pers-save">${t("saveBtn")}</button>
-            ${personalCreds?.ok?`<button class="settings-action-btn" id="s-pers-del" style="color:var(--err)">${t("deleteBtn")}</button>`:""}
-          </div>
-
-          <div style="border-top:1px solid var(--bd-4);margin-top:14px;padding-top:14px" class="settings-item">
+          <div class="settings-item">
             <div class="settings-item-left">
-              <div class="settings-item-label">${t("sshPasswords")}</div>
-              <div class="settings-item-desc">${t("sshPasswordsDesc")}</div>
+              <div class="settings-item-label" id="ds-current-mode">${t("storageOptionsLabel")} ${currentSettings?.dataSource==="smb"?t("storageSmbActive"):t("storageLocalActive")}</div>
+              <div class="settings-item-desc" id="ds-current-detail">${
+                currentSettings?.dataSource==="smb"
+                  ? escHtml(currentSettings?.smbPath||"")+" · "+(currentSettings?.smbWriteMode==="readwrite"?t("smbModeReadwrite"):t("smbModeReadonly"))
+                  : t("dataSourceLocalDetail")
+              }</div>
             </div>
-            <button class="settings-action-btn" id="s-clear-creds">${t("deleteBtn")}</button>
+            <button class="settings-action-btn" id="ds-change-btn">${t("dataSourceChangeBtn")}</button>
+          </div>
+          <div class="settings-item">
+            <div class="settings-item-left">
+              <div class="settings-item-label" id="vault-status-label">${t("vaultStatusChecking")}</div>
+              <div class="settings-item-desc">${t("vaultResetHint")}</div>
+            </div>
+            <div style="display:flex;gap:8px;flex-shrink:0">
+              <button class="settings-action-btn" id="vault-forget-btn">${t("vaultForgetBtn")}</button>
+              <button class="settings-action-btn" id="vault-reset-btn" style="color:var(--err)">${t("vaultResetBtn")}</button>
+            </div>
           </div>
         </section>
-
-        <section class="settings-section">
+<section class="settings-section">
           <div class="settings-section-title">${t("sectionConnStatus")}</div>
           <div class="settings-item-desc" style="margin-bottom:12px">${t("connStatusDesc")}</div>
           <div style="display:flex;gap:8px;flex-wrap:wrap">
@@ -1020,35 +1673,16 @@ document.addEventListener("DOMContentLoaded", async () => {
         </section>
 
         <section class="settings-section">
-          <div class="settings-section-title">${t("sectionDataSource")}</div>
-          <div class="settings-item-desc" style="margin-bottom:12px">${t("dataSourceDesc")}</div>
-          <div style="display:flex;gap:20px;margin-bottom:12px">
-            <label style="display:flex;align-items:center;gap:8px;cursor:pointer">
-              <input type="radio" name="data-source" value="local" ${currentSettings?.dataSource!=="smb"?"checked":""}/>
-              <span>${t("dataSourceLocal")}</span>
-            </label>
-            <label style="display:flex;align-items:center;gap:8px;cursor:pointer">
-              <input type="radio" name="data-source" value="smb" ${currentSettings?.dataSource==="smb"?"checked":""}/>
-              <span>${t("dataSourceSmb")}</span>
-            </label>
-          </div>
-          <div id="smb-config" style="padding-left:2px;display:${currentSettings?.dataSource==="smb"?"block":"none"}">
-            <div class="settings-item-label" style="margin-bottom:6px">${t("smbPathLabel")}</div>
-            <input type="text" id="smb-path" value="${escHtml(currentSettings?.smbPath||"")}" placeholder="${t("smbPathPlaceholder")}"
-              style="width:100%;box-sizing:border-box;padding:8px 10px;font-size:13px;background:var(--bg-input);color:var(--tx-in);border:1px solid var(--bd-2);border-radius:6px;outline:none;margin-bottom:12px;font-family:monospace"/>
-            <div style="display:flex;gap:20px">
-              <label style="display:flex;align-items:center;gap:6px;cursor:pointer;font-size:13px">
-                <input type="radio" name="smb-mode" value="readonly" ${currentSettings?.smbWriteMode!=="readwrite"?"checked":""}/>
-                <span>${t("smbModeReadonly")}</span>
-              </label>
-              <label style="display:flex;align-items:center;gap:6px;cursor:pointer;font-size:13px">
-                <input type="radio" name="smb-mode" value="readwrite" ${currentSettings?.smbWriteMode==="readwrite"?"checked":""}/>
-                <span>${t("smbModeReadwrite")}</span>
-              </label>
+          <div class="settings-section-title">${t("sectionSshTerminal")}</div>
+          <div class="settings-item">
+            <div class="settings-item-left"><div class="settings-item-label">${t("fontSize")}</div><div class="settings-item-desc">${t("fontSizeDesc")}</div></div>
+            <div class="settings-number-row">
+              <button class="settings-number-btn" id="s-font-minus">−</button>
+              <span class="settings-number-value" id="s-font-value">${appSettings.sshFontSize||14}</span>
+              <button class="settings-number-btn" id="s-font-plus">+</button>
             </div>
           </div>
         </section>
-
         <section class="settings-section">
           <div class="settings-section-title">${t("sectionLanguage")}</div>
           <div class="settings-item-desc" style="margin-bottom:12px">${t("langDesc")}</div>
@@ -1067,15 +1701,24 @@ document.addEventListener("DOMContentLoaded", async () => {
         <section class="settings-section">
           <div class="settings-section-title">${t("sectionAbout")}</div>
           <div class="settings-about">
-            <strong style="color:#ccc">${t("aboutApp")}</strong><br>
+            <strong style="color:var(--tx-2)">${t("aboutApp")}</strong><br>
             ${t("aboutDesc")}<br>
-            <span style="color:#555">${t("aboutConns")}: ${(model?.folders||[]).reduce((n,f)=>n+(f.items?.length||0),0)} · ${t("aboutFolders")}: ${(model?.folders||[]).length}</span>
+            <span style="color:var(--tx-5)">${t("aboutVersion")}: <span id="about-version">…</span></span><br>
+            <span style="color:var(--tx-6)">${t("aboutConns")}: ${totalConns} · ${t("aboutFolders")}: ${totalFolders}</span>
           </div>
         </section>
       </div>`;
     tabContentArea.appendChild(container);
     const tabData={id:tabId,type:"settings",title:t("settingsTitle"),container};
     tabs.set(tabId,tabData);activeTabId=tabId;renderTabBar();
+    // App-Version im Über-Bereich einsetzen (kommt asynchron vom Backend)
+    (async () => {
+      try {
+        const v = await window.api.getVersion();
+        const el = container.querySelector("#about-version");
+        if (el) el.textContent = v || "?";
+      } catch { /* ignorieren */ }
+    })();
     container.querySelector("#s-import").addEventListener("click",async()=>await importConnections());
     container.querySelector("#s-export").addEventListener("click",async()=>{
       try{
@@ -1104,38 +1747,255 @@ document.addEventListener("DOMContentLoaded", async () => {
       await window.api.cred.deletePersonal();
       await showAlert({title:"Gelöscht",message:"Persönliche Zugangsdaten wurden gelöscht."});
     });
-    container.querySelectorAll('input[name="data-source"]').forEach(r => {
-      r.addEventListener("change", async () => {
+
+    // Alle RDP-Verbindungen auf persönliche Anmeldung umstellen
+    const rdpAllBtn = container.querySelector("#rdp-all-personal");
+
+    // Sammelt alle RDP-Verbindungs-IDs im aktuellen Model
+    function collectRdpIds() {
+      const ids = [];
+      (function walk(folders) {
+        for (const f of folders || []) {
+          for (const c of f.items || []) { if (c.type === "rdp") ids.push(c.id); }
+          walk(f.folders);
+        }
+      })(model?.folders);
+      return ids;
+    }
+
+    // Button ausgrauen, wenn es keine RDP gibt ODER alle schon auf "personal" stehen
+    async function refreshRdpAllBtn() {
+      if (!rdpAllBtn) return;
+      const ids = collectRdpIds();
+      if (ids.length === 0) { rdpAllBtn.disabled = true; rdpAllBtn.title = t("rdpAllPersonalNone"); return; }
+      let allPersonal = true;
+      for (const id of ids) {
         try {
-          const s = await window.api.settings.load() || {};
-          s.dataSource = r.value;
-          await window.api.settings.save(s);
-          const cfgDiv = container.querySelector("#smb-config");
-          if (cfgDiv) cfgDiv.style.display = r.value === "smb" ? "block" : "none";
-          await loadAndRender();
-        } catch(err) { console.error(err); }
+          const modeR = await window.api.cred.getMode({ id });
+          if (modeR?.mode !== "personal") { allPersonal = false; break; }
+        } catch { allPersonal = false; break; }
+      }
+      rdpAllBtn.disabled = allPersonal;
+      rdpAllBtn.title = allPersonal ? t("rdpAllPersonalAlready") : "";
+    }
+    refreshRdpAllBtn();
+
+    rdpAllBtn?.addEventListener("click", async () => {
+      const rdpIds = collectRdpIds();
+      if (rdpIds.length === 0) {
+        await showAlert({ title: t("rdpAllPersonalBtn"), message: t("rdpAllPersonalNone") });
+        return;
+      }
+      // Nur die Verbindungen ermitteln, die noch NICHT auf persönlich stehen
+      const toChange = [];
+      for (const id of rdpIds) {
+        try {
+          const modeR = await window.api.cred.getMode({ id });
+          if (modeR?.mode !== "personal") toChange.push(id);
+        } catch { toChange.push(id); } // im Zweifel mit umstellen
+      }
+      if (toChange.length === 0) {
+        await showAlert({ title: t("rdpAllPersonalBtn"), message: t("rdpAllPersonalAlready") });
+        await refreshRdpAllBtn();
+        return;
+      }
+      const sure = await showConfirm({
+        title: t("rdpAllPersonalConfirmTitle"),
+        message: t("rdpAllPersonalConfirmMsg", String(toChange.length)),
+        okLabel: t("rdpAllPersonalBtn"), cancelLabel: t("cancel")
       });
+      if (!sure) return;
+
+      let done = 0;
+      for (const id of toChange) {
+        try { const r = await window.api.cred.setMode({ id, mode: "personal" }); if (r?.ok) done++; } catch {}
+      }
+      await showAlert({ title: t("rdpAllPersonalDoneTitle"), message: t("rdpAllPersonalDoneMsg", String(done)) });
+      await loadAndRender();
+      await refreshRdpAllBtn(); // Button jetzt ausgrauen, da alle umgestellt
     });
-    const smbPathInput = container.querySelector("#smb-path");
-    if (smbPathInput) {
-      smbPathInput.addEventListener("blur", async () => {
-        try {
+    const dsChangeBtn = container.querySelector("#ds-change-btn");
+    if (dsChangeBtn) {
+      dsChangeBtn.addEventListener("click", async () => {
+        const changed = await showDataSourceDialog();
+        if (changed) {
+          // Anzeige in den Einstellungen aktualisieren
           const s = await window.api.settings.load() || {};
-          s.smbPath = smbPathInput.value.trim();
-          await window.api.settings.save(s);
+          const modeEl   = container.querySelector("#ds-current-mode");
+          const detailEl = container.querySelector("#ds-current-detail");
+          if (modeEl)   modeEl.textContent = t("storageOptionsLabel") + " " + (s.dataSource === "smb" ? t("storageSmbActive") : t("storageLocalActive"));
+          if (detailEl) detailEl.textContent = s.dataSource === "smb"
+            ? (s.smbPath || "") + " · " + (s.smbWriteMode === "readwrite" ? t("smbModeReadwrite") : t("smbModeReadonly"))
+            : t("dataSourceLocalDetail");
           await loadAndRender();
-        } catch(err) { console.error(err); }
+          // Tresor am neuen Ort erkennen: alten Schlüssel verwerfen, ggf. neu entsperren
+          await initVault({ afterSwitch: true });
+        }
       });
     }
-    container.querySelectorAll('input[name="smb-mode"]').forEach(r => {
-      r.addEventListener("change", async () => {
-        try {
-          const s = await window.api.settings.load() || {};
-          s.smbWriteMode = r.value;
-          await window.api.settings.save(s);
-        } catch(err) { console.error(err); }
+
+    // Tresor-Status anzeigen + Buttons je nach Zustand aktivieren/ausgrauen
+    const vaultResetBtn  = container.querySelector("#vault-reset-btn");
+    const vaultForgetBtn = container.querySelector("#vault-forget-btn");
+
+    async function refreshVaultButtons() {
+      const lbl = container.querySelector("#vault-status-label");
+      let st = { exists: false, unlocked: false, remembered: false };
+      try { st = await window.api.vault.status(); } catch {}
+      if (lbl) lbl.textContent = !st.exists ? t("vaultStatusNone")
+        : st.unlocked ? t("vaultStatusUnlocked") : t("vaultStatusLocked");
+      // Zurücksetzen nur sinnvoll, wenn ein Tresor existiert
+      if (vaultResetBtn) {
+        vaultResetBtn.disabled = !st.exists;
+        vaultResetBtn.title = st.exists ? "" : t("vaultNoVaultHint");
+      }
+      // Vergessen nur sinnvoll, wenn ein Tresor existiert UND ein Passwort gemerkt ist
+      if (vaultForgetBtn) {
+        const canForget = st.exists && st.remembered;
+        vaultForgetBtn.disabled = !canForget;
+        vaultForgetBtn.title = !st.exists ? t("vaultNoVaultHint")
+          : !st.remembered ? t("vaultNothingRemembered") : "";
+      }
+    }
+    refreshVaultButtons();
+
+    if (vaultResetBtn) {
+      vaultResetBtn.addEventListener("click", async () => {
+        const sure = await showConfirm({
+          title: t("vaultResetTitle"),
+          message: t("vaultResetMsg"),
+          okLabel: t("vaultResetOk"), cancelLabel: t("cancel")
+        });
+        if (!sure) return;
+        const r = await window.api.vault.reset();
+        if (r.ok) {
+          await showAlert({ title: t("vaultResetDoneTitle"), message: t("vaultResetDoneMsg", String(r.removed || 0)) });
+          await refreshVaultButtons();
+          await loadAndRender();
+        } else {
+          await showAlert({ title: t("errorTitle"), message: r.error || "Fehler" });
+        }
       });
-    });
+    }
+    if (vaultForgetBtn) {
+      vaultForgetBtn.addEventListener("click", async () => {
+        const sure = await showConfirm({
+          title: t("vaultForgetTitle"),
+          message: t("vaultForgetMsg"),
+          okLabel: t("vaultForgetBtn"), cancelLabel: t("cancel")
+        });
+        if (!sure) return;
+        const r = await window.api.vault.forget();
+        if (r.ok) {
+          await showAlert({ title: t("vaultForgetDoneTitle"), message: t("vaultForgetDoneMsg") });
+          await refreshVaultButtons();
+        } else {
+          await showAlert({ title: t("errorTitle"), message: r.error || "Fehler" });
+        }
+      });
+    }
+    // ── Schnellsuche-Tastenkombination ──────────────────────────────────
+    (function wireShortcut(){
+      const disp   = container.querySelector("#qs-shortcut-display");
+      const btnCh  = container.querySelector("#qs-shortcut-change");
+      const btnDef = container.querySelector("#qs-shortcut-default");
+      const msgEl  = container.querySelector("#qs-shortcut-msg");
+      if (!disp || !btnCh) return;
+
+      let recording = false;
+
+      function setMsg(text, kind){
+        if (!msgEl) return;
+        msgEl.textContent = text || "";
+        msgEl.style.color = kind === "err" ? "var(--err)" : kind === "ok" ? "var(--ok,#4caf50)" : "var(--tx-5)";
+      }
+
+      // Wandelt ein Tastatur-Event in ein Electron-Accelerator um
+      // (z. B. Strg+Shift+K -> "CommandOrControl+Shift+K").
+      // Gibt null zurück, wenn die Kombination ungültig ist (kein Modifikator).
+      function eventToAccelerator(e){
+        const mods = [];
+        if (e.ctrlKey)  mods.push("CommandOrControl");
+        if (e.shiftKey) mods.push("Shift");
+        if (e.altKey)   mods.push("Alt");
+        // Die eigentliche Taste (nicht der Modifikator selbst)
+        let key = e.key;
+        if (["Control","Shift","Alt","Meta"].includes(key)) return null; // nur Modifikator gedrückt
+        // Sondertasten in Accelerator-Schreibweise übersetzen
+        if (key === " ") key = "Space";
+        else if (key.length === 1) key = key.toUpperCase();
+        else key = key.charAt(0).toUpperCase() + key.slice(1); // z. B. "Enter", "F5"
+        // Globale Kürzel brauchen mindestens einen Modifikator
+        if (mods.length === 0) return null;
+        return [...mods, key].join("+");
+      }
+
+      function startRecording(){
+        recording = true;
+        disp.value = t("shortcutPressKeys");
+        setMsg(t("shortcutRecording"), "info");
+        disp.focus();
+      }
+
+      disp.addEventListener("click", startRecording);
+      btnCh.addEventListener("click", startRecording);
+
+      disp.addEventListener("keydown", async (e) => {
+        if (!recording) return;
+        e.preventDefault();
+        if (e.key === "Escape") { // Abbruch
+          recording = false;
+          const s = await window.api.settings.load() || {};
+          disp.value = shortcutToDisplay(s.quickSearchShortcut || "CommandOrControl+Shift+Space");
+          setMsg("", "info");
+          return;
+        }
+        const acc = eventToAccelerator(e);
+        if (!acc) { setMsg(t("shortcutNeedModifier"), "err"); return; }
+
+        recording = false;
+        // Speichern und Backend neu registrieren lassen
+        const s = await window.api.settings.load() || {};
+        s.quickSearchShortcut = acc;
+        await window.api.settings.save(s);
+        const r = await window.api.shortcut.reregister();
+        if (r?.ok) {
+          disp.value = shortcutToDisplay(acc);
+          setMsg(t("shortcutSaved"), "ok");
+        } else {
+          // Registrierung fehlgeschlagen (belegt) – zurück auf alten Wert
+          setMsg(t("shortcutInUse"), "err");
+          disp.value = shortcutToDisplay(acc);
+        }
+      });
+
+      btnDef.addEventListener("click", async () => {
+        recording = false;
+        const s = await window.api.settings.load() || {};
+        s.quickSearchShortcut = "CommandOrControl+Shift+Space";
+        await window.api.settings.save(s);
+        await window.api.shortcut.reregister();
+        disp.value = shortcutToDisplay("CommandOrControl+Shift+Space");
+        setMsg(t("shortcutSaved"), "ok");
+      });
+    })();
+
+    // ── Hintergrundbetrieb (Tray / Autostart) ───────────────────────────
+    (function wireBackground(){
+      const bind = (id, key) => {
+        const cb = container.querySelector("#" + id);
+        if (!cb) return;
+        cb.addEventListener("change", async () => {
+          const s = await window.api.settings.load() || {};
+          s[key] = cb.checked;
+          await window.api.settings.save(s);
+          try { await window.api.tray.apply(); } catch {}
+        });
+      };
+      bind("set-tray-mode", "trayMode");
+      bind("set-autostart", "autostart");
+    })();
+
     container.querySelectorAll('input[name="app-lang"]').forEach(r => {
       r.addEventListener("change", async () => {
         try {
@@ -1488,7 +2348,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     <div class="rdp-section-title">${t("connVerbindung")}</div>
     <div class="rdp-field-row">
       <div class="rdp-field rdp-field-grow"><label>${t("connName")}</label>
-        <input type="text" id="sr-name" placeholder="z. B. Cisco Switch"/></div>
+        <input type="text" id="sr-name" placeholder="${t('serialNamePlaceholder')}"/></div>
     </div>
     <div class="rdp-field-row">
       <div class="rdp-field rdp-field-grow">
@@ -1532,7 +2392,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   </div>
 
   <div class="rdp-section" style="border-bottom:none">
-    <div style="font-size:11px;color:#555;line-height:1.6">
+    <div style="font-size:11px;color:var(--tx-6);line-height:1.6">
       Cisco: 9600-8-N-1 &nbsp;|&nbsp; HP/Aruba: 9600-8-N-1 &nbsp;|&nbsp; Juniper: 9600-8-N-1<br>
       Neuere Geräte oft 115200
     </div>
@@ -1593,13 +2453,13 @@ document.addEventListener("DOMContentLoaded", async () => {
   /* =========================================================
      Tab öffnen: Serial
   ========================================================== */
-  async function openSerialTab({name, comPort, baudRate=9600, dataBits=8, parity="none", stopBits=1}){
+  async function openSerialTab({connId, name, comPort, baudRate=9600, dataBits=8, parity="none", stopBits=1}){
     const tabId=genTabId(), sessionId="serial-"+tabId;
     await deactivateCurrentTab();
     const container=document.createElement("div");
     container.className="ssh-tab-container active"; // xterm reuse
     tabContentArea.appendChild(container);
-    const tabData={id:tabId,type:"serial",title:name||comPort,sessionId,comPort,container,term:null,fitAddon:null,offData:null,offClosed:null};
+    const tabData={id:tabId,type:"serial",title:name||comPort,sessionId,comPort,connId,container,term:null,fitAddon:null,offData:null,offClosed:null};
     tabs.set(tabId,tabData);activeTabId=tabId;renderTabBar();
 
     const result=await window.api.serial.connect({sessionId,path:comPort,baudRate,dataBits,parity,stopBits});
@@ -1662,17 +2522,29 @@ document.addEventListener("DOMContentLoaded", async () => {
     function searchFolders(folders,path){
       for(const folder of folders){
         const fp=[...path,folder.name];
-        for(const item of(folder.items||[])){if(`${item.name} ${item.host||""} ${item.url||""}`.toLowerCase().includes(q))results.push({item,folderId:folder.id,path:fp});}
+        for(const item of(folder.items||[])){
+          // Wie die Schnellsuche: Name, Host/URL, Notizen UND Ordnerpfad durchsuchen,
+          // mehrere Begriffe (durch Leerzeichen getrennt) müssen alle vorkommen.
+          const notes=item.notes||item.profile?.notes||"";
+          const hay=`${item.name} ${item.host||""} ${item.url||""} ${notes} ${fp.join(" / ")}`.toLowerCase();
+          if(q.split(/\s+/).filter(Boolean).every(term=>hay.includes(term)))results.push({item,folderId:folder.id,path:fp});
+        }
         searchFolders(folder.folders||[],fp);
       }
     }
     searchFolders(model?.folders||[],[]);
     if(!results.length){treeContainer.appendChild(el("div",{style:"opacity:.6;padding:12px;font-size:12px;"},t("noResults")));return;}
-    for(const{item,path}of results){
+    for(const{item,folderId,path}of results){
       const icon=item.type==="web"?"🌐":item.type==="ssh"?"🔒":"🪟";
       const div=document.createElement("div");div.className="tree-item search-result";
-      div.innerHTML=`<div class="search-result-name">${icon} ${escHtml(item.name)}${item.host?getStatusDotHtml(item.id):""}</div><div class="search-breadcrumb">${escHtml(path.join(" › "))}</div>`;
+      div.innerHTML=`<div class="search-result-name">${icon} ${escHtml(item.name)}${(item.host||(item.type==="web"&&item.url))?getStatusDotHtml(item.id):""}</div><div class="search-breadcrumb">${escHtml(path.join(" › "))}</div>`;
       div.addEventListener("dblclick",async()=>{try{await openConnection(item);}catch(err){await showAlert({title:t("errorTitle"),message:String(err?.message||err)});}});
+      // Rechtsklick: dasselbe Kontextmenü wie im Baum (Bearbeiten, Löschen, …)
+      div.addEventListener("contextmenu",(e)=>{
+        e.preventDefault();
+        e.stopPropagation();
+        showContextMenu(e.clientX,e.clientY,{type:"connection",folderId,connectionId:item.id});
+      });
       treeContainer.appendChild(div);
     }
   }
@@ -1695,14 +2567,49 @@ document.addEventListener("DOMContentLoaded", async () => {
       header.setAttribute("draggable","true");
       header.addEventListener("dragstart",(e)=>{currentDrag={kind:"folder",id:folder.id};e.dataTransfer.effectAllowed="move";header.classList.add("dragging");});
       header.addEventListener("dragend",()=>{currentDrag=null;header.classList.remove("dragging");});
-      header.addEventListener("dragover",(e)=>{if(currentDrag&&(currentDrag.kind==="connection"||(currentDrag.kind==="folder"&&currentDrag.id!==folder.id))){e.preventDefault();e.dataTransfer.dropEffect="move";header.classList.add("drag-over");}});
-      header.addEventListener("dragleave",()=>header.classList.remove("drag-over"));
-      header.addEventListener("drop",async()=>{
-        header.classList.remove("drag-over");if(!currentDrag)return;
+      // Ermittelt beim Ziehen über einen Ordner die Zone:
+      // obere 25% = davor einsortieren, mittlere 50% = hineinverschachteln,
+      // untere 25% = dahinter einsortieren.
+      function folderDropZone(e){
+        const rect=header.getBoundingClientRect();
+        const rel=(e.clientY-rect.top)/rect.height;
+        if(rel<0.25)return "before";
+        if(rel>0.75)return "after";
+        return "into";
+      }
+      header.addEventListener("dragover",(e)=>{
+        if(!currentDrag)return;
+        // Ein Ordner darf nicht auf sich selbst gezogen werden
+        if(currentDrag.kind==="folder"&&currentDrag.id===folder.id)return;
+        e.preventDefault();e.dataTransfer.dropEffect="move";
+        header.classList.remove("drag-over","folder-drop-before","folder-drop-after");
+        // Verbindungen: immer "into" (in den Ordner). Ordner: Zonen.
+        if(currentDrag.kind==="connection"){header.classList.add("drag-over");return;}
+        const zone=folderDropZone(e);
+        if(zone==="into")header.classList.add("drag-over");
+        else if(zone==="before")header.classList.add("folder-drop-before");
+        else header.classList.add("folder-drop-after");
+      });
+      header.addEventListener("dragleave",()=>header.classList.remove("drag-over","folder-drop-before","folder-drop-after"));
+      header.addEventListener("drop",async(e)=>{
+        const zone=folderDropZone(e);
+        header.classList.remove("drag-over","folder-drop-before","folder-drop-after");
+        if(!currentDrag)return;
         try{
-          if(currentDrag.kind==="connection")await window.api.store.moveConnection({sourceFolderId:currentDrag.folderId,connectionId:currentDrag.id,targetFolderId:folder.id});
-          else if(currentDrag.kind==="folder"&&currentDrag.id!==folder.id)await window.api.store.moveFolder({folderId:currentDrag.id,targetFolderId:folder.id});
-          await loadAndRender();
+          if(currentDrag.kind==="connection"){
+            // Verbindung in diesen Ordner (ans Ende)
+            await window.api.store.moveConnection({sourceFolderId:currentDrag.folderId,connectionId:currentDrag.id,targetFolderId:folder.id});
+            await loadAndRender();
+          } else if(currentDrag.kind==="folder"&&currentDrag.id!==folder.id){
+            if(zone==="into"){
+              // Hineinverschachteln (wie bisher)
+              await window.api.store.moveFolder({folderId:currentDrag.id,targetFolderId:folder.id});
+              await loadAndRender();
+            } else {
+              // Davor/dahinter auf derselben Ebene einsortieren
+              await dropFolderBeside({dragId:currentDrag.id,siblingId:folder.id,before:(zone==="before")});
+            }
+          }
         }catch(err){console.error(err);await showAlert({title:t("errorTitle"),message:String(err?.message||err)});}
         finally{currentDrag=null;}
       });
@@ -1713,11 +2620,29 @@ document.addEventListener("DOMContentLoaded", async () => {
         const labelText=conn.type==="web"?`🌐 ${conn.name}${notesBadge}`:conn.type==="ssh"?`🔒 ${conn.name}${notesBadge}`:conn.type==="serial"?`🔌 ${conn.name}${notesBadge}`:`🪟 ${conn.name}${notesBadge}`;
         const item=el("div",{class:"tree-item",dataset:{id:conn.id,type:conn.type||"rdp"},style:`padding-left:${34+(depth-1)*INDENT}px`,...(notes?{title:notes}:{})});
         item.innerHTML=`<span class="tree-item-label">${labelText}</span>${getStatusDotHtml(conn.id)}`;
-        item.addEventListener("click",()=>{clearSelection();item.classList.add("active");selectedFolderId=folder.id;selectedConnId=conn.id;showConnInfoPanel(conn,folder.id);});
+        item.addEventListener("click",()=>{clearSelection();item.classList.add("active");selectedFolderId=folder.id;selectedConnId=conn.id;});
         item.addEventListener("dblclick",async()=>{try{await openConnection(conn);}catch(err){console.error(err);await showAlert({title:t("startError"),message:String(err?.message||err)});}});
         item.setAttribute("draggable","true");
         item.addEventListener("dragstart",(e)=>{currentDrag={kind:"connection",id:conn.id,folderId:folder.id};e.dataTransfer.effectAllowed="move";item.classList.add("dragging");});
-        item.addEventListener("dragend",()=>{currentDrag=null;item.classList.remove("dragging");});
+        item.addEventListener("dragend",()=>{currentDrag=null;item.classList.remove("dragging");item.classList.remove("drop-before","drop-after");});
+        // Umsortieren: erkennen, ob über oder unter dieser Verbindung eingefügt wird
+        item.addEventListener("dragover",(e)=>{
+          if(currentDrag?.kind!=="connection")return;
+          e.preventDefault();e.dataTransfer.dropEffect="move";
+          const rect=item.getBoundingClientRect();
+          const before=(e.clientY-rect.top)<rect.height/2; // obere Hälfte = davor
+          item.classList.toggle("drop-before",before);
+          item.classList.toggle("drop-after",!before);
+        });
+        item.addEventListener("dragleave",()=>{item.classList.remove("drop-before","drop-after");});
+        item.addEventListener("drop",async(e)=>{
+          if(currentDrag?.kind!=="connection"){return;}
+          e.preventDefault();e.stopPropagation();
+          const rect=item.getBoundingClientRect();
+          const before=(e.clientY-rect.top)<rect.height/2;
+          item.classList.remove("drop-before","drop-after");
+          await dropConnectionAt({drag:currentDrag,targetFolderId:folder.id,targetConnId:conn.id,before});
+        });
         itemsWrap.appendChild(item);
       });
       const folderEl=el("div",{class:"tree-folder"+(isOpen?" open":"")},header,itemsWrap);
@@ -1796,7 +2721,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         addDivider();
       }
       addItem(t("ctxNewRdp"),async()=>{const fid=await getOrCreateFolder();if(!fid)return;const result=await showConnectionForm({title:t("newRdpTitle"),defaults:{port:"3389",profile:{fullscreen:true,clipboard:true,colorDepth:32}}});if(!result)return;const cr=await window.api.store.createConnection({folderId:fid,name:result.name,host:result.host,port:result.port,profile:result.profile||{}});if(cr?.connId&&result.credMode){try{await window.api.cred.setMode({id:cr.connId,mode:result.credMode});}catch{}}await loadAndRender();});
-      addItem(t("ctxNewSsh"),async()=>{const fid=await getOrCreateFolder();if(!fid)return;const result=await showSshForm({title:t("newSshTitle"),defaults:{port:22}});if(!result)return;const cr=await window.api.store.createSshConnection({folderId:fid,name:result.name,host:result.host,port:result.port,username:result.username});if(cr?.connId&&result.savePassword&&result.password){try{await window.api.cred.save({id:cr.connId,password:result.password});}catch{}}await loadAndRender();});
+      addItem(t("ctxNewSsh"),async()=>{const fid=await getOrCreateFolder();if(!fid)return;const result=await showSshForm({title:t("newSshTitle"),defaults:{port:22}});if(!result)return;const cr=await window.api.store.createSshConnection({folderId:fid,name:result.name,host:result.host,port:result.port,username:result.username,authType:result.authType,keyPath:result.keyPath,jumpHost:result.jumpHost,jumpPort:result.jumpPort,jumpUsername:result.jumpUsername,jumpKeyPath:result.jumpKeyPath});if(cr?.connId){await applySshPassword(cr.connId,fid,result);}await loadAndRender();});
       addItem(t("ctxNewWeb"),async()=>{const fid=await getOrCreateFolder();if(!fid)return;const res=await showWebsiteForm({title:t("newWebTitle")});if(!res)return;await window.api.store.createWebConnection({folderId:fid,name:res.name,url:res.url});await loadAndRender();});
       addItem(t("ctxNewSerial"),async()=>{const fid=await getOrCreateFolder();if(!fid)return;const res=await showSerialForm({title:t("newSerialTitle")});if(!res)return;await window.api.store.createSerialConnection({folderId:fid,name:res.name,comPort:res.comPort,baudRate:res.baudRate,dataBits:res.dataBits,parity:res.parity,stopBits:res.stopBits});await loadAndRender();});
     }
@@ -1804,19 +2729,19 @@ document.addEventListener("DOMContentLoaded", async () => {
     if(ctxType==="folder"&&context.folderId){
       addDivider();
       if((context.depth||1)<MAX_DEPTH){addItem(t("ctxNewSubFolder"),async()=>{const name=await showPrompt({title:t("newSubfolderTitle"),label:t("folderName")});if(!name)return;await window.api.store.createFolder({name,parentId:context.folderId});await loadAndRender();});}
-      addItem(t("ctxRenameFolder"),async()=>{const current=findFolderNameById(model?.folders||[],context.folderId)||"";const next=await showPrompt({title:t("renameFolderTitle"),label:t("newNameLabel"),defaultValue:current});if(!next||next.trim()===current)return;await window.api.store.renameFolder({folderId:context.folderId,name:next.trim()});await loadAndRender();});
+      addItem(t("ctxRenameFolder"),async()=>{const current=findFolderInModel(model?.folders,context.folderId)?.name||"";const next=await showPrompt({title:t("renameFolderTitle"),label:t("newNameLabel"),defaultValue:current});if(!next||next.trim()===current)return;await window.api.store.renameFolder({folderId:context.folderId,name:next.trim()});await loadAndRender();});
       addItem(t("ctxDeleteFolder"),async()=>{if(!await showConfirm({title:t("deleteFolderTitle"),message:t("confirmDeleteFolder")}))return;await window.api.store.deleteFolder({folderId:context.folderId});if(selectedFolderId===context.folderId)selectedFolderId=null;selectedConnId=null;await loadAndRender();});
     }
 
     if(ctxType==="connection"&&context.folderId&&context.connectionId){
       addDivider();
-      function findInTree(folders,fid,cid){for(const fd of folders){if(fd.id===fid){const c=(fd.items||[]).find(x=>x.id===cid);if(c)return c;}const r=findInTree(fd.folders||[],fid,cid);if(r)return r;}return null;}
-      const entry=findInTree(model?.folders||[],context.folderId,context.connectionId);
+      const entry=findConnById(context.connectionId)?.conn;
       if(entry?.type==="web"){addItem(t("ctxEdit"),async()=>{for(const[tid,t]of tabs){if(t.type==="web"&&t.url===entry.url){await closeTab(tid);break;}}const res=await showWebsiteForm({title:t("editWebTitle"),defaults:{name:entry.name,url:entry.url}});if(!res)return;await window.api.store.updateWebConnection({folderId:context.folderId,connectionId:context.connectionId,name:res.name||entry.name,url:res.url});await loadAndRender();});}
-      else if(entry?.type==="ssh"){addItem(t("ctxEdit"),async()=>{let hasSavedPassword=false;try{hasSavedPassword=!!(await window.api.cred.load({id:entry.id}))?.ok;}catch{}const result=await showSshForm({title:t("editSshTitle"),defaults:{name:entry.name,host:entry.host,port:entry.port,username:entry.username,hasSavedPassword,notes:entry.notes||""}});if(!result)return;await window.api.store.updateConnection({folderId:context.folderId,connectionId:context.connectionId,name:result.name,host:result.host,port:result.port,username:result.username,notes:result.notes||""});try{if(result.savePassword&&result.password){await window.api.cred.save({id:entry.id,password:result.password});}else if(result.clearPassword){await window.api.cred.delete({id:entry.id});}}catch{}await loadAndRender();});}
+      else if(entry?.type==="ssh"){addItem(t("ctxEdit"),async()=>{let hasSavedPassword=false;try{hasSavedPassword=!!(await window.api.cred.load({id:entry.id}))?.ok;}catch{}const result=await showSshForm({title:t("editSshTitle"),defaults:{name:entry.name,host:entry.host,port:entry.port,username:entry.username,hasSavedPassword,authType:entry.authType,keyPath:entry.keyPath,jump:entry.jump,sharedPassword:entry.sharedPassword,notes:entry.notes||""}});if(!result)return;await window.api.store.updateConnection({folderId:context.folderId,connectionId:context.connectionId,name:result.name,host:result.host,port:result.port,username:result.username,authType:result.authType,keyPath:result.keyPath,jumpHost:result.jumpHost,jumpPort:result.jumpPort,jumpUsername:result.jumpUsername,jumpKeyPath:result.jumpKeyPath,notes:result.notes||""});await applySshPassword(context.connectionId,context.folderId,result);await loadAndRender();});}
       else if(entry?.type==="serial"){addItem(t("ctxEdit"),async()=>{const result=await showSerialForm({title:t("editSerialTitle"),defaults:{name:entry.name,comPort:entry.comPort,baudRate:entry.baudRate,dataBits:entry.dataBits,parity:entry.parity,stopBits:entry.stopBits}});if(!result)return;await window.api.store.updateConnection({folderId:context.folderId,connectionId:context.connectionId,name:result.name,comPort:result.comPort,baudRate:result.baudRate,dataBits:result.dataBits,parity:result.parity,stopBits:result.stopBits});await loadAndRender();});}
       else{addItem(t("ctxEdit"),async()=>{let hasSavedPassword=false;try{hasSavedPassword=!!(await window.api.cred.load({id:entry.id}))?.ok;}catch{}let rdpMode="none";try{const mr=await window.api.cred.getMode({id:entry.id});rdpMode=mr?.mode||"none";}catch{}
-        const result=await showConnectionForm({title:t("editConnTitle"),defaults:{name:entry.name,host:entry.host,port:entry.port,profile:entry.profile||{},hasSavedPassword,credMode:rdpMode}});if(!result)return;await window.api.store.updateConnection({folderId:context.folderId,connectionId:context.connectionId,name:result.name,host:result.host,port:result.port??"",profile:result.profile||{},notes:result.profile?.notes||""});try{if(result.credMode!==undefined)await window.api.cred.setMode({id:entry.id,mode:result.credMode});}catch{}await loadAndRender();});}
+        const result=await showConnectionForm({title:t("editConnTitle"),defaults:{name:entry.name,host:entry.host,port:entry.port,profile:entry.profile||{},hasSavedPassword,credMode:rdpMode}});if(!result)return;await window.api.store.updateConnection({folderId:context.folderId,connectionId:context.connectionId,name:result.name,host:result.host,port:result.port??"",profile:result.profile||{}});try{if(result.credMode!==undefined)await window.api.cred.setMode({id:entry.id,mode:result.credMode});}catch{}await loadAndRender();});}
+      if(entry){addItem(t("ctxNotes"),async()=>{await showNotesDialog(entry,context.folderId);await loadAndRender();});}
       addItem(t("ctxDelete"),async()=>{if(!await showConfirm({title:t("deleteConnTitle"),message:t("confirmDeleteConn")}))return;for(const[tid,t]of tabs){if((t.type==="web"&&t.url===entry?.url)||(t.type==="ssh"&&t.sessionId?.includes(context.connectionId))){await closeTab(tid);}}await window.api.store.deleteConnection({folderId:context.folderId,connectionId:context.connectionId});if(selectedConnId===context.connectionId)selectedConnId=null;await loadAndRender();});
     }
 
@@ -1849,8 +2774,314 @@ document.addEventListener("DOMContentLoaded", async () => {
     });
   }
 
-  loadAndRender();
-  applyPingInterval();
+  // ── Geteilter Passwort-Tresor: Dialoge ─────────────────────────────────
+  // Entsperr-Dialog beim Start. Bewusst klar als TRESOR beschriftet,
+  // damit er nicht mit einem Verbindungspasswort verwechselt wird.
+  function showVaultUnlockDialog({ allowRemember = true } = {}) {
+    return new Promise((resolve) => {
+      const bd = document.createElement("div"); bd.className = "modal-backdrop";
+      const m  = document.createElement("div"); m.className = "modal";
+      m.innerHTML = `
+        <div class="modal-header">🔓 ${t("vaultUnlockTitle")}</div>
+        <div class="modal-body">
+          <div class="settings-item-desc" style="margin-bottom:12px">${t("vaultUnlockDesc")}</div>
+          <label>${t("vaultUnlockLabel")}</label>
+          <input type="password" id="vault-pw" style="width:100%;box-sizing:border-box;padding:9px 11px;font-size:13px;background:var(--bg-input);color:var(--tx-in);border:1px solid var(--bd-2);border-radius:8px;outline:none;margin-top:6px"/>
+          <div id="vault-err" style="color:var(--err);font-size:12px;margin-top:8px;min-height:16px"></div>
+          ${allowRemember ? `<label style="display:flex;align-items:center;gap:8px;margin-top:10px;cursor:pointer;font-size:13px">
+            <input type="checkbox" id="vault-remember" checked/> <span>${t("vaultRemember")}</span>
+          </label>` : ""}
+        </div>
+        <div class="modal-actions">
+          <button class="btn" id="vault-reset-link" style="margin-right:auto;background:none;border:none;color:var(--tx-5);font-size:12px;cursor:pointer">${t("vaultForgotLink")}</button>
+          <button class="btn primary" id="vault-ok">${t("vaultUnlockBtn")}</button>
+        </div>`;
+      bd.appendChild(m); document.body.appendChild(bd);
+      const pw = m.querySelector("#vault-pw"); pw.focus();
+      const errEl = m.querySelector("#vault-err");
+
+      const attempt = async () => {
+        const r = await window.api.vault.unlock({ password: pw.value });
+        if (r.ok) {
+          if (allowRemember && m.querySelector("#vault-remember")?.checked) {
+            try { await window.api.vault.remember({ password: pw.value }); } catch {}
+          }
+          bd.remove(); resolve(true);
+        } else {
+          errEl.textContent = t("vaultWrongPassword");
+          pw.select();
+        }
+      };
+      m.querySelector("#vault-ok").addEventListener("click", attempt);
+      pw.addEventListener("keydown", (e) => { if (e.key === "Enter") attempt(); });
+      m.querySelector("#vault-reset-link").addEventListener("click", async () => {
+        const sure = await showConfirm({
+          title: t("vaultResetTitle"),
+          message: t("vaultResetMsg"),
+          okLabel: t("vaultResetOk"), cancelLabel: t("cancel")
+        });
+        if (sure) { await window.api.vault.reset(); bd.remove(); resolve(false); }
+      });
+    });
+  }
+
+  // Einrichtungs-Dialog: Freischalt-Passwort erstmalig festlegen
+  function showVaultSetupDialog() {
+    return new Promise((resolve) => {
+      const bd = document.createElement("div"); bd.className = "modal-backdrop";
+      const m  = document.createElement("div"); m.className = "modal";
+      m.innerHTML = `
+        <div class="modal-header">🔐 ${t("vaultSetupTitle")}</div>
+        <div class="modal-body">
+          <div class="settings-item-desc" style="margin-bottom:12px">${t("vaultSetupDesc")}</div>
+          <label>${t("vaultSetupPw1")}</label>
+          <input type="password" id="vs-pw1" style="width:100%;box-sizing:border-box;padding:9px 11px;font-size:13px;background:var(--bg-input);color:var(--tx-in);border:1px solid var(--bd-2);border-radius:8px;outline:none;margin:6px 0 12px"/>
+          <label>${t("vaultSetupPw2")}</label>
+          <input type="password" id="vs-pw2" style="width:100%;box-sizing:border-box;padding:9px 11px;font-size:13px;background:var(--bg-input);color:var(--tx-in);border:1px solid var(--bd-2);border-radius:8px;outline:none;margin-top:6px"/>
+          <div id="vs-err" style="color:var(--err);font-size:12px;margin-top:8px;min-height:16px"></div>
+          <div style="background:var(--bg-warn,#4a3a1a);color:var(--tx-warn,#f0c674);font-size:11px;padding:8px 10px;border-radius:6px;margin-top:8px">${t("vaultSetupWarn")}</div>
+        </div>
+        <div class="modal-actions">
+          <button class="btn" id="vs-cancel">${t("cancel")}</button>
+          <button class="btn primary" id="vs-ok">${t("vaultSetupBtn")}</button>
+        </div>`;
+      bd.appendChild(m); document.body.appendChild(bd);
+      const pw1 = m.querySelector("#vs-pw1"), pw2 = m.querySelector("#vs-pw2");
+      const errEl = m.querySelector("#vs-err"); pw1.focus();
+      m.querySelector("#vs-ok").addEventListener("click", async () => {
+        if (!pw1.value) { errEl.textContent = t("vaultSetupEmpty"); return; }
+        if (pw1.value !== pw2.value) { errEl.textContent = t("vaultSetupMismatch"); pw2.select(); return; }
+        const r = await window.api.vault.setup({ password: pw1.value });
+        if (r.ok) {
+          try { await window.api.vault.remember({ password: pw1.value }); } catch {}
+          bd.remove(); resolve(true);
+        } else { errEl.textContent = r.error || "Fehler"; }
+      });
+      m.querySelector("#vs-cancel").addEventListener("click", () => { bd.remove(); resolve(false); });
+    });
+  }
+
+  // Stellt sicher, dass der Tresor entsperrt ist – ruft bei Bedarf den Dialog.
+  // Gibt true zurück wenn entsperrt, false wenn abgebrochen.
+  async function ensureVaultUnlocked() {
+    const st = await window.api.vault.status();
+    if (st.unlocked) return true;
+    if (!st.exists) return await showVaultSetupDialog();
+    return await showVaultUnlockDialog();
+  }
+
+  // Beim Start: existiert ein Tresor? Dann automatisch via DPAPI versuchen,
+  // sonst Entsperr-Dialog. Existiert keiner, passiert nichts (wird bei Bedarf angelegt).
+  async function initVault({ afterSwitch = false } = {}) {
+    try {
+      // Nach Datenquellen-Wechsel: alten entsperrten Schlüssel im Backend verwerfen,
+      // damit nicht mit dem falschen Tresor-Schlüssel gearbeitet wird.
+      if (afterSwitch) { try { await window.api.vault.lock(); } catch {} }
+
+      const st = await window.api.vault.status();
+      if (!st.exists) return; // kein Tresor am (neuen) Ort – ok, wird bei Bedarf angelegt
+      const auto = await window.api.vault.tryAutoUnlock();
+      if (auto.ok) return; // per DPAPI entsperrt, kein Dialog nötig
+      await showVaultUnlockDialog();
+    } catch (err) { console.error("[vault init]", err); }
+  }
+
+  // Erststart-Assistent: beim allerersten Start einmalig die Datenquelle wählen lassen.
+  async function firstRunSetup() {
+    try {
+      const s = await window.api.settings.load() || {};
+      if (s.setupDone) return false; // schon durchlaufen
+      // Datenquellen-Dialog zeigen (nutzt die bestehende Logik)
+      await showDataSourceDialog();
+      // Merker setzen, damit der Assistent nie wieder erscheint –
+      // unabhängig davon, ob der Nutzer lokal blieb oder SMB wählte.
+      const s2 = await window.api.settings.load() || {};
+      s2.setupDone = true;
+      await window.api.settings.save(s2);
+      return true;
+    } catch (err) { console.error("[first run]", err); return false; }
+  }
+
+  // ── Web-View-Schutz bei Dialogen ────────────────────────────────────
+  // Web-Views (WebContentsView) liegen technisch ÜBER dem HTML und würden
+  // sonst Dialoge (modal-backdrop) verdecken. Dieser Beobachter versteckt
+  // das aktive Web-View, solange ein Dialog offen ist, und zeigt es danach.
+  function installModalWebGuard() {
+    let hiddenForModal = false;
+
+    let seq = 0; // erkennt, ob sich der Zustand während einer Aufnahme geändert hat
+
+    function removeSnapshot() {
+      document.getElementById("web-snapshot")?.remove();
+    }
+
+    async function onModalOpened() {
+      if (hiddenForModal) return;
+      hiddenForModal = true;
+      const my = ++seq;
+      // Standbild der aktiven Website aufnehmen, damit sie im Hintergrund
+      // sichtbar bleibt, während der echte View ausgeblendet ist.
+      const tab = activeTabId ? tabs.get(activeTabId) : null;
+      if (tab && tab.type === "web") {
+        try {
+          const r = await window.api.web.snapshot({ tabId: activeTabId });
+          if (my !== seq) return; // Overlay wurde schon wieder geschlossen
+          if (r?.ok && r.dataUrl) {
+            removeSnapshot();
+            const img = document.createElement("img");
+            img.id = "web-snapshot";
+            img.src = r.dataUrl;
+            tabContentArea.appendChild(img);
+          }
+        } catch {}
+      }
+      if (my !== seq) return;
+      // ALLE Web-Views verstecken – unabhängig davon, welches Tab aktiv ist.
+      try { await window.api.web.hideAll(); } catch {}
+    }
+    async function onModalClosed() {
+      if (!hiddenForModal) return;
+      hiddenForModal = false;
+      ++seq;
+      // Das aktuell aktive Web-Tab wieder anzeigen (falls es eins ist),
+      // danach erst das Standbild entfernen (vermeidet Flackern).
+      const tab = activeTabId ? tabs.get(activeTabId) : null;
+      if (tab && tab.type === "web") {
+        await new Promise(r => requestAnimationFrame(r));
+        try { await window.api.web.show({ tabId: activeTabId, bounds: getContentBounds() }); } catch {}
+      }
+      removeSnapshot();
+    }
+
+    // Dialoge UND die Schnellsuche zählen als "Overlay offen"
+    const anyModalOpen = () => document.querySelector(".modal-backdrop, .quicksearch-backdrop") !== null;
+
+    const observer = new MutationObserver(() => {
+      if (anyModalOpen()) onModalOpened();
+      else onModalClosed();
+    });
+    observer.observe(document.body, { childList: true, subtree: true });
+  }
+
+  async function startup() {
+    installModalWebGuard();  // Web-Views bei offenen Dialogen ausblenden
+    // Status-Merker früh setzen, damit beim ersten Zeichnen schon klar ist,
+    // ob Kreise angezeigt werden sollen (verhindert kurzes Aufblitzen).
+    try {
+      const s0 = await window.api.settings.load();
+      statusEnabled = (Number(s0?.pingInterval) || 0) > 0;
+    } catch { statusEnabled = false; }
+    loadAndRender();
+    applyPingInterval();
+    await firstRunSetup();          // erst Datenquelle wählen (nur beim 1. Start)
+    await initVault({ afterSwitch: false }); // dann Tresor am gewählten Ort prüfen
+    await loadAndRender();          // Ansicht mit ggf. neuer Datenquelle aktualisieren
+  }
+  // Schnellsuche: auf globales Kürzel (aus dem Backend) reagieren
+  // ── Auto-Update-Banner ──────────────────────────────────────────────
+  function initUpdateBanner() {
+    const banner   = document.getElementById("update-banner");
+    const icon     = document.getElementById("update-icon");
+    const textEl   = document.getElementById("update-text");
+    const actionBtn= document.getElementById("update-action");
+    const dismiss  = document.getElementById("update-dismiss");
+    const track    = document.getElementById("update-progress-track");
+    const bar      = document.getElementById("update-progress-bar");
+    if (!banner) return;
+
+    const show = () => { banner.style.display = "block"; };
+    const hide = () => { banner.style.display = "none"; };
+
+    // Icon-Zustand setzen: "spinning" (Lade-Kreis), "ready" (✓), "error" (⚠)
+    const setIcon = (state) => { icon.className = ""; if (state) icon.classList.add(state); };
+
+    dismiss.addEventListener("click", hide);
+
+    window.api.onUpdateEvent?.((type, payload) => {
+      switch (type) {
+        case "update:checking":
+          // Discord-artige Suche mit Lade-Animation
+          show(); setIcon("spinning");
+          textEl.textContent = t("updateChecking");
+          actionBtn.style.display = "none";
+          track.style.display = "none";
+          break;
+
+        case "update:none":
+          // Kein Update – Banner leise ausblenden
+          hide();
+          break;
+
+        case "update:available":
+          // Update gefunden – Installieren anbieten (Halb-Automatik)
+          show(); setIcon("ready");
+          textEl.textContent = t("updateAvailable", payload.version || "");
+          actionBtn.style.display = "";
+          actionBtn.textContent = t("updateInstallBtn");
+          actionBtn.onclick = async () => {
+            // SMB-Weg: Installer direkt von der Freigabe starten.
+            // Die App schließt sich, damit der Installer die Dateien ersetzen kann.
+            textEl.textContent = t("updateStartingInstaller");
+            actionBtn.style.display = "none";
+            setIcon("spinning");
+            await window.api.update.smbInstall();
+          };
+          break;
+
+        case "update:progress":
+          // Download-Fortschritt anzeigen
+          track.style.display = "block";
+          bar.style.width = (payload.percent || 0) + "%";
+          textEl.textContent = t("updateDownloading") + " " + (payload.percent || 0) + "%";
+          break;
+
+        case "update:downloaded":
+          // Fertig – Neustart zum Installieren anbieten
+          setIcon("ready");
+          textEl.textContent = t("updateReady");
+          track.style.display = "none";
+          actionBtn.style.display = "";
+          actionBtn.textContent = t("updateRestartBtn");
+          actionBtn.onclick = () => window.api.update.install();
+          break;
+
+        case "update:error":
+          // Fehler (z. B. Freigabe nicht erreichbar) – dezent zeigen
+          setIcon("error");
+          textEl.textContent = t("updateError");
+          actionBtn.style.display = "none";
+          track.style.display = "none";
+          // Nach kurzer Zeit ausblenden, um nicht zu stören
+          setTimeout(hide, 6000);
+          break;
+      }
+    });
+  }
+  initUpdateBanner();
+
+  // DEV-Abzeichen in der Titelleiste (nur bei "npm start")
+  window.api.isDev?.().then(dev => {
+    if (!dev) return;
+    const title = document.querySelector(".titlebar-left");
+    if (title && !title.querySelector(".dev-badge")) {
+      const badge = document.createElement("span");
+      badge.className = "dev-badge";
+      badge.textContent = "DEV";
+      title.appendChild(badge);
+    }
+    document.title += " [DEV]";
+  }).catch(() => {});
+
+  window.api.onQuickSearchOpen?.(() => showQuickSearch());
+  // Zusätzlich ein lokales Kürzel, wenn die App im Vordergrund ist (Strg+K)
+  window.addEventListener("keydown", (e) => {
+    if ((e.ctrlKey || e.metaKey) && !e.shiftKey && !e.altKey && (e.key === "k" || e.key === "K")) {
+      e.preventDefault();
+      showQuickSearch();
+    }
+  });
+
+  startup();
 
   // ── Datenquelle: Änderungen von anderer Stelle erkennen ─────────────────
   // Vergleicht nur die Revisionsnummer (kein Zeitstempel) – siehe writeStore().
