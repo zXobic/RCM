@@ -122,7 +122,7 @@ ipcMain.handle("cred:loadPersonal", async () => {
     if (!data["__personal__"]) return { ok: false };
 
     let dec = dpapiDecrypt(data["__personal__"]);
-    if (typeof dec !== "string") throw new Error("Entschlüsselter Wert ist kein String.");
+    if (typeof dec !== "string") throw new Error(t("errCredsDecrypt"));
     dec = dec.trim();
     if (dec.charCodeAt(0) === 0xFEFF) dec = dec.slice(1);
 
@@ -135,7 +135,7 @@ ipcMain.handle("cred:loadPersonal", async () => {
       console.error("[RDM] Parse-Fehler:", parseErr.message);
       delete data["__personal__"];
       await writeCredentials(data);
-      return { ok: false, error: "Gespeicherte Zugangsdaten waren beschädigt und wurden zurückgesetzt. Bitte neu eingeben." };
+      return { ok: false, error: t("errCredsCorrupt") };
     }
 
     return { ok: true, username: parsed.username || "", password: parsed.password || "" };
@@ -219,9 +219,9 @@ ipcMain.handle("vault:status", async () => {
 // Ersteinrichtung: Freischalt-Passwort festlegen
 ipcMain.handle("vault:setup", async (_e, { password }) => {
   try {
-    if (!password) return { ok: false, error: "Kein Passwort angegeben." };
+    if (!password) return { ok: false, error: t("errNoPassword") };
     const existing = await readVaultHeader();
-    if (existing) return { ok: false, error: "Es existiert bereits ein Tresor." };
+    if (existing) return { ok: false, error: t("errVaultExists") };
     const header = vault.createVaultHeader(password);
     await writeVaultHeader(header);
     vaultKey = vault.unlockVault(password, header); // direkt entsperrt lassen
@@ -233,9 +233,9 @@ ipcMain.handle("vault:setup", async (_e, { password }) => {
 ipcMain.handle("vault:unlock", async (_e, { password }) => {
   try {
     const header = await readVaultHeader();
-    if (!header) return { ok: false, error: "Kein Tresor vorhanden." };
+    if (!header) return { ok: false, error: t("errNoVault") };
     const key = vault.unlockVault(password, header);
-    if (!key) return { ok: false, error: "Falsches Passwort." };
+    if (!key) return { ok: false, error: t("errWrongPassword") };
     vaultKey = key;
     return { ok: true };
   } catch (err) { return { ok: false, error: err.message }; }
@@ -249,14 +249,14 @@ ipcMain.handle("vault:lock", async () => {
 
 // Geteiltes Geheimnis verschlüsseln (nur wenn entsperrt)
 ipcMain.handle("vault:encrypt", async (_e, { plaintext }) => {
-  if (!vaultKey) return { ok: false, error: "Tresor ist gesperrt." };
+  if (!vaultKey) return { ok: false, error: t("errVaultLocked") };
   try { return { ok: true, ciphertext: vault.encryptWithKey(vaultKey, plaintext || "") }; }
   catch (err) { return { ok: false, error: err.message }; }
 });
 
 // Geteiltes Geheimnis entschlüsseln (nur wenn entsperrt)
 ipcMain.handle("vault:decrypt", async (_e, { ciphertext }) => {
-  if (!vaultKey) return { ok: false, error: "Tresor ist gesperrt." };
+  if (!vaultKey) return { ok: false, error: t("errVaultLocked") };
   try { return { ok: true, plaintext: vault.decryptWithKey(vaultKey, ciphertext) }; }
   catch (err) { return { ok: false, error: err.message }; }
 });
@@ -649,7 +649,7 @@ async function readStore() {
 async function writeStore(data, expectedRev) {
   const cfg = await getDataSourceConfig();
   if (cfg.mode === "smb" && cfg.writeMode !== "readwrite") {
-    throw new Error("Diese Datenquelle ist auf Nur-Lesen eingestellt.");
+    throw new Error(t("errReadOnly"));
   }
   const filePath = effectivePath(cfg);
 
@@ -662,7 +662,7 @@ async function writeStore(data, expectedRev) {
       onDiskRev = onDisk.rev || 0;
     } catch {}
     if (onDiskRev !== expectedRev) {
-      throw new Error("Die Daten wurden inzwischen von anderer Stelle geändert. Bitte Ansicht aktualisieren und erneut versuchen.");
+      throw new Error(t("errConflict"));
     }
   }
 
@@ -849,13 +849,32 @@ function readSettingsSync() {
 }
 function trayEnabled() { return readSettingsSync().trayMode !== false; } // Standard: an
 
-function trayText() {
-  const en = readSettingsSync().language === "en";
-  return en
-    ? { open: "Open", search: "Quick search", quit: "Quit",
-        hintTitle: "Remote Connection Manager", hintText: "RCM keeps running in the tray. Quit via right-click on the icon." }
-    : { open: "Öffnen", search: "Schnellsuche", quit: "Beenden",
-        hintTitle: "Remote Connection Manager", hintText: "RCM läuft im Hintergrund weiter. Beenden per Rechtsklick auf das Symbol." };
+// ── Übersetzungen im Main-Prozess ───────────────────────────────────────
+// Gleiche Sprachdateien wie im Renderer (locales/*.json), gleiche t()-Logik.
+// Eine Sprachänderung wirkt ohnehin erst nach dem Neustart, daher reicht der Cache.
+function currentLang() {
+  const lang = readSettingsSync().language;
+  if (lang) return lang;
+  return app.getLocale().startsWith("de") ? "de" : "en";
+}
+
+const _localeCache = {};
+function loadLocale(lang) {
+  if (_localeCache[lang]) return _localeCache[lang];
+  const tryLoad = (file) => {
+    try { return JSON.parse(fs.readFileSync(file, "utf-8")); } catch { return null; }
+  };
+  const data =
+    tryLoad(path.join(__dirname, "locales", `${lang}.json`)) ||
+    tryLoad(path.join(path.dirname(process.execPath), "locales", `${lang}.json`));
+  if (data) _localeCache[lang] = data;
+  return data || {};
+}
+
+function t(key, ...args) {
+  let s = loadLocale(currentLang())[key] ?? loadLocale("de")[key] ?? key;
+  args.forEach((a, i) => { s = s.replace(`{${i}}`, () => String(a)); });
+  return s;
 }
 
 function showMainWindow({ quickSearch = false } = {}) {
@@ -874,8 +893,7 @@ function hideToTray() {
   const s = readSettingsSync();
   if ((IS_DEV || !s.trayHintShown) && tray) {
     try {
-      const tx = trayText();
-      tray.displayBalloon({ title: tx.hintTitle, content: tx.hintText, iconType: "info" });
+      tray.displayBalloon({ title: "Remote Connection Manager", content: t("trayHint"), iconType: "info" });
       if (!IS_DEV) {
         s.trayHintShown = true;
         fs.writeFileSync(settingsPath, JSON.stringify(s, null, 2), "utf-8");
@@ -885,13 +903,12 @@ function hideToTray() {
 }
 
 function buildTrayMenu() {
-  const tx = trayText();
   return Menu.buildFromTemplate([
-    ...(IS_DEV ? [{ label: "⚙ Entwicklungsmodus (npm start)", enabled: false }, { type: "separator" }] : []),
-    { label: tx.open,   click: () => showMainWindow() },
-    { label: tx.search, click: () => showMainWindow({ quickSearch: true }) },
+    ...(IS_DEV ? [{ label: t("trayDevMode"), enabled: false }, { type: "separator" }] : []),
+    { label: t("trayOpen"),        click: () => showMainWindow() },
+    { label: t("trayQuickSearch"), click: () => showMainWindow({ quickSearch: true }) },
     { type: "separator" },
-    { label: tx.quit,   click: () => shutdownAndQuit() },
+    { label: t("trayQuit"),        click: () => shutdownAndQuit() },
   ]);
 }
 
@@ -959,7 +976,7 @@ ipcMain.handle("dialog:openFile", async (_e, { filters } = {}) => {
   const wnd = BrowserWindow.getFocusedWindow() || BrowserWindow.getAllWindows()[0];
   const result = await dialog.showOpenDialog(wnd, {
     properties: ["openFile"],
-    filters: filters || [{ name: "Alle Dateien", extensions: ["*"] }],
+    filters: filters || [{ name: t("dlgAllFiles"), extensions: ["*"] }],
   });
   if (result.canceled || !result.filePaths.length) return null;
   const content = await fs.promises.readFile(result.filePaths[0], "utf-8");
@@ -984,7 +1001,7 @@ ipcMain.handle("dialog:saveFile", async (_e, { defaultName, content } = {}) => {
 ipcMain.handle("datasource:pickExisting", async () => {
   const wnd = BrowserWindow.getFocusedWindow() || BrowserWindow.getAllWindows()[0];
   const result = await dialog.showOpenDialog(wnd, {
-    title: "Vorhandene connections.json auswählen",
+    title: t("dlgPickExisting"),
     filters: [{ name: "JSON", extensions: ["json"] }],
     properties: ["openFile", "dontAddToRecent"],
   });
@@ -997,7 +1014,7 @@ ipcMain.handle("datasource:pickExisting", async () => {
 ipcMain.handle("datasource:pickNewFolder", async () => {
   const wnd = BrowserWindow.getFocusedWindow() || BrowserWindow.getAllWindows()[0];
   const result = await dialog.showOpenDialog(wnd, {
-    title: "Ordner für neue connections.json wählen",
+    title: t("dlgPickNewFolder"),
     properties: ["openDirectory", "createDirectory", "dontAddToRecent"],
   });
   if (result.canceled || !result.filePaths?.[0]) return null;
@@ -1020,7 +1037,7 @@ ipcMain.handle("datasource:checkPath", async (_e, { filePath } = {}) => {
 
 // Leere Store-Struktur an einem Pfad anlegen
 ipcMain.handle("datasource:createFile", async (_e, { filePath } = {}) => {
-  if (!filePath) throw new Error("Kein Pfad angegeben.");
+  if (!filePath) throw new Error(t("errNoPath"));
   const dir = path.dirname(filePath);
   await fs.promises.mkdir(dir, { recursive: true });
   await fs.promises.writeFile(filePath, JSON.stringify({ rev: 0, folders: [] }, null, 2), "utf-8");
@@ -1049,13 +1066,13 @@ ipcMain.handle("store:openFolder", async () => {
 ipcMain.handle("store:load", async () => readStore());
 
 ipcMain.handle("store:createFolder", async (_e, { name, parentId }) => {
-  if (!name?.trim()) throw new Error("Ordnername fehlt.");
+  if (!name?.trim()) throw new Error(t("errFolderNameMissing"));
   const data      = await readStore();
   const newFolder = { id: "f-" + randomUUID(), name: name.trim(), open: true, items: [], folders: [] };
   if (parentId) {
     const info = findFolderById(data.folders, parentId);
-    if (!info) throw new Error("Zielordner nicht gefunden.");
-    if (info.depth >= MAX_DEPTH) throw new Error(`Max. Tiefe (${MAX_DEPTH}) erreicht.`);
+    if (!info) throw new Error(t("errTargetFolderNotFound"));
+    if (info.depth >= MAX_DEPTH) throw new Error(t("errMaxDepthReached", MAX_DEPTH));
     info.folder.folders.push(newFolder);
   } else {
     data.folders.push(newFolder);
@@ -1065,10 +1082,10 @@ ipcMain.handle("store:createFolder", async (_e, { name, parentId }) => {
 });
 
 ipcMain.handle("store:renameFolder", async (_e, { folderId, name }) => {
-  if (!folderId || !name?.trim()) throw new Error("Parameter fehlt.");
+  if (!folderId || !name?.trim()) throw new Error(t("errParamMissing"));
   const data = await readStore();
   const info = findFolderById(data.folders, folderId);
-  if (!info) throw new Error("Ordner nicht gefunden.");
+  if (!info) throw new Error(t("errFolderNotFound"));
   info.folder.name = name.trim();
   await writeStore(data, data.rev);
   return { ok: true, data };
@@ -1076,7 +1093,7 @@ ipcMain.handle("store:renameFolder", async (_e, { folderId, name }) => {
 
 ipcMain.handle("store:deleteFolder", async (_e, { folderId }) => {
   const data = await readStore();
-  if (!removeFolderFromParent(data.folders, folderId)) throw new Error("Ordner nicht gefunden.");
+  if (!removeFolderFromParent(data.folders, folderId)) throw new Error(t("errFolderNotFound"));
   await writeStore(data, data.rev);
   return { ok: true, data };
 });
@@ -1091,15 +1108,15 @@ ipcMain.handle("store:setFolderOpen", async (_e, { folderId, open }) => {
 ipcMain.handle("store:createConnection", async (_e, { folderId, type, name, host, port, url, profile, username, comPort, baudRate, dataBits, parity, stopBits, authType, keyPath, jumpHost, jumpPort, jumpUsername, jumpKeyPath }) => {
   const data = await readStore();
   const info = findFolderById(data.folders, folderId);
-  if (!info) throw new Error("Zielordner nicht gefunden.");
+  if (!info) throw new Error(t("errTargetFolderNotFound"));
   const id = "c-" + randomUUID();
   let conn;
   if (type === "web") {
-    if (!url?.trim()) throw new Error("URL ist erforderlich.");
+    if (!url?.trim()) throw new Error(t("errUrlRequired"));
     conn = { id, type: "web", name: (name || url).trim(), url: url.trim() };
   } else if (type === "ssh") {
-    if (!host?.trim())     throw new Error("Host ist erforderlich.");
-    if (!username?.trim()) throw new Error("Benutzername ist erforderlich.");
+    if (!host?.trim())     throw new Error(t("errHostRequired"));
+    if (!username?.trim()) throw new Error(t("errUsernameRequired"));
     conn = { id, type: "ssh", name: (name || host).trim(), host: host.trim(), port: port ? Number(port) : 22, username: username.trim() };
     if (authType === "key" && typeof keyPath === "string" && keyPath.trim()) {
       conn.authType = "key";
@@ -1115,12 +1132,12 @@ ipcMain.handle("store:createConnection", async (_e, { folderId, type, name, host
       };
     }
   } else if (type === "serial") {
-    if (!comPort) throw new Error("COM-Port ist erforderlich.");
+    if (!comPort) throw new Error(t("errComPortRequired"));
     conn = { id, type: "serial", name: (name || comPort).trim(), comPort,
              baudRate: Number(baudRate) || 9600, dataBits: Number(dataBits) || 8,
              parity: parity || "none", stopBits: Number(stopBits) || 1 };
   } else {
-    if (!host?.trim()) throw new Error("Host ist erforderlich.");
+    if (!host?.trim()) throw new Error(t("errHostRequired"));
     conn = { id, type: "rdp", name: (name || host).trim(), host: host.trim(), port: port ? Number(port) : undefined };
     if (profile && typeof profile === "object") conn.profile = profile;
   }
@@ -1132,9 +1149,9 @@ ipcMain.handle("store:createConnection", async (_e, { folderId, type, name, host
 ipcMain.handle("store:updateConnection", async (_e, { folderId, connectionId, name, host, port, profile, url, username, comPort, baudRate, dataBits, parity, stopBits, notes, authType, keyPath, jumpHost, jumpPort, jumpUsername, jumpKeyPath, sharedPassword }) => {
   const data = await readStore();
   const info = findFolderById(data.folders, folderId);
-  if (!info) throw new Error("Ordner nicht gefunden.");
+  if (!info) throw new Error(t("errFolderNotFound"));
   const conn = (info.folder.items || []).find(c => c.id === connectionId);
-  if (!conn) throw new Error("Verbindung nicht gefunden.");
+  if (!conn) throw new Error(t("errConnNotFound"));
   if (typeof name === "string") conn.name = name.trim() || conn.name;
   if (conn.type === "web") {
     if (typeof url === "string" && url.trim()) conn.url = url.trim();
@@ -1142,7 +1159,7 @@ ipcMain.handle("store:updateConnection", async (_e, { folderId, connectionId, na
     if (typeof host     === "string" && host.trim())     conn.host     = host.trim();
     if (typeof username === "string" && username.trim()) conn.username = username.trim();
     if (port != null && port !== "") {
-      const p = Number(port); if (!Number.isFinite(p) || p <= 0 || p > 65535) throw new Error("Port ungültig.");
+      const p = Number(port); if (!Number.isFinite(p) || p <= 0 || p > 65535) throw new Error(t("errPortInvalid"));
       conn.port = p;
     }
     if (authType === "key" || authType === "password") conn.authType = authType;
@@ -1169,7 +1186,7 @@ ipcMain.handle("store:updateConnection", async (_e, { folderId, connectionId, na
   } else {
     if (typeof host === "string") conn.host = host.trim() || conn.host;
     if (port != null && port !== "") {
-      const p = Number(port); if (!Number.isFinite(p) || p <= 0 || p > 65535) throw new Error("Port ungültig.");
+      const p = Number(port); if (!Number.isFinite(p) || p <= 0 || p > 65535) throw new Error(t("errPortInvalid"));
       conn.port = p;
     } else if (port === "") { delete conn.port; }
     if (profile && typeof profile === "object") conn.profile = Object.assign({}, conn.profile || {}, profile);
@@ -1187,9 +1204,9 @@ ipcMain.handle("store:updateConnection", async (_e, { folderId, connectionId, na
 ipcMain.handle("store:deleteConnection", async (_e, { folderId, connectionId }) => {
   const data = await readStore();
   const info = findFolderById(data.folders, folderId);
-  if (!info) throw new Error("Ordner nicht gefunden.");
+  if (!info) throw new Error(t("errFolderNotFound"));
   const i = (info.folder.items || []).findIndex(c => c.id === connectionId);
-  if (i === -1) throw new Error("Verbindung nicht gefunden.");
+  if (i === -1) throw new Error(t("errConnNotFound"));
   info.folder.items.splice(i, 1);
   await writeStore(data, data.rev);
   return { ok: true, data };
@@ -1199,9 +1216,9 @@ ipcMain.handle("store:moveConnection", async (_e, { sourceFolderId, connectionId
   const data = await readStore();
   const src  = findFolderById(data.folders, sourceFolderId);
   const dst  = findFolderById(data.folders, targetFolderId);
-  if (!src || !dst) throw new Error("Ordner nicht gefunden.");
+  if (!src || !dst) throw new Error(t("errFolderNotFound"));
   const idx = (src.folder.items || []).findIndex(c => c.id === connectionId);
-  if (idx === -1) throw new Error("Verbindung nicht gefunden.");
+  if (idx === -1) throw new Error(t("errConnNotFound"));
   const [conn] = src.folder.items.splice(idx, 1);
   if (!dst.folder.items) dst.folder.items = [];
   // Wenn eine Zielposition angegeben ist: dort einfügen, sonst ans Ende.
@@ -1217,21 +1234,21 @@ ipcMain.handle("store:moveConnection", async (_e, { sourceFolderId, connectionId
 ipcMain.handle("store:moveFolder", async (_e, { folderId, targetFolderId, targetIndex }) => {
   const data    = await readStore();
   const srcInfo = findFolderById(data.folders, folderId);
-  if (!srcInfo) throw new Error("Quellordner nicht gefunden.");
+  if (!srcInfo) throw new Error(t("errSourceFolderNotFound"));
   let dstInfo = null;
   if (targetFolderId) {
     dstInfo = findFolderById(data.folders, targetFolderId);
-    if (!dstInfo) throw new Error("Zielordner nicht gefunden.");
+    if (!dstInfo) throw new Error(t("errTargetFolderNotFound"));
     if (folderId === targetFolderId || folderContainsId(srcInfo.folder, targetFolderId))
-      throw new Error("Ungültiges Ziel (Zyklus).");
+      throw new Error(t("errInvalidTargetCycle"));
     if (dstInfo.depth + computeSubtreeDepth(srcInfo.folder) > MAX_DEPTH)
-      throw new Error(`Max. Tiefe (${MAX_DEPTH}) würde überschritten.`);
+      throw new Error(t("errMaxDepthExceeded", MAX_DEPTH));
   }
   const moved = extractFolder(data.folders, folderId);
-  if (!moved) throw new Error("Ordner konnte nicht entfernt werden.");
+  if (!moved) throw new Error(t("errFolderRemoveFailed"));
   // Ziel-Liste: entweder oberste Ebene oder die Kinder des Zielordners
   const targetList = targetFolderId ? dstInfo.folder.folders : data.folders;
-  if (!Array.isArray(targetList)) throw new Error("Ziel-Liste ungültig.");
+  if (!Array.isArray(targetList)) throw new Error(t("errTargetListInvalid"));
   if (typeof targetIndex === "number" && targetIndex >= 0 && targetIndex <= targetList.length) {
     targetList.splice(targetIndex, 0, moved);
   } else {
@@ -1305,8 +1322,8 @@ function buildRdpProfile(opts) {
    IPC: RDP
 ---------------------------------------- */
 ipcMain.handle("rdp:launch", (_e, { tabId, host, port, fullscreen, multimon, width, height, admin, username, password, clipboard, printers, drives, colorDepth, gateway }) => {
-  if (process.platform !== "win32") return { ok: false, error: "Nur unter Windows verfügbar." };
-  if (!host) return { ok: false, error: "Host ist erforderlich." };
+  if (process.platform !== "win32") return { ok: false, error: t("errWindowsOnly") };
+  if (!host) return { ok: false, error: t("errHostRequired") };
   try {
     // Registry: Zertifikatswarnung unterdrücken (AuthenticationLevelOverride)
     try {
@@ -1418,7 +1435,7 @@ ipcMain.handle("rdp:close", (_e, { tabId }) => {
 ipcMain.handle("serial:listPorts", async () => {
   if (!SerialPortClass) return {
     ok: false,
-    error: "Serielle Verbindungen nicht verfügbar.\n\nLösung A (empfohlen):\n  npm install @serialport/stream @serialport/bindings-wasm\n\nLösung B:\n  npm install serialport && npx @electron/rebuild",
+    error: t("errSerialUnavailable"),
     ports: []
   };
   try {
@@ -1434,7 +1451,7 @@ ipcMain.handle("serial:listPorts", async () => {
 
 ipcMain.handle("serial:connect", (_e, { sessionId, path, baudRate, dataBits, parity, stopBits }) => {
   return new Promise((resolve) => {
-    if (!SerialPortClass) { resolve({ ok: false, error: "serialport nicht installiert." }); return; }
+    if (!SerialPortClass) { resolve({ ok: false, error: t("errSerialNotInstalled") }); return; }
 
     // Alten Session sauber schließen
     const oldSess = serialSessions.get(sessionId);
@@ -1521,9 +1538,9 @@ ipcMain.handle("serial:close", (_e, { sessionId }) => {
 ipcMain.handle("ssh:pickKeyPath", async () => {
   const wnd = BrowserWindow.getFocusedWindow() || BrowserWindow.getAllWindows()[0];
   const result = await dialog.showOpenDialog(wnd, {
-    title: "Private Schlüsseldatei auswählen",
+    title: t("dlgPickKey"),
     properties: ["openFile", "dontAddToRecent"],
-    filters: [{ name: "Alle Dateien", extensions: ["*"] }], // Keys haben oft keine Endung (id_rsa, id_ed25519)
+    filters: [{ name: t("dlgAllFiles"), extensions: ["*"] }], // Keys haben oft keine Endung (id_rsa, id_ed25519)
   });
   if (result.canceled || !result.filePaths?.[0]) return null;
   return { filePath: result.filePaths[0] };
@@ -1545,7 +1562,7 @@ ipcMain.handle("ssh:connect", (_e, { sessionId, host, port, username, password, 
       if (settled) return; settled = true;
       try { jumpClient?.end(); } catch {}
       // Fehlerort benennen, damit der Nutzer weiß wo es klemmte
-      const prefix = stage === "jump" ? "Jumphost: " : stage === "target" ? "Ziel: " : "";
+      const prefix = stage === "jump" ? t("sshPrefixJump") : stage === "target" ? t("sshPrefixTarget") : "";
       resolve({ ok: false, error: prefix + (err?.message || String(err)) });
     };
 
@@ -1584,7 +1601,7 @@ ipcMain.handle("ssh:connect", (_e, { sessionId, host, port, username, password, 
       if (authType === "key") {
         let keyData;
         try { keyData = readKey(keyPath); }
-        catch (e) { fail({ message: `Schlüsseldatei konnte nicht gelesen werden: ${e.message}` }, "target"); return; }
+        catch (e) { fail({ message: t("errKeyRead", e.message) }, "target"); return; }
         opts.privateKey = keyData;
         if (passphrase) opts.passphrase = passphrase;
       } else {
@@ -1616,7 +1633,7 @@ ipcMain.handle("ssh:connect", (_e, { sessionId, host, port, username, password, 
       // Jumphost immer per Key
       let jKey;
       try { jKey = readKey(jump.keyPath); }
-      catch (e) { fail({ message: `Jumphost-Schlüsseldatei konnte nicht gelesen werden: ${e.message}` }, "jump"); return; }
+      catch (e) { fail({ message: t("errJumpKeyRead", e.message) }, "jump"); return; }
       jOpts.privateKey = jKey;
       if (jump.passphrase) jOpts.passphrase = jump.passphrase;
 
@@ -1646,8 +1663,8 @@ ipcMain.handle("ssh:close",  (_e, { sessionId }) => {
 function getWnd() { return BrowserWindow.getFocusedWindow() || BrowserWindow.getAllWindows()[0]; }
 
 ipcMain.handle("web:open", async (_e, { tabId, url, bounds }) => {
-  if (!url) throw new Error("URL fehlt.");
-  const wnd = getWnd(); if (!wnd) throw new Error("Kein Fenster.");
+  if (!url) throw new Error(t("errUrlRequired"));
+  const wnd = getWnd(); if (!wnd) throw new Error(t("errNoWindow"));
   const old = webViews.get(tabId);
   if (old) { try { wnd.contentView.removeChildView(old); old.webContents.destroy(); } catch {} webViews.delete(tabId); }
   const view = new WebContentsView({ webPreferences: { nodeIntegration: false, contextIsolation: true, sandbox: true } });
@@ -1754,26 +1771,10 @@ ipcMain.handle("web:reload", async (_e, { tabId, hard }) => {
 
 // ── Lokalisierung ────────────────────────────────────────────────────────
 ipcMain.handle("locale:get", async () => {
-  try {
-    const s = await readSettings();
-    let lang = s.language;
-    if (!lang) {
-      const syslang = app.getLocale();
-      lang = syslang.startsWith("de") ? "de" : "en";
-    }
-    // Lokale Datei laden
-    const tryLoad = (file) => {
-      try { return JSON.parse(fs.readFileSync(file, "utf-8")); } catch { return null; }
-    };
-    const translations =
-      tryLoad(path.join(__dirname, "locales", `${lang}.json`)) ||
-      tryLoad(path.join(__dirname, "locales", "de.json")) ||
-      tryLoad(path.join(path.dirname(process.execPath), "locales", `${lang}.json`)) ||
-      {};
-    return { lang, translations };
-  } catch (err) {
-    return { lang: "de", translations: {} };
-  }
+  const lang = currentLang();
+  let translations = loadLocale(lang);
+  if (!Object.keys(translations).length) translations = loadLocale("de");
+  return { lang, translations };
 });
 
 // ── TCP-Erreichbarkeitscheck ──────────────────────────────────────────────
